@@ -34,7 +34,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="min-h-screen bg-zinc-50 dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 transition-colors duration-200 flex flex-col">
+  <div class="min-h-screen bg-zinc-100 dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 transition-colors duration-200 flex flex-col">
     <AppNavbar />
 
     <AppLoader v-if="loading" />
@@ -44,7 +44,7 @@ onMounted(async () => {
     </div>
 
     <div v-else class="flex-1 flex overflow-hidden" style="height: calc(100vh - 56px)">
-      <aside class="w-64 shrink-0 border-r border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950 p-4 overflow-y-auto hidden sm:block">
+      <aside class="w-64 shrink-0 border-r border-zinc-200 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-900 p-4 overflow-y-auto hidden sm:block">
         <h2 class="text-sm font-semibold text-zinc-900 dark:text-zinc-100 mb-4 truncate">{{ workspace.name }}</h2>
         <MemberList :members="members" />
         <p class="text-xs text-zinc-400 dark:text-zinc-600 mt-2">
@@ -52,7 +52,7 @@ onMounted(async () => {
         </p>
       </aside>
 
-      <div class="flex-1 flex flex-col overflow-hidden bg-white dark:bg-zinc-950">
+      <div class="flex-1 flex flex-col overflow-hidden bg-zinc-100 dark:bg-zinc-900">
         <div class="sm:hidden px-4 py-3 border-b border-zinc-200 dark:border-zinc-800">
           <h2 class="text-sm font-semibold text-zinc-900 dark:text-zinc-100 truncate">{{ workspace.name }}</h2>
         </div>

@@ -14,7 +14,7 @@ async function handleSignOut() {
 </script>
 
 <template>
-  <header class="border-b border-zinc-200 dark:border-zinc-800 bg-white/80 dark:bg-zinc-950/80 backdrop-blur-sm sticky top-0 z-50">
+  <header class="border-b border-zinc-200 dark:border-zinc-800 bg-zinc-100/80 dark:bg-zinc-900/80 backdrop-blur-sm sticky top-0 z-50">
     <div class="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between">
       <!-- Logo -->
       <RouterLink to="/dashboard" class="text-zinc-900 dark:text-zinc-100 font-bold text-lg tracking-tight">

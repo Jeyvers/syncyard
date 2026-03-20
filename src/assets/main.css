@@ -5,13 +5,13 @@
 @layer base {
   /* Light mode defaults */
   html {
-    background-color: #fafafa;
+    background-color: #f4f4f5; /* zinc-100 — soft off-white */
     color: #09090b;
   }
 
   /* Dark mode overrides */
   html.dark {
-    background-color: #09090b;
+    background-color: #18181b; /* zinc-900 — dark but not pitch black */
     color: #fafafa;
   }
 }

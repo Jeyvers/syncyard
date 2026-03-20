@@ -11,14 +11,14 @@ const email = ref('')
 const password = ref('')
 const error = ref('')
 const loading = ref(false)
-const success = ref(false)
+const submitted = ref(false)
 
 async function handleSubmit() {
   loading.value = true
   error.value = ''
   try {
     await auth.signUp(email.value, password.value)
-    success.value = true
+    submitted.value = true
   } catch (e: unknown) {
     error.value = e instanceof Error ? e.message : 'Sign up failed'
   } finally {
@@ -29,7 +29,8 @@ async function handleSubmit() {
 
 <template>
   <div>
-    <template v-if="success">
+    <!-- Email confirmation required -->
+    <template v-if="submitted">
       <div class="text-center py-4">
         <div class="text-3xl mb-3">✉️</div>
         <h2 class="text-xl font-semibold text-zinc-900 dark:text-zinc-100 mb-2">Check your inbox</h2>

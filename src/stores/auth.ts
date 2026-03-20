@@ -14,25 +14,26 @@ export const useAuthStore = defineStore('auth', () => {
 
   async function init() {
     loading.value = true
-    const { data: { session } } = await supabase.auth.getSession()
-    user.value = session?.user ?? null
-    if (user.value) await fetchProfile()
-    loading.value = false
 
+    // Register listener before getSession so no SIGNED_IN events are missed
+    // (important for PKCE OAuth callbacks where exchange may complete instantly).
     supabase.auth.onAuthStateChange((_event, session) => {
       user.value = session?.user ?? null
       if (user.value) fetchProfile()
       else profile.value = null
     })
+
+    const {
+      data: { session },
+    } = await supabase.auth.getSession()
+    user.value = session?.user ?? null
+    if (user.value) await fetchProfile()
+    loading.value = false
   }
 
   async function fetchProfile() {
     if (!user.value) return
-    const { data } = await supabase
-      .from('profiles')
-      .select('*')
-      .eq('id', user.value.id)
-      .single()
+    const { data } = await supabase.from('profiles').select('*').eq('id', user.value.id).single()
     profile.value = data
   }
 
@@ -43,18 +44,21 @@ export const useAuthStore = defineStore('auth', () => {
   }
 
   async function signUp(email: string, password: string) {
+    // Email/password signup always requires email confirmation.
+    // Google OAuth users are confirmed automatically and never call this function.
     const { error } = await supabase.auth.signUp({ email, password })
     if (error) throw error
   }
 
   async function signInWithGoogle() {
-    const siteUrl = import.meta.env.VITE_SITE_URL as string
+    const siteUrl = window.location.origin as string
     const { error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
       options: {
         redirectTo: `${siteUrl}/auth/callback`,
       },
     })
+
     // If error is thrown before redirect, surface it. Otherwise the browser navigates away.
     if (error) throw error
   }

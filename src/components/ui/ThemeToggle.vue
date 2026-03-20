@@ -15,7 +15,7 @@ const isDark = computed(() => theme.theme === 'dark')
     :class="[
       'relative inline-flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-full border transition-colors duration-300 ease-in-out',
       'focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 focus-visible:ring-offset-2',
-      'focus-visible:ring-offset-white dark:focus-visible:ring-offset-zinc-950',
+      'focus-visible:ring-offset-zinc-100 dark:focus-visible:ring-offset-zinc-900',
       isDark
         ? 'bg-zinc-700 border-zinc-600'
         : 'bg-violet-100 border-violet-200',

@@ -9,7 +9,7 @@ defineProps<{ profile: Profile }>()
 <template>
   <RouterLink
     :to="`/profile/${profile.username}`"
-    class="block bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl p-5
+    class="block bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-xl p-5
            hover:border-zinc-300 dark:hover:border-zinc-600 transition-all duration-200 group shadow-sm dark:shadow-none"
   >
     <div class="flex items-center gap-3 mb-3">

@@ -2,6 +2,7 @@
 import { watch, onMounted, onUnmounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { useAuthStore } from '@/stores/auth'
+import { supabase } from '@/lib/supabase'
 import AppLoader from '@/components/ui/AppLoader.vue'
 
 const router = useRouter()
@@ -11,35 +12,41 @@ function redirect() {
   router.replace(auth.isOnboarded ? '/dashboard' : '/onboarding')
 }
 
-// Session may already be set by the time this view mounts (auth.init runs before mount).
-// If not, watch for the auth store's onAuthStateChange listener to update isAuthenticated.
-
 let stopWatch: (() => void) | null = null
 let timeoutId: ReturnType<typeof setTimeout> | null = null
 
 onMounted(async () => {
+  // Explicitly exchange PKCE code if present in the URL.
+  // The Supabase client may have already started the exchange but we can't
+  // rely on the onAuthStateChange event being registered in time.
+  const code = new URLSearchParams(window.location.search).get('code')
+  if (code) {
+    const { error } = await supabase.auth.exchangeCodeForSession(code)
+    if (error) {
+      router.replace('/login')
+      return
+    }
+  }
+
+  // After exchange, session should be immediately available.
   if (auth.isAuthenticated) {
-    // Session was already established — make sure profile is fetched then redirect.
     await auth.fetchProfile()
     redirect()
     return
   }
 
-  // Watch for the auth state to become active (OAuth code exchange in progress).
+  // Fallback: watch in case the store hasn't updated yet from onAuthStateChange.
   stopWatch = watch(
     () => auth.isAuthenticated,
     async (authenticated) => {
       if (authenticated) {
         stopWatch?.()
-        // fetchProfile is already called by auth store's onAuthStateChange listener,
-        // but we call it again here to ensure it's done before we check isOnboarded.
         await auth.fetchProfile()
         redirect()
       }
     },
   )
 
-  // Fallback: if nothing happens within 10 seconds, something went wrong.
   timeoutId = setTimeout(() => {
     if (!auth.isAuthenticated) router.replace('/login')
   }, 10_000)
@@ -52,7 +59,9 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="min-h-screen bg-zinc-950 flex flex-col items-center justify-center gap-4">
+  <div
+    class="min-h-screen bg-zinc-100 dark:bg-zinc-900 flex flex-col items-center justify-center gap-4"
+  >
     <AppLoader />
     <p class="text-zinc-500 text-sm">Signing you in…</p>
   </div>

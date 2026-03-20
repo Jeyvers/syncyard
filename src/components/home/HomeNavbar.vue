@@ -26,7 +26,7 @@ function scrollTo(id: string) {
     :class="[
       'fixed inset-x-0 top-0 z-50 transition-all duration-300',
       scrolled
-        ? 'bg-white/90 dark:bg-zinc-950/90 backdrop-blur-md border-b border-zinc-200/80 dark:border-zinc-800/80'
+        ? 'bg-zinc-100/90 dark:bg-zinc-900/90 backdrop-blur-md border-b border-zinc-200/80 dark:border-zinc-800/80'
         : 'bg-transparent',
     ]"
   >
@@ -109,7 +109,7 @@ function scrollTo(id: string) {
     >
       <div
         v-if="mobileOpen"
-        class="md:hidden bg-white dark:bg-zinc-950 border-t border-zinc-200 dark:border-zinc-800 px-4 py-3 space-y-1"
+        class="md:hidden bg-zinc-100 dark:bg-zinc-900 border-t border-zinc-200 dark:border-zinc-800 px-4 py-3 space-y-1"
       >
         <button
           class="block w-full text-left px-3 py-2.5 text-sm text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 hover:bg-zinc-100/60 dark:hover:bg-zinc-800/60 rounded-lg transition-colors"

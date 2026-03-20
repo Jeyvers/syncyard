@@ -105,7 +105,7 @@ async function handleSubmit() {
 </script>
 
 <template>
-  <div class="min-h-screen bg-zinc-50 dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 transition-colors duration-200 flex items-center justify-center px-4 py-12">
+  <div class="min-h-screen bg-zinc-100 dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 transition-colors duration-200 flex items-center justify-center px-4 py-12">
     <!-- Theme toggle -->
     <div class="fixed top-4 right-4">
       <ThemeToggle />

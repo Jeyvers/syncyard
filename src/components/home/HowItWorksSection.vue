@@ -50,7 +50,7 @@ const steps = [
           :key="i"
           :style="{ transitionDelay: isVisible ? `${i * 120}ms` : '0ms' }"
           :class="[
-            'relative bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-2xl p-6 transition-all duration-600 ease-out shadow-sm dark:shadow-none',
+            'relative bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-2xl p-6 transition-all duration-600 ease-out shadow-sm dark:shadow-none',
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6',
           ]"
         >
