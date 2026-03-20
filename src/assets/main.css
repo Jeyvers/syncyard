@@ -1,0 +1,35 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  /* Light mode defaults */
+  html {
+    background-color: #fafafa;
+    color: #09090b;
+  }
+
+  /* Dark mode overrides */
+  html.dark {
+    background-color: #09090b;
+    color: #fafafa;
+  }
+}
+
+@keyframes scroll-tags {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-scroll-tags {
+  animation: scroll-tags 35s linear infinite;
+  width: max-content;
+}
+
+.animate-scroll-tags:hover {
+  animation-play-state: paused;
+}
