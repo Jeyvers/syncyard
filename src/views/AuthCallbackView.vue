@@ -21,11 +21,9 @@ onMounted(async () => {
   // rely on the onAuthStateChange event being registered in time.
   const code = new URLSearchParams(window.location.search).get('code')
   if (code) {
-    const { error } = await supabase.auth.exchangeCodeForSession(code)
-    if (error) {
-      router.replace('/login')
-      return
-    }
+    // Attempt explicit exchange — ignore errors since detectSessionInUrl
+    // (runs on Supabase client init) may have already consumed the code.
+    await supabase.auth.exchangeCodeForSession(code).catch(() => {})
   }
 
   // After exchange, session should be immediately available.
