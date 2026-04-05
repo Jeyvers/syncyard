@@ -15,7 +15,7 @@ defineProps<{ profile: Profile }>()
     <div class="flex items-center gap-3 mb-3">
       <AppAvatar :src="profile.avatar_url" :name="profile.full_name" size="md" />
       <div class="min-w-0">
-        <p class="text-zinc-900 dark:text-zinc-100 font-medium text-sm truncate group-hover:text-violet-600 dark:group-hover:text-violet-300 transition-colors">
+        <p class="text-zinc-900 dark:text-zinc-100 font-medium text-sm truncate group-hover:text-olive-600 dark:group-hover:text-olive-300 transition-colors">
           {{ profile.full_name }}
         </p>
         <p class="text-zinc-500 text-xs">@{{ profile.username }}</p>

@@ -15,11 +15,11 @@ function scrollToHowItWorks() {
     <div class="absolute inset-0 pointer-events-none overflow-hidden">
       <div
         class="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[700px] rounded-full opacity-20"
-        style="background: radial-gradient(ellipse at center, #7c3aed 0%, transparent 70%)"
+        style="background: radial-gradient(ellipse at center, #636b2f 0%, transparent 70%)"
       />
       <div
         class="absolute top-1/3 left-1/2 -translate-x-1/2 w-[500px] h-[400px] rounded-full opacity-10"
-        style="background: radial-gradient(ellipse at center, #a855f7 0%, transparent 70%)"
+        style="background: radial-gradient(ellipse at center, #bac095 0%, transparent 70%)"
       />
     </div>
 
@@ -36,9 +36,9 @@ function scrollToHowItWorks() {
     <!-- Content -->
     <div class="relative z-10 text-center max-w-4xl mx-auto">
       <!-- Badge -->
-      <div class="inline-flex items-center gap-2 bg-violet-950/60 border border-violet-700/40 rounded-full px-4 py-1.5 mb-8">
-        <span class="h-1.5 w-1.5 rounded-full bg-violet-400 animate-pulse" />
-        <span class="text-violet-300 text-sm font-medium">Now in early access</span>
+      <div class="inline-flex items-center gap-2 bg-olive-950/60 border border-olive-700/40 rounded-full px-4 py-1.5 mb-8">
+        <span class="h-1.5 w-1.5 rounded-full bg-olive-400 animate-pulse" />
+        <span class="text-olive-300 text-sm font-medium">Now in early access</span>
       </div>
 
       <!-- Headline -->
@@ -47,7 +47,7 @@ function scrollToHowItWorks() {
       >
         Where creatives<br />
         <span
-          class="bg-gradient-to-r from-violet-400 via-fuchsia-400 to-violet-400 bg-clip-text text-transparent"
+          class="bg-gradient-to-r from-olive-400 via-olive-200 to-olive-400 bg-clip-text text-transparent"
         >
           sync.
         </span>

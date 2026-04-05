@@ -38,7 +38,7 @@ async function handleSubmit() {
           We sent a confirmation link to <span class="text-zinc-700 dark:text-zinc-200">{{ email }}</span>.
           Click it to activate your account, then sign in.
         </p>
-        <RouterLink to="/login" class="inline-block mt-6 text-sm text-violet-500 hover:text-violet-400 transition-colors">
+        <RouterLink to="/login" class="inline-block mt-6 text-sm text-olive-500 hover:text-olive-400 transition-colors">
           Back to sign in →
         </RouterLink>
       </div>
@@ -69,7 +69,7 @@ async function handleSubmit() {
 
       <p class="text-zinc-500 text-sm mt-6 text-center">
         Already have an account?
-        <RouterLink to="/login" class="text-violet-500 hover:text-violet-400 transition-colors font-medium">
+        <RouterLink to="/login" class="text-olive-500 hover:text-olive-400 transition-colors font-medium">
           Sign in
         </RouterLink>
       </p>

@@ -89,7 +89,7 @@ function randomMatch() {
       <p class="text-zinc-500">No creators found{{ selectedTags.length ? ' for these filters' : '' }}.</p>
       <button
         v-if="selectedTags.length"
-        class="text-violet-500 hover:text-violet-400 text-sm mt-2 transition-colors"
+        class="text-olive-500 hover:text-olive-400 text-sm mt-2 transition-colors"
         @click="selectedTags = []"
       >
         Clear filters

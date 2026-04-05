@@ -87,7 +87,7 @@ watch(messages, scrollToBottom)
           placeholder="Type a message…"
           class="flex-1 bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-700 rounded-xl px-4 py-2.5
                  text-sm text-zinc-900 dark:text-zinc-100 placeholder-zinc-400 dark:placeholder-zinc-500
-                 focus:outline-none focus:border-violet-500 focus:ring-1 focus:ring-violet-500 transition-colors"
+                 focus:outline-none focus:border-olive-500 focus:ring-1 focus:ring-olive-500 transition-colors"
           @keydown.enter.exact.prevent="sendMessage"
         />
         <AppButton type="submit" :loading="sending" :disabled="!newMessage.trim()">

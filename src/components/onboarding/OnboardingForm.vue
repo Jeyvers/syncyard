@@ -119,7 +119,7 @@ async function handleSubmit() {
           <div
             v-for="i in totalSteps"
             :key="i"
-            :class="['h-1 flex-1 rounded-full transition-all', i <= step ? 'bg-violet-500' : 'bg-zinc-200 dark:bg-zinc-800']"
+            :class="['h-1 flex-1 rounded-full transition-all', i <= step ? 'bg-olive-500' : 'bg-zinc-200 dark:bg-zinc-800']"
           />
         </div>
         <h1 class="text-2xl font-bold text-zinc-900 dark:text-zinc-100">
@@ -147,7 +147,7 @@ async function handleSubmit() {
       <div v-else-if="step === 2" class="space-y-6">
         <div class="flex flex-col items-center gap-4">
           <div
-            class="h-24 w-24 rounded-full bg-zinc-100 dark:bg-zinc-800 border-2 border-dashed border-zinc-300 dark:border-zinc-700 flex items-center justify-center overflow-hidden cursor-pointer hover:border-violet-500 transition-colors"
+            class="h-24 w-24 rounded-full bg-zinc-100 dark:bg-zinc-800 border-2 border-dashed border-zinc-300 dark:border-zinc-700 flex items-center justify-center overflow-hidden cursor-pointer hover:border-olive-500 transition-colors"
             @click="($refs.fileInput as HTMLInputElement).click()"
           >
             <img v-if="avatarPreview" :src="avatarPreview" class="w-full h-full object-cover" alt="Avatar preview" />
@@ -174,7 +174,7 @@ async function handleSubmit() {
             placeholder="Add a custom tag…"
             class="flex-1 bg-white dark:bg-zinc-900 border border-zinc-300 dark:border-zinc-700 rounded-lg px-3 py-2 text-sm
                    text-zinc-900 dark:text-zinc-100 placeholder-zinc-400 dark:placeholder-zinc-500
-                   focus:outline-none focus:border-violet-500 focus:ring-1 focus:ring-violet-500 transition-colors"
+                   focus:outline-none focus:border-olive-500 focus:ring-1 focus:ring-olive-500 transition-colors"
             @keydown.enter.prevent="addCustomTag"
           />
           <AppButton variant="ghost" @click="addCustomTag">Add</AppButton>

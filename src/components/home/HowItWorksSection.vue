@@ -36,7 +36,7 @@ const steps = [
   >
     <div class="max-w-6xl mx-auto">
       <div class="text-center mb-16">
-        <p class="text-xs font-medium text-violet-500 uppercase tracking-widest mb-3">How it works</p>
+        <p class="text-xs font-medium text-olive-500 uppercase tracking-widest mb-3">How it works</p>
         <h2 class="text-3xl sm:text-4xl font-bold text-zinc-900 dark:text-zinc-100 tracking-tight">
           Three steps to your next collaboration
         </h2>
@@ -54,8 +54,8 @@ const steps = [
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6',
           ]"
         >
-          <div class="h-12 w-12 rounded-xl bg-violet-50 dark:bg-violet-950/60 border border-violet-200 dark:border-violet-800/40 flex items-center justify-center mb-5">
-            <svg class="h-6 w-6 text-violet-500 dark:text-violet-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" v-html="step.icon" />
+          <div class="h-12 w-12 rounded-xl bg-olive-50 dark:bg-olive-950/60 border border-olive-200 dark:border-olive-800/40 flex items-center justify-center mb-5">
+            <svg class="h-6 w-6 text-olive-500 dark:text-olive-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" v-html="step.icon" />
           </div>
           <p class="text-xs font-mono text-zinc-400 dark:text-zinc-600 mb-2">{{ step.number }}</p>
           <h3 class="text-zinc-900 dark:text-zinc-100 font-semibold text-lg mb-2">{{ step.title }}</h3>

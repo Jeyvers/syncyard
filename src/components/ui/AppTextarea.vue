@@ -19,7 +19,7 @@ defineEmits<{ 'update:modelValue': [value: string] }>()
       :rows="rows ?? 4"
       class="w-full bg-white dark:bg-zinc-900 border border-zinc-300 dark:border-zinc-700 rounded-lg px-3 py-2 text-sm
              text-zinc-900 dark:text-zinc-100 placeholder-zinc-400 dark:placeholder-zinc-500
-             focus:outline-none focus:border-violet-500 focus:ring-1 focus:ring-violet-500 transition-colors resize-none"
+             focus:outline-none focus:border-olive-500 focus:ring-1 focus:ring-olive-500 transition-colors resize-none"
       @input="$emit('update:modelValue', ($event.target as HTMLTextAreaElement).value)"
     />
     <p v-if="error" class="text-xs text-red-500 dark:text-red-400">{{ error }}</p>

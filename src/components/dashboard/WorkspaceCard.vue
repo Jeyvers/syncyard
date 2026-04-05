@@ -12,7 +12,7 @@ defineProps<{ workspace: Workspace }>()
            hover:border-zinc-300 dark:hover:border-zinc-600 transition-all duration-200 group shadow-sm dark:shadow-none"
   >
     <div class="flex items-start justify-between gap-3 mb-4">
-      <h3 class="text-zinc-900 dark:text-zinc-100 font-medium text-sm group-hover:text-violet-600 dark:group-hover:text-violet-300 transition-colors line-clamp-1">
+      <h3 class="text-zinc-900 dark:text-zinc-100 font-medium text-sm group-hover:text-olive-600 dark:group-hover:text-olive-300 transition-colors line-clamp-1">
         {{ workspace.name }}
       </h3>
       <svg class="h-4 w-4 text-zinc-400 dark:text-zinc-600 group-hover:text-zinc-600 dark:group-hover:text-zinc-400 shrink-0 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">

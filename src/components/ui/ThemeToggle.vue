@@ -14,11 +14,11 @@ const isDark = computed(() => theme.theme === 'dark')
     :aria-label="isDark ? 'Switch to light mode' : 'Switch to dark mode'"
     :class="[
       'relative inline-flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-full border transition-colors duration-300 ease-in-out',
-      'focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 focus-visible:ring-offset-2',
+      'focus:outline-none focus-visible:ring-2 focus-visible:ring-olive-500 focus-visible:ring-offset-2',
       'focus-visible:ring-offset-zinc-100 dark:focus-visible:ring-offset-zinc-900',
       isDark
         ? 'bg-zinc-700 border-zinc-600'
-        : 'bg-violet-100 border-violet-200',
+        : 'bg-olive-100 border-olive-200',
     ]"
     @click="theme.toggleTheme()"
   >
@@ -28,7 +28,7 @@ const isDark = computed(() => theme.theme === 'dark')
         'pointer-events-none absolute flex h-4 w-4 items-center justify-center rounded-full shadow-sm transition-all duration-300 ease-in-out',
         isDark
           ? 'translate-x-1 bg-zinc-100'
-          : 'translate-x-6 bg-violet-500',
+          : 'translate-x-6 bg-olive-500',
       ]"
     >
       <!-- Moon (dark mode active) -->

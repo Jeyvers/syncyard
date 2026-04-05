@@ -2,6 +2,20 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
+@theme {
+  --color-olive-50: #f4f5eb;
+  --color-olive-100: #eaecda;
+  --color-olive-200: #d4de95;
+  --color-olive-300: #bac095;
+  --color-olive-400: #8a9555;
+  --color-olive-500: #636b2f;
+  --color-olive-600: #525929;
+  --color-olive-700: #3d4127;
+  --color-olive-800: #2d3020;
+  --color-olive-900: #1e2015;
+  --color-olive-950: #12140d;
+}
+
 @layer base {
   /* Light mode defaults */
   html {

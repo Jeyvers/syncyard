@@ -20,7 +20,7 @@ const isOwn = props.message.sender_id === auth.user?.id
         :class="[
           'px-3.5 py-2.5 rounded-2xl text-sm leading-relaxed',
           isOwn
-            ? 'bg-violet-600 text-white rounded-tr-sm'
+            ? 'bg-olive-600 text-white rounded-tr-sm'
             : 'bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 rounded-tl-sm',
         ]"
       >

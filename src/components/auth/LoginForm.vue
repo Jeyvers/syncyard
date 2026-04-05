@@ -54,7 +54,7 @@ async function handleSubmit() {
 
     <p class="text-zinc-500 text-sm mt-6 text-center">
       Don't have an account?
-      <RouterLink to="/signup" class="text-violet-500 hover:text-violet-400 transition-colors font-medium">
+      <RouterLink to="/signup" class="text-olive-500 hover:text-olive-400 transition-colors font-medium">
         Sign up
       </RouterLink>
     </p>

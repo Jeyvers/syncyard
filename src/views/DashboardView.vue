@@ -70,7 +70,7 @@ onMounted(async () => {
 
       <div v-else class="text-center py-16 bg-zinc-100 dark:bg-zinc-900 border border-dashed border-zinc-300 dark:border-zinc-800 rounded-xl">
         <p class="text-zinc-500 text-sm">No workspaces yet.</p>
-        <RouterLink to="/discover" class="text-violet-500 hover:text-violet-400 text-sm transition-colors mt-1 inline-block">
+        <RouterLink to="/discover" class="text-olive-500 hover:text-olive-400 text-sm transition-colors mt-1 inline-block">
           Connect with someone →
         </RouterLink>
       </div>

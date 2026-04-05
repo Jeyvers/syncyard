@@ -14,11 +14,11 @@ defineProps<{
     :disabled="disabled || loading"
     :class="[
       'inline-flex items-center justify-center gap-2 font-medium rounded-lg transition-all duration-150',
-      'focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 focus-visible:ring-offset-2',
+      'focus:outline-none focus-visible:ring-2 focus-visible:ring-olive-500 focus-visible:ring-offset-2',
       'focus-visible:ring-offset-zinc-100 dark:focus-visible:ring-offset-zinc-900',
       'disabled:opacity-50 disabled:cursor-not-allowed',
       {
-        'bg-violet-600 hover:bg-violet-500 text-white': !variant || variant === 'primary',
+        'bg-olive-600 hover:bg-olive-500 text-white': !variant || variant === 'primary',
         'bg-transparent hover:bg-zinc-100 dark:hover:bg-zinc-800 text-zinc-700 dark:text-zinc-300 border border-zinc-300 dark:border-zinc-700 hover:border-zinc-400 dark:hover:border-zinc-600':
           variant === 'ghost',
         'bg-red-600 hover:bg-red-500 text-white': variant === 'danger',

@@ -30,7 +30,7 @@ const sizeClasses = computed(() => ({
     :class="[
       'rounded-full shrink-0 overflow-hidden flex items-center justify-center font-semibold',
       sizeClasses,
-      !src ? 'bg-violet-100 dark:bg-violet-900 text-violet-700 dark:text-violet-200' : '',
+      !src ? 'bg-olive-100 dark:bg-olive-900 text-olive-700 dark:text-olive-200' : '',
     ]"
   >
     <img v-if="src" :src="src" :alt="name" class="w-full h-full object-cover" />
