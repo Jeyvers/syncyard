@@ -74,20 +74,20 @@ watch(messages, scrollToBottom)
   <div class="flex flex-col h-full">
     <div ref="scrollRef" class="flex-1 overflow-y-auto px-4 py-4 space-y-4 min-h-0">
       <div v-if="!messages.length" class="flex items-center justify-center h-full">
-        <p class="text-zinc-400 dark:text-zinc-600 text-sm">No messages yet. Say hi!</p>
+        <p class="text-earth-400 dark:text-earth-600 text-sm">No messages yet. Say hi!</p>
       </div>
       <ChatMessage v-for="msg in messages" :key="msg.id" :message="msg" />
     </div>
 
-    <div class="border-t border-zinc-200 dark:border-zinc-800 p-4">
+    <div class="border-t border-earth-200 dark:border-earth-700 p-4">
       <form class="flex gap-2" @submit.prevent="sendMessage">
         <input
           v-model="newMessage"
           type="text"
           placeholder="Type a message…"
-          class="flex-1 bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-700 rounded-xl px-4 py-2.5
-                 text-sm text-zinc-900 dark:text-zinc-100 placeholder-zinc-400 dark:placeholder-zinc-500
-                 focus:outline-none focus:border-olive-500 focus:ring-1 focus:ring-olive-500 transition-colors"
+          class="flex-1 bg-earth-100 dark:bg-earth-900 border border-earth-200 dark:border-earth-700 rounded-xl px-4 py-2.5
+                 text-sm text-earth-900 dark:text-earth-100 placeholder-earth-400 dark:placeholder-earth-500
+                 focus:outline-none focus:border-sage-500 focus:ring-1 focus:ring-sage-500 transition-colors"
           @keydown.enter.exact.prevent="sendMessage"
         />
         <AppButton type="submit" :loading="sending" :disabled="!newMessage.trim()">

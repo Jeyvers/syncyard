@@ -105,7 +105,7 @@ async function handleSubmit() {
 </script>
 
 <template>
-  <div class="min-h-screen bg-zinc-100 dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 transition-colors duration-200 flex items-center justify-center px-4 py-12">
+  <div class="min-h-screen bg-earth-100 dark:bg-earth-900 text-earth-900 dark:text-earth-100 transition-colors duration-200 flex items-center justify-center px-4 py-12">
     <!-- Theme toggle -->
     <div class="fixed top-4 right-4">
       <ThemeToggle />
@@ -114,20 +114,20 @@ async function handleSubmit() {
     <div class="w-full max-w-lg">
       <!-- Progress -->
       <div class="mb-8">
-        <p class="text-zinc-500 text-sm mb-1">Step {{ step }} of {{ totalSteps }}</p>
+        <p class="text-earth-400 text-sm mb-1">Step {{ step }} of {{ totalSteps }}</p>
         <div class="flex gap-1.5 mb-4">
           <div
             v-for="i in totalSteps"
             :key="i"
-            :class="['h-1 flex-1 rounded-full transition-all', i <= step ? 'bg-olive-500' : 'bg-zinc-200 dark:bg-zinc-800']"
+            :class="['h-1 flex-1 rounded-full transition-all', i <= step ? 'bg-sage-500' : 'bg-earth-200 dark:bg-earth-700']"
           />
         </div>
-        <h1 class="text-2xl font-bold text-zinc-900 dark:text-zinc-100">
+        <h1 class="text-2xl font-bold text-earth-900 dark:text-earth-100">
           <template v-if="step === 1">Set up your profile</template>
           <template v-else-if="step === 2">Add a photo</template>
           <template v-else>What do you create?</template>
         </h1>
-        <p class="text-zinc-500 text-sm mt-1">
+        <p class="text-earth-400 text-sm mt-1">
           <template v-if="step === 1">Tell the community who you are.</template>
           <template v-else-if="step === 2">A face to the name — optional but encouraged.</template>
           <template v-else>Select tags so collaborators can find you.</template>
@@ -147,15 +147,15 @@ async function handleSubmit() {
       <div v-else-if="step === 2" class="space-y-6">
         <div class="flex flex-col items-center gap-4">
           <div
-            class="h-24 w-24 rounded-full bg-zinc-100 dark:bg-zinc-800 border-2 border-dashed border-zinc-300 dark:border-zinc-700 flex items-center justify-center overflow-hidden cursor-pointer hover:border-olive-500 transition-colors"
+            class="h-24 w-24 rounded-full bg-earth-200 dark:bg-earth-800 border-2 border-dashed border-earth-300 dark:border-earth-600 flex items-center justify-center overflow-hidden cursor-pointer hover:border-sage-500 transition-colors"
             @click="($refs.fileInput as HTMLInputElement).click()"
           >
             <img v-if="avatarPreview" :src="avatarPreview" class="w-full h-full object-cover" alt="Avatar preview" />
-            <svg v-else class="h-8 w-8 text-zinc-400 dark:text-zinc-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg v-else class="h-8 w-8 text-earth-400 dark:text-earth-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4v16m8-8H4" />
             </svg>
           </div>
-          <p class="text-zinc-500 text-sm">Click to upload a photo</p>
+          <p class="text-earth-400 text-sm">Click to upload a photo</p>
           <input ref="fileInput" type="file" accept="image/*" class="hidden" @change="onAvatarChange" />
         </div>
 
@@ -172,9 +172,9 @@ async function handleSubmit() {
             v-model="customTag"
             type="text"
             placeholder="Add a custom tag…"
-            class="flex-1 bg-white dark:bg-zinc-900 border border-zinc-300 dark:border-zinc-700 rounded-lg px-3 py-2 text-sm
-                   text-zinc-900 dark:text-zinc-100 placeholder-zinc-400 dark:placeholder-zinc-500
-                   focus:outline-none focus:border-olive-500 focus:ring-1 focus:ring-olive-500 transition-colors"
+            class="flex-1 bg-earth-50 dark:bg-earth-900 border border-earth-300 dark:border-earth-600 rounded-lg px-3 py-2 text-sm
+                   text-earth-900 dark:text-earth-100 placeholder-earth-400 dark:placeholder-earth-500
+                   focus:outline-none focus:border-sage-500 focus:ring-1 focus:ring-sage-500 transition-colors"
             @keydown.enter.prevent="addCustomTag"
           />
           <AppButton variant="ghost" @click="addCustomTag">Add</AppButton>

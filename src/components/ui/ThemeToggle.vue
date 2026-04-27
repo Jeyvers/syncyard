@@ -14,11 +14,11 @@ const isDark = computed(() => theme.theme === 'dark')
     :aria-label="isDark ? 'Switch to light mode' : 'Switch to dark mode'"
     :class="[
       'relative inline-flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-full border transition-colors duration-300 ease-in-out',
-      'focus:outline-none focus-visible:ring-2 focus-visible:ring-olive-500 focus-visible:ring-offset-2',
-      'focus-visible:ring-offset-zinc-100 dark:focus-visible:ring-offset-zinc-900',
+      'focus:outline-none focus-visible:ring-2 focus-visible:ring-sage-500 focus-visible:ring-offset-2',
+      'focus-visible:ring-offset-earth-100 dark:focus-visible:ring-offset-earth-900',
       isDark
-        ? 'bg-zinc-700 border-zinc-600'
-        : 'bg-olive-100 border-olive-200',
+        ? 'bg-earth-700 border-earth-600'
+        : 'bg-sage-200 border-sage-300',
     ]"
     @click="theme.toggleTheme()"
   >
@@ -27,14 +27,14 @@ const isDark = computed(() => theme.theme === 'dark')
       :class="[
         'pointer-events-none absolute flex h-4 w-4 items-center justify-center rounded-full shadow-sm transition-all duration-300 ease-in-out',
         isDark
-          ? 'translate-x-1 bg-zinc-100'
-          : 'translate-x-6 bg-olive-500',
+          ? 'translate-x-1 bg-earth-200'
+          : 'translate-x-6 bg-sage-500',
       ]"
     >
       <!-- Moon (dark mode active) -->
       <svg
         v-if="isDark"
-        class="h-2.5 w-2.5 text-zinc-700"
+        class="h-2.5 w-2.5 text-earth-700"
         fill="currentColor"
         viewBox="0 0 24 24"
       >

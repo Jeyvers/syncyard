@@ -14,12 +14,12 @@ defineProps<{
     :disabled="disabled || loading"
     :class="[
       'inline-flex items-center justify-center gap-2 font-medium rounded-lg transition-all duration-150',
-      'focus:outline-none focus-visible:ring-2 focus-visible:ring-olive-500 focus-visible:ring-offset-2',
-      'focus-visible:ring-offset-zinc-100 dark:focus-visible:ring-offset-zinc-900',
+      'focus:outline-none focus-visible:ring-2 focus-visible:ring-sage-500 focus-visible:ring-offset-2',
+      'focus-visible:ring-offset-earth-100 dark:focus-visible:ring-offset-earth-900',
       'disabled:opacity-50 disabled:cursor-not-allowed',
       {
-        'bg-olive-600 hover:bg-olive-500 text-white': !variant || variant === 'primary',
-        'bg-transparent hover:bg-zinc-100 dark:hover:bg-zinc-800 text-zinc-700 dark:text-zinc-300 border border-zinc-300 dark:border-zinc-700 hover:border-zinc-400 dark:hover:border-zinc-600':
+        'bg-sage-600 hover:bg-sage-500 text-earth-50': !variant || variant === 'primary',
+        'bg-transparent hover:bg-earth-200 dark:hover:bg-earth-800 text-earth-700 dark:text-earth-200 border border-earth-300 dark:border-earth-600 hover:border-earth-400 dark:hover:border-earth-500':
           variant === 'ghost',
         'bg-red-600 hover:bg-red-500 text-white': variant === 'danger',
         'px-3 py-1.5 text-xs': size === 'sm',

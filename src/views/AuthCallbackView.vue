@@ -58,9 +58,9 @@ onUnmounted(() => {
 
 <template>
   <div
-    class="min-h-screen bg-zinc-100 dark:bg-zinc-900 flex flex-col items-center justify-center gap-4"
+    class="min-h-screen bg-earth-100 dark:bg-earth-900 flex flex-col items-center justify-center gap-4"
   >
     <AppLoader />
-    <p class="text-zinc-500 text-sm">Signing you in…</p>
+    <p class="text-earth-400 text-sm">Signing you in…</p>
   </div>
 </template>

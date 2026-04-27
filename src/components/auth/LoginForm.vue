@@ -30,15 +30,15 @@ async function handleSubmit() {
 
 <template>
   <div>
-    <h2 class="text-xl font-semibold text-zinc-900 dark:text-zinc-100 mb-1">Welcome back</h2>
-    <p class="text-zinc-500 text-sm mb-6">Sign in to your account</p>
+    <h2 class="text-xl font-semibold text-earth-900 dark:text-earth-100 mb-1">Welcome back</h2>
+    <p class="text-earth-400 text-sm mb-6">Sign in to your account</p>
 
     <GoogleButton />
 
     <div class="flex items-center gap-3 my-5">
-      <div class="flex-1 h-px bg-zinc-200 dark:bg-zinc-800" />
-      <span class="text-xs text-zinc-400 dark:text-zinc-600 font-medium">or</span>
-      <div class="flex-1 h-px bg-zinc-200 dark:bg-zinc-800" />
+      <div class="flex-1 h-px bg-earth-200 dark:bg-earth-700" />
+      <span class="text-xs text-earth-400 dark:text-earth-600 font-medium">or</span>
+      <div class="flex-1 h-px bg-earth-200 dark:bg-earth-700" />
     </div>
 
     <form class="space-y-4" @submit.prevent="handleSubmit">
@@ -52,9 +52,9 @@ async function handleSubmit() {
       <AppButton type="submit" :loading="loading" class="w-full" size="lg">Sign in</AppButton>
     </form>
 
-    <p class="text-zinc-500 text-sm mt-6 text-center">
+    <p class="text-earth-400 text-sm mt-6 text-center">
       Don't have an account?
-      <RouterLink to="/signup" class="text-olive-500 hover:text-olive-400 transition-colors font-medium">
+      <RouterLink to="/signup" class="text-sage-600 hover:text-sage-500 transition-colors font-medium">
         Sign up
       </RouterLink>
     </p>

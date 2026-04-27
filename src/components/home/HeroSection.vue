@@ -15,11 +15,11 @@ function scrollToHowItWorks() {
     <div class="absolute inset-0 pointer-events-none overflow-hidden">
       <div
         class="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[700px] rounded-full opacity-20"
-        style="background: radial-gradient(ellipse at center, #636b2f 0%, transparent 70%)"
+        style="background: radial-gradient(ellipse at center, #7a8355 0%, transparent 70%)"
       />
       <div
         class="absolute top-1/3 left-1/2 -translate-x-1/2 w-[500px] h-[400px] rounded-full opacity-10"
-        style="background: radial-gradient(ellipse at center, #bac095 0%, transparent 70%)"
+        style="background: radial-gradient(ellipse at center, #babf94 0%, transparent 70%)"
       />
     </div>
 
@@ -36,25 +36,25 @@ function scrollToHowItWorks() {
     <!-- Content -->
     <div class="relative z-10 text-center max-w-4xl mx-auto">
       <!-- Badge -->
-      <div class="inline-flex items-center gap-2 bg-olive-950/60 border border-olive-700/40 rounded-full px-4 py-1.5 mb-8">
-        <span class="h-1.5 w-1.5 rounded-full bg-olive-400 animate-pulse" />
-        <span class="text-olive-300 text-sm font-medium">Now in early access</span>
+      <div class="inline-flex items-center gap-2 bg-earth-900/60 border border-earth-600/40 rounded-full px-4 py-1.5 mb-8">
+        <span class="h-1.5 w-1.5 rounded-full bg-sage-400 animate-pulse" />
+        <span class="text-sage-300 text-sm font-medium">Now in early access</span>
       </div>
 
       <!-- Headline -->
       <h1
-        class="text-5xl sm:text-6xl lg:text-7xl font-bold text-zinc-100 leading-[1.08] tracking-tight mb-6"
+        class="text-5xl sm:text-6xl lg:text-7xl font-bold text-earth-100 leading-[1.08] tracking-tight mb-6"
       >
         Where creatives<br />
         <span
-          class="bg-gradient-to-r from-olive-400 via-olive-200 to-olive-400 bg-clip-text text-transparent"
+          class="bg-gradient-to-r from-sage-400 via-sage-200 to-sage-400 bg-clip-text text-transparent"
         >
           sync.
         </span>
       </h1>
 
       <!-- Subheadline -->
-      <p class="text-zinc-400 text-lg sm:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
+      <p class="text-earth-300 text-lg sm:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
         Syncyard brings together artists, designers, musicians, and makers — so the right people
         find each other and great work actually happens.
       </p>
@@ -65,7 +65,7 @@ function scrollToHowItWorks() {
           <AppButton size="lg" class="px-8 text-base">Get started — it's free</AppButton>
         </RouterLink>
         <button
-          class="inline-flex items-center gap-2 text-zinc-400 hover:text-zinc-100 text-sm transition-colors"
+          class="inline-flex items-center gap-2 text-earth-300 hover:text-earth-100 text-sm transition-colors"
           @click="scrollToHowItWorks"
         >
           See how it works
@@ -78,8 +78,8 @@ function scrollToHowItWorks() {
       <!-- Scroll hint -->
       <div class="mt-20 flex justify-center">
         <div class="flex flex-col items-center gap-2 opacity-30">
-          <div class="h-10 w-6 rounded-full border border-zinc-600 flex items-start justify-center pt-1.5">
-            <div class="h-2 w-0.5 bg-zinc-400 rounded-full animate-bounce" />
+          <div class="h-10 w-6 rounded-full border border-earth-600 flex items-start justify-center pt-1.5">
+            <div class="h-2 w-0.5 bg-earth-400 rounded-full animate-bounce" />
           </div>
         </div>
       </div>

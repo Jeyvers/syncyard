@@ -56,8 +56,8 @@ function randomMatch() {
   <AppLayout>
     <div class="mb-8 flex items-start justify-between gap-4 flex-wrap">
       <div>
-        <h1 class="text-3xl font-bold text-zinc-900 dark:text-zinc-100">Discover</h1>
-        <p class="text-zinc-500 mt-1">Find creatives to collaborate with</p>
+        <h1 class="text-3xl font-bold text-earth-900 dark:text-earth-100">Discover</h1>
+        <p class="text-earth-400 mt-1">Find creatives to collaborate with</p>
       </div>
       <AppButton size="lg" @click="randomMatch">
         <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -69,14 +69,14 @@ function randomMatch() {
     </div>
 
     <div v-if="availableTags.length" class="mb-8">
-      <p class="text-xs text-zinc-500 uppercase tracking-wider mb-3 font-medium">Filter by skill</p>
+      <p class="text-xs text-earth-400 uppercase tracking-wider mb-3 font-medium">Filter by skill</p>
       <TagFilter v-model:selected-tags="selectedTags" :available-tags="availableTags" />
     </div>
 
     <AppLoader v-if="loading" />
 
     <template v-else-if="filteredUsers.length">
-      <p class="text-zinc-500 text-sm mb-4">
+      <p class="text-earth-400 text-sm mb-4">
         {{ filteredUsers.length }} creator{{ filteredUsers.length === 1 ? '' : 's' }}
         <span v-if="selectedTags.length"> matching your filters</span>
       </p>
@@ -86,10 +86,10 @@ function randomMatch() {
     </template>
 
     <div v-else class="text-center py-20">
-      <p class="text-zinc-500">No creators found{{ selectedTags.length ? ' for these filters' : '' }}.</p>
+      <p class="text-earth-400">No creators found{{ selectedTags.length ? ' for these filters' : '' }}.</p>
       <button
         v-if="selectedTags.length"
-        class="text-olive-500 hover:text-olive-400 text-sm mt-2 transition-colors"
+        class="text-sage-600 hover:text-sage-500 text-sm mt-2 transition-colors"
         @click="selectedTags = []"
       >
         Clear filters

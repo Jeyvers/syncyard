@@ -34,27 +34,27 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="min-h-screen bg-zinc-100 dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 transition-colors duration-200 flex flex-col">
+  <div class="min-h-screen bg-earth-100 dark:bg-earth-900 text-earth-900 dark:text-earth-100 transition-colors duration-200 flex flex-col">
     <AppNavbar />
 
     <AppLoader v-if="loading" />
 
     <div v-else-if="!workspace" class="flex-1 flex items-center justify-center">
-      <p class="text-zinc-500">Workspace not found.</p>
+      <p class="text-earth-400">Workspace not found.</p>
     </div>
 
     <div v-else class="flex-1 flex overflow-hidden" style="height: calc(100vh - 56px)">
-      <aside class="w-64 shrink-0 border-r border-zinc-200 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-900 p-4 overflow-y-auto hidden sm:block">
-        <h2 class="text-sm font-semibold text-zinc-900 dark:text-zinc-100 mb-4 truncate">{{ workspace.name }}</h2>
+      <aside class="w-64 shrink-0 border-r border-earth-200 dark:border-earth-700 bg-earth-100 dark:bg-earth-900 p-4 overflow-y-auto hidden sm:block">
+        <h2 class="text-sm font-semibold text-earth-900 dark:text-earth-100 mb-4 truncate">{{ workspace.name }}</h2>
         <MemberList :members="members" />
-        <p class="text-xs text-zinc-400 dark:text-zinc-600 mt-2">
+        <p class="text-xs text-earth-400 dark:text-earth-600 mt-2">
           Created {{ new Date(workspace.created_at).toLocaleDateString() }}
         </p>
       </aside>
 
-      <div class="flex-1 flex flex-col overflow-hidden bg-zinc-100 dark:bg-zinc-900">
-        <div class="sm:hidden px-4 py-3 border-b border-zinc-200 dark:border-zinc-800">
-          <h2 class="text-sm font-semibold text-zinc-900 dark:text-zinc-100 truncate">{{ workspace.name }}</h2>
+      <div class="flex-1 flex flex-col overflow-hidden bg-earth-100 dark:bg-earth-900">
+        <div class="sm:hidden px-4 py-3 border-b border-earth-200 dark:border-earth-700">
+          <h2 class="text-sm font-semibold text-earth-900 dark:text-earth-100 truncate">{{ workspace.name }}</h2>
         </div>
         <ChatPanel :workspace-id="workspaceId" class="flex-1 overflow-hidden" />
       </div>

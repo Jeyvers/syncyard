@@ -24,12 +24,12 @@ async function handleClick() {
     <button
       type="button"
       :disabled="loading"
-      class="w-full flex items-center justify-center gap-3 bg-white dark:bg-zinc-800 hover:bg-zinc-50 dark:hover:bg-zinc-700 border border-zinc-300 dark:border-zinc-700 hover:border-zinc-400 dark:hover:border-zinc-600 text-zinc-800 dark:text-zinc-100 text-sm font-medium rounded-lg px-4 py-2.5 transition-all duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-olive-500 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-100 dark:focus-visible:ring-offset-zinc-900 disabled:opacity-50 disabled:cursor-not-allowed"
+      class="w-full flex items-center justify-center gap-3 bg-earth-50 dark:bg-earth-800 hover:bg-earth-100 dark:hover:bg-earth-700 border border-earth-300 dark:border-earth-600 hover:border-earth-400 dark:hover:border-earth-500 text-earth-800 dark:text-earth-100 text-sm font-medium rounded-lg px-4 py-2.5 transition-all duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-sage-500 focus-visible:ring-offset-2 focus-visible:ring-offset-earth-100 dark:focus-visible:ring-offset-earth-900 disabled:opacity-50 disabled:cursor-not-allowed"
       @click="handleClick"
     >
       <svg
         v-if="loading"
-        class="animate-spin h-4 w-4 shrink-0 text-zinc-400"
+        class="animate-spin h-4 w-4 shrink-0 text-earth-400"
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
         viewBox="0 0 24 24"

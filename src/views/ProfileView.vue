@@ -79,15 +79,15 @@ async function connect() {
     <AppLoader v-if="loading" />
 
     <div v-else-if="!profile" class="text-center py-24">
-      <p class="text-zinc-500">Profile not found.</p>
+      <p class="text-earth-400">Profile not found.</p>
     </div>
 
     <div v-else class="max-w-2xl mx-auto">
       <div class="flex items-start gap-5 mb-8">
         <AppAvatar :src="profile.avatar_url" :name="profile.full_name" size="xl" />
         <div class="flex-1 min-w-0">
-          <h1 class="text-2xl font-bold text-zinc-900 dark:text-zinc-100">{{ profile.full_name }}</h1>
-          <p class="text-zinc-500 text-sm">@{{ profile.username }}</p>
+          <h1 class="text-2xl font-bold text-earth-900 dark:text-earth-100">{{ profile.full_name }}</h1>
+          <p class="text-earth-400 text-sm">@{{ profile.username }}</p>
 
           <div v-if="!isOwnProfile && auth.isAuthenticated" class="mt-4">
             <AppButton :loading="connecting" @click="connect">
@@ -101,25 +101,25 @@ async function connect() {
       </div>
 
       <div v-if="profile.bio" class="mb-6">
-        <p class="text-zinc-700 dark:text-zinc-300 leading-relaxed">{{ profile.bio }}</p>
+        <p class="text-earth-700 dark:text-earth-200 leading-relaxed">{{ profile.bio }}</p>
       </div>
 
       <div v-if="profile.tags?.length" class="mb-10">
-        <h2 class="text-xs font-medium text-zinc-500 uppercase tracking-wider mb-3">Skills & Disciplines</h2>
+        <h2 class="text-xs font-medium text-earth-400 uppercase tracking-wider mb-3">Skills & Disciplines</h2>
         <div class="flex flex-wrap gap-2">
           <AppTag v-for="tag in profile.tags" :key="tag" :label="tag" :selected="true" />
         </div>
       </div>
 
       <div>
-        <h2 class="text-xs font-medium text-zinc-500 uppercase tracking-wider mb-4">Portfolio</h2>
+        <h2 class="text-xs font-medium text-earth-400 uppercase tracking-wider mb-4">Portfolio</h2>
         <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
           <div
             v-for="i in 6"
             :key="i"
-            class="aspect-square bg-zinc-100 dark:bg-zinc-900 border border-dashed border-zinc-300 dark:border-zinc-800 rounded-xl flex items-center justify-center"
+            class="aspect-square bg-earth-200/50 dark:bg-earth-900 border border-dashed border-earth-300 dark:border-earth-700 rounded-xl flex items-center justify-center"
           >
-            <span class="text-zinc-400 dark:text-zinc-700 text-xs">Coming soon</span>
+            <span class="text-earth-400 dark:text-earth-600 text-xs">Coming soon</span>
           </div>
         </div>
       </div>

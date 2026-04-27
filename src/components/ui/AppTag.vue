@@ -14,8 +14,8 @@ defineEmits<{ click: []; remove: [] }>()
     :class="[
       'inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium transition-all duration-150',
       selected
-        ? 'bg-olive-600 text-white'
-        : 'bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 hover:bg-zinc-200 dark:hover:bg-zinc-700 hover:text-zinc-900 dark:hover:text-zinc-200',
+        ? 'bg-sage-600 text-earth-50'
+        : 'bg-earth-200 dark:bg-earth-800 text-earth-600 dark:text-earth-300 hover:bg-earth-300 dark:hover:bg-earth-700 hover:text-earth-900 dark:hover:text-earth-100',
     ]"
     @click="$emit('click')"
   >

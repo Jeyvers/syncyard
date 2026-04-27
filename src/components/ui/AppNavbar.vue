@@ -14,10 +14,10 @@ async function handleSignOut() {
 </script>
 
 <template>
-  <header class="border-b border-zinc-200 dark:border-zinc-800 bg-zinc-100/80 dark:bg-zinc-900/80 backdrop-blur-sm sticky top-0 z-50">
+  <header class="border-b border-earth-200 dark:border-earth-700 bg-earth-100/80 dark:bg-earth-900/80 backdrop-blur-sm sticky top-0 z-50">
     <div class="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between">
       <!-- Logo -->
-      <RouterLink to="/dashboard" class="text-zinc-900 dark:text-zinc-100 font-bold text-lg tracking-tight">
+      <RouterLink to="/dashboard" class="text-earth-900 dark:text-earth-100 font-bold text-lg tracking-tight">
         Syncyard
       </RouterLink>
 
@@ -25,15 +25,15 @@ async function handleSignOut() {
       <nav class="hidden sm:flex items-center gap-1">
         <RouterLink
           to="/dashboard"
-          class="px-3 py-1.5 text-sm text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-lg transition-colors"
-          active-class="text-zinc-900 dark:text-zinc-100 bg-zinc-100 dark:bg-zinc-800"
+          class="px-3 py-1.5 text-sm text-earth-500 dark:text-earth-300 hover:text-earth-900 dark:hover:text-earth-100 hover:bg-earth-200 dark:hover:bg-earth-800 rounded-lg transition-colors"
+          active-class="text-earth-900 dark:text-earth-100 bg-earth-200 dark:bg-earth-800"
         >
           Dashboard
         </RouterLink>
         <RouterLink
           to="/discover"
-          class="px-3 py-1.5 text-sm text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-lg transition-colors"
-          active-class="text-zinc-900 dark:text-zinc-100 bg-zinc-100 dark:bg-zinc-800"
+          class="px-3 py-1.5 text-sm text-earth-500 dark:text-earth-300 hover:text-earth-900 dark:hover:text-earth-100 hover:bg-earth-200 dark:hover:bg-earth-800 rounded-lg transition-colors"
+          active-class="text-earth-900 dark:text-earth-100 bg-earth-200 dark:bg-earth-800"
         >
           Discover
         </RouterLink>
@@ -53,7 +53,7 @@ async function handleSignOut() {
         </RouterLink>
 
         <button
-          class="text-xs text-zinc-400 dark:text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300 transition-colors"
+          class="text-xs text-earth-400 dark:text-earth-500 hover:text-earth-700 dark:hover:text-earth-200 transition-colors"
           @click="handleSignOut"
         >
           Sign out

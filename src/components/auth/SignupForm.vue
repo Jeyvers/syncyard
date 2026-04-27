@@ -33,27 +33,27 @@ async function handleSubmit() {
     <template v-if="submitted">
       <div class="text-center py-4">
         <div class="text-3xl mb-3">✉️</div>
-        <h2 class="text-xl font-semibold text-zinc-900 dark:text-zinc-100 mb-2">Check your inbox</h2>
-        <p class="text-zinc-500 text-sm">
-          We sent a confirmation link to <span class="text-zinc-700 dark:text-zinc-200">{{ email }}</span>.
+        <h2 class="text-xl font-semibold text-earth-900 dark:text-earth-100 mb-2">Check your inbox</h2>
+        <p class="text-earth-400 text-sm">
+          We sent a confirmation link to <span class="text-earth-700 dark:text-earth-200">{{ email }}</span>.
           Click it to activate your account, then sign in.
         </p>
-        <RouterLink to="/login" class="inline-block mt-6 text-sm text-olive-500 hover:text-olive-400 transition-colors">
+        <RouterLink to="/login" class="inline-block mt-6 text-sm text-sage-600 hover:text-sage-500 transition-colors">
           Back to sign in →
         </RouterLink>
       </div>
     </template>
 
     <template v-else>
-      <h2 class="text-xl font-semibold text-zinc-900 dark:text-zinc-100 mb-1">Create your account</h2>
-      <p class="text-zinc-500 text-sm mb-6">Join the creative network</p>
+      <h2 class="text-xl font-semibold text-earth-900 dark:text-earth-100 mb-1">Create your account</h2>
+      <p class="text-earth-400 text-sm mb-6">Join the creative network</p>
 
       <GoogleButton />
 
       <div class="flex items-center gap-3 my-5">
-        <div class="flex-1 h-px bg-zinc-200 dark:bg-zinc-800" />
-        <span class="text-xs text-zinc-400 dark:text-zinc-600 font-medium">or</span>
-        <div class="flex-1 h-px bg-zinc-200 dark:bg-zinc-800" />
+        <div class="flex-1 h-px bg-earth-200 dark:bg-earth-700" />
+        <span class="text-xs text-earth-400 dark:text-earth-600 font-medium">or</span>
+        <div class="flex-1 h-px bg-earth-200 dark:bg-earth-700" />
       </div>
 
       <form class="space-y-4" @submit.prevent="handleSubmit">
@@ -67,9 +67,9 @@ async function handleSubmit() {
         <AppButton type="submit" :loading="loading" class="w-full" size="lg">Create account</AppButton>
       </form>
 
-      <p class="text-zinc-500 text-sm mt-6 text-center">
+      <p class="text-earth-400 text-sm mt-6 text-center">
         Already have an account?
-        <RouterLink to="/login" class="text-olive-500 hover:text-olive-400 transition-colors font-medium">
+        <RouterLink to="/login" class="text-sage-600 hover:text-sage-500 transition-colors font-medium">
           Sign in
         </RouterLink>
       </p>

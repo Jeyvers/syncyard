@@ -3,30 +3,44 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-  --color-olive-50: #f4f5eb;
-  --color-olive-100: #eaecda;
-  --color-olive-200: #d4de95;
-  --color-olive-300: #bac095;
-  --color-olive-400: #8a9555;
-  --color-olive-500: #636b2f;
-  --color-olive-600: #525929;
-  --color-olive-700: #3d4127;
-  --color-olive-800: #2d3020;
-  --color-olive-900: #1e2015;
-  --color-olive-950: #12140d;
+  /* Earth tones */
+  --color-earth-50: #faf6ef;
+  --color-earth-100: #f3e4c9;
+  --color-earth-200: #e5ccaa;
+  --color-earth-300: #bfa28c;
+  --color-earth-400: #a98b76;
+  --color-earth-500: #8b6e5a;
+  --color-earth-600: #6d5244;
+  --color-earth-700: #4f3a30;
+  --color-earth-800: #3a2a23;
+  --color-earth-900: #2a1e19;
+  --color-earth-950: #1a1210;
+
+  /* Sage green */
+  --color-sage-50: #f4f5eb;
+  --color-sage-100: #e8ead9;
+  --color-sage-200: #d3d9b3;
+  --color-sage-300: #babf94;
+  --color-sage-400: #9aa374;
+  --color-sage-500: #7a8355;
+  --color-sage-600: #5f6641;
+  --color-sage-700: #454a2f;
+  --color-sage-800: #2d3020;
+  --color-sage-900: #1e2015;
+  --color-sage-950: #12140d;
 }
 
 @layer base {
   /* Light mode defaults */
   html {
-    background-color: #f4f4f5; /* zinc-100 — soft off-white */
-    color: #09090b;
+    background-color: #f3e4c9; /* earth-100 — warm cream */
+    color: #2a1e19;            /* earth-900 — warm dark brown */
   }
 
   /* Dark mode overrides */
   html.dark {
-    background-color: #18181b; /* zinc-900 — dark but not pitch black */
-    color: #fafafa;
+    background-color: #2a1e19; /* earth-900 — warm dark brown */
+    color: #f3e4c9;            /* earth-100 — warm cream */
   }
 }
 

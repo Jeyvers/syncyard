@@ -11,7 +11,7 @@ const doubled = [...TAGS, ...TAGS]
 
 <template>
   <section class="py-16 overflow-hidden">
-    <p class="text-center text-xs font-medium text-zinc-400 dark:text-zinc-600 uppercase tracking-widest mb-8">
+    <p class="text-center text-xs font-medium text-earth-400 dark:text-earth-600 uppercase tracking-widest mb-8">
       Skills on Syncyard
     </p>
 
@@ -25,8 +25,8 @@ const doubled = [...TAGS, ...TAGS]
           v-for="(tag, i) in doubled"
           :key="i"
           class="inline-flex shrink-0 items-center px-3.5 py-1.5 rounded-full text-sm font-medium
-                 bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800
-                 text-zinc-600 dark:text-zinc-400 select-none"
+                 bg-earth-200 dark:bg-earth-800 border border-earth-300 dark:border-earth-700
+                 text-earth-600 dark:text-earth-300 select-none"
         >
           {{ tag }}
         </span>

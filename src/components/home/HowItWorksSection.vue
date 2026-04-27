@@ -36,30 +36,30 @@ const steps = [
   >
     <div class="max-w-6xl mx-auto">
       <div class="text-center mb-16">
-        <p class="text-xs font-medium text-olive-500 uppercase tracking-widest mb-3">How it works</p>
-        <h2 class="text-3xl sm:text-4xl font-bold text-zinc-900 dark:text-zinc-100 tracking-tight">
+        <p class="text-xs font-medium text-sage-500 uppercase tracking-widest mb-3">How it works</p>
+        <h2 class="text-3xl sm:text-4xl font-bold text-earth-900 dark:text-earth-100 tracking-tight">
           Three steps to your next collaboration
         </h2>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
-        <div class="hidden md:block absolute top-8 left-[calc(16.66%+1rem)] right-[calc(16.66%+1rem)] h-px bg-gradient-to-r from-transparent via-zinc-300 dark:via-zinc-700 to-transparent" />
+        <div class="hidden md:block absolute top-8 left-[calc(16.66%+1rem)] right-[calc(16.66%+1rem)] h-px bg-gradient-to-r from-transparent via-earth-300 dark:via-earth-700 to-transparent" />
 
         <div
           v-for="(step, i) in steps"
           :key="i"
           :style="{ transitionDelay: isVisible ? `${i * 120}ms` : '0ms' }"
           :class="[
-            'relative bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-2xl p-6 transition-all duration-600 ease-out shadow-sm dark:shadow-none',
+            'relative bg-earth-50 dark:bg-earth-800 border border-earth-200 dark:border-earth-700 rounded-2xl p-6 transition-all duration-600 ease-out shadow-sm dark:shadow-none',
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6',
           ]"
         >
-          <div class="h-12 w-12 rounded-xl bg-olive-50 dark:bg-olive-950/60 border border-olive-200 dark:border-olive-800/40 flex items-center justify-center mb-5">
-            <svg class="h-6 w-6 text-olive-500 dark:text-olive-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" v-html="step.icon" />
+          <div class="h-12 w-12 rounded-xl bg-sage-50 dark:bg-sage-950/60 border border-sage-200 dark:border-sage-800/40 flex items-center justify-center mb-5">
+            <svg class="h-6 w-6 text-sage-500 dark:text-sage-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" v-html="step.icon" />
           </div>
-          <p class="text-xs font-mono text-zinc-400 dark:text-zinc-600 mb-2">{{ step.number }}</p>
-          <h3 class="text-zinc-900 dark:text-zinc-100 font-semibold text-lg mb-2">{{ step.title }}</h3>
-          <p class="text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed">{{ step.description }}</p>
+          <p class="text-xs font-mono text-earth-400 dark:text-earth-600 mb-2">{{ step.number }}</p>
+          <h3 class="text-earth-900 dark:text-earth-100 font-semibold text-lg mb-2">{{ step.title }}</h3>
+          <p class="text-earth-600 dark:text-earth-300 text-sm leading-relaxed">{{ step.description }}</p>
         </div>
       </div>
     </div>

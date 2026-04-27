@@ -35,10 +35,10 @@ onMounted(async () => {
 <template>
   <AppLayout>
     <div class="mb-10">
-      <h1 class="text-3xl font-bold text-zinc-900 dark:text-zinc-100">
+      <h1 class="text-3xl font-bold text-earth-900 dark:text-earth-100">
         Hey, {{ auth.profile?.full_name?.split(' ')[0] ?? 'there' }} 👋
       </h1>
-      <p class="text-zinc-500 mt-1">Here's what's happening in your creative world.</p>
+      <p class="text-earth-400 mt-1">Here's what's happening in your creative world.</p>
     </div>
 
     <div class="flex gap-3 mb-10">
@@ -56,7 +56,7 @@ onMounted(async () => {
     </div>
 
     <section>
-      <h2 class="text-xs font-medium text-zinc-500 uppercase tracking-wider mb-4">
+      <h2 class="text-xs font-medium text-earth-400 uppercase tracking-wider mb-4">
         Active workspaces
       </h2>
 
@@ -68,9 +68,9 @@ onMounted(async () => {
         </div>
       </template>
 
-      <div v-else class="text-center py-16 bg-zinc-100 dark:bg-zinc-900 border border-dashed border-zinc-300 dark:border-zinc-800 rounded-xl">
-        <p class="text-zinc-500 text-sm">No workspaces yet.</p>
-        <RouterLink to="/discover" class="text-olive-500 hover:text-olive-400 text-sm transition-colors mt-1 inline-block">
+      <div v-else class="text-center py-16 bg-earth-200/50 dark:bg-earth-900 border border-dashed border-earth-300 dark:border-earth-700 rounded-xl">
+        <p class="text-earth-400 text-sm">No workspaces yet.</p>
+        <RouterLink to="/discover" class="text-sage-600 hover:text-sage-500 text-sm transition-colors mt-1 inline-block">
           Connect with someone →
         </RouterLink>
       </div>

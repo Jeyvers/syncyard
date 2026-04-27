@@ -11,7 +11,7 @@ import NewHeroSection from '@/components/home/NewHeroSection.vue'
 
 <template>
   <div
-    class="min-h-screen bg-zinc-100 dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 transition-colors duration-200"
+    class="bg-earth-100 dark:bg-earth-900 text-earth-900 dark:text-earth-100 transition-colors duration-200"
   >
     <HomeNavbar />
     <NewHeroSection />
