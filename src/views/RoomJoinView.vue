@@ -65,13 +65,12 @@ async function toggleLike() {
 <template>
   <div
     class="min-h-screen bg-[#f5f5f2] flex flex-col"
-    style="font-family: 'Plus Jakarta Sans', sans-serif"
   >
     <!-- Back -->
     <div class="px-6 py-4">
       <RouterLink
         to="/discover"
-        class="inline-flex items-center gap-2 text-sm text-[#8a8a6a] hover:text-[#2d2d1a] transition-colors"
+        class="inline-flex items-center gap-2 text-sm text-muted hover:text-[#2d2d1a] transition-colors"
       >
         <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
@@ -85,7 +84,7 @@ async function toggleLike() {
     </div>
 
     <div v-else-if="!workspace" class="flex-1 flex items-center justify-center">
-      <p class="text-[#8a8a6a]">Room not found.</p>
+      <p class="text-muted">Room not found.</p>
     </div>
 
     <div v-else class="flex-1 max-w-2xl mx-auto w-full px-4 py-8">
@@ -98,7 +97,7 @@ async function toggleLike() {
           </span>
           <button
             :class="['flex items-center gap-1.5 text-sm font-medium transition-colors',
-              liked ? 'text-rose-500' : 'text-[#8a8a6a] hover:text-rose-400']"
+              liked ? 'text-rose-500' : 'text-muted hover:text-rose-400']"
             @click="toggleLike"
           >
             <svg class="h-5 w-5" :fill="liked ? 'currentColor' : 'none'" viewBox="0 0 24 24" stroke="currentColor">
@@ -143,7 +142,7 @@ async function toggleLike() {
           </div>
           <div class="flex-1 min-w-0">
             <h3 class="font-bold text-[#1a1a0e] text-lg">{{ creator.full_name || creator.username }}</h3>
-            <p v-if="creator.username" class="text-sm text-[#8a8a6a] mb-2">@{{ creator.username }}</p>
+            <p v-if="creator.username" class="text-sm text-muted mb-2">@{{ creator.username }}</p>
             <p v-if="creator.bio" class="text-sm text-[#6b6b5a] leading-relaxed">{{ creator.bio }}</p>
           </div>
         </div>

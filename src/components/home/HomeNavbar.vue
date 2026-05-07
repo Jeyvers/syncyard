@@ -43,6 +43,21 @@ function closeMenuOnOutsideClick(e: MouseEvent) {
   }
 }
 
+function mobileHostRoom() {
+  mobileOpen.value = false
+  emit('start-room')
+}
+
+function mobileSignIn() {
+  mobileOpen.value = false
+  openModal('login')
+}
+
+function mobileSignUp() {
+  mobileOpen.value = false
+  openModal('signup')
+}
+
 async function handleLogout() {
   userMenuOpen.value = false
   mobileOpen.value = false
@@ -70,7 +85,7 @@ onUnmounted(() => {
     ]"
     class="font-body"
   >
-    <div class="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between">
+    <div class="max-w-6xl mx-auto px-4 h-20 flex items-center justify-between">
       <!-- Logo -->
       <RouterLink to="/">
         <img src="/images/logo.png" alt="Syncyard" class="h-5 w-auto" />
@@ -79,19 +94,19 @@ onUnmounted(() => {
       <!-- Desktop nav -->
       <nav class="hidden md:flex items-center gap-1">
         <button
-          class="px-4 py-1.5 text-sm text-[#6b6b5a] hover:text-[#2d2d1a] transition-colors"
+          class="px-4 py-1.5 font-display text-sm text-[#41431B] hover:text-[#2d2d1a] transition-colors"
           @click="scrollTo('live-rooms')"
         >
           Explore
         </button>
         <button
-          class="px-4 py-1.5 text-sm text-[#6b6b5a] hover:text-[#2d2d1a] transition-colors"
+          class="px-4 py-1.5 font-display text-sm text-[#41431B] hover:text-[#2d2d1a] transition-colors"
           @click="scrollTo('how-it-works')"
         >
           How it works
         </button>
         <button
-          class="px-4 py-1.5 text-sm text-[#6b6b5a] hover:text-[#2d2d1a] transition-colors"
+          class="px-4 py-1.5 font-display text-sm text-[#41431B] hover:text-[#2d2d1a] transition-colors"
           @click="emit('start-room')"
         >
           Host a room
@@ -126,7 +141,7 @@ onUnmounted(() => {
                   <p class="text-xs font-semibold text-[#1a1a0e] truncate">
                     {{ auth.profile?.full_name || auth.user?.user_metadata?.full_name || 'You' }}
                   </p>
-                  <p class="text-[10px] text-[#8a8a6a] truncate">{{ auth.user?.email }}</p>
+                  <p class="text-[10px] text-muted truncate">{{ auth.user?.email }}</p>
                 </div>
                 <RouterLink
                   v-if="auth.profile?.username"
@@ -135,7 +150,7 @@ onUnmounted(() => {
                   @click="userMenuOpen = false"
                 >
                   <svg
-                    class="h-4 w-4 text-[#8a8a6a]"
+                    class="h-4 w-4 text-muted"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -155,7 +170,7 @@ onUnmounted(() => {
                   @click="userMenuOpen = false"
                 >
                   <svg
-                    class="h-4 w-4 text-[#8a8a6a]"
+                    class="h-4 w-4 text-muted"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -263,7 +278,7 @@ onUnmounted(() => {
         </button>
         <button
           class="block w-full text-left px-3 py-2.5 text-sm text-[#6b6b5a] hover:text-[#2d2d1a] rounded-lg transition-colors"
-          @click="mobileOpen = false; emit('start-room')"
+          @click="mobileHostRoom"
         >
           Host a room
         </button>
@@ -290,15 +305,12 @@ onUnmounted(() => {
             </button>
           </template>
           <template v-else>
-            <button
-              class="text-sm text-[#6b6b5a] py-2 text-center"
-              @click="mobileOpen = false; openModal('login')"
-            >
+            <button class="text-sm text-[#6b6b5a] py-2 text-center" @click="mobileSignIn">
               Sign in
             </button>
             <button
               class="bg-[#2d4a1e] text-white text-sm font-semibold py-2.5 rounded-full"
-              @click="mobileOpen = false; openModal('signup')"
+              @click="mobileSignUp"
             >
               Get started
             </button>

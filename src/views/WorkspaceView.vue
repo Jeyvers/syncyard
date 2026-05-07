@@ -140,7 +140,6 @@ onUnmounted(() => { jitsiApi?.dispose() })
 </script>
 
 <template>
-  <div class="flex h-screen overflow-hidden bg-[#111111]" style="font-family: 'Plus Jakarta Sans', sans-serif">
 
     <!-- Left panel -->
     <div class="w-72 shrink-0 flex flex-col bg-[#1c2e10] overflow-y-auto">

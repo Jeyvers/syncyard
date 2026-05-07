@@ -96,7 +96,6 @@ const googleBtnLabel = computed(() => {
 </script>
 
 <template>
-  <div class="flex min-h-screen" style="font-family: 'Plus Jakarta Sans', sans-serif">
     <!-- Left panel — photo -->
     <div
       class="hidden md:block md:w-1/2 relative overflow-hidden bg-[#1a2010]"
@@ -112,7 +111,7 @@ const googleBtnLabel = computed(() => {
         <RouterLink to="/">
           <img src="/images/logo.png" alt="Syncyard" class="h-5 w-auto" />
         </RouterLink>
-        <RouterLink to="/" class="text-[#8a8a6a] hover:text-[#2d2d1a] transition-colors">
+        <RouterLink to="/" class="text-muted hover:text-[#2d2d1a] transition-colors">
           <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
           </svg>
@@ -125,7 +124,7 @@ const googleBtnLabel = computed(() => {
           :class="['py-4 text-sm font-medium mr-6 border-b-2 -mb-px transition-colors',
             activeTab === 'signup'
               ? 'border-[#7a8355] text-[#2d2d1a]'
-              : 'border-transparent text-[#8a8a6a] hover:text-[#2d2d1a]']"
+              : 'border-transparent text-muted hover:text-[#2d2d1a]']"
           @click="setTab('signup')"
         >
           SignUp
@@ -134,7 +133,7 @@ const googleBtnLabel = computed(() => {
           :class="['py-4 text-sm font-medium mr-6 border-b-2 -mb-px transition-colors',
             activeTab === 'login'
               ? 'border-[#7a8355] text-[#2d2d1a]'
-              : 'border-transparent text-[#8a8a6a] hover:text-[#2d2d1a]']"
+              : 'border-transparent text-muted hover:text-[#2d2d1a]']"
           @click="setTab('login')"
         >
           Login
@@ -160,7 +159,7 @@ const googleBtnLabel = computed(() => {
           >
             Welcome back
           </h1>
-          <p class="text-sm text-[#8a8a6a] mb-8">Log in to join rooms and meet people.</p>
+          <p class="text-sm text-muted mb-8">Log in to join rooms and meet people.</p>
 
           <!-- Google -->
           <button
@@ -207,7 +206,7 @@ const googleBtnLabel = computed(() => {
               />
               <button
                 type="button"
-                class="absolute right-4 top-1/2 -translate-y-1/2 flex items-center gap-1 text-xs text-[#8a8a6a] hover:text-[#2d2d1a] transition-colors"
+                class="absolute right-4 top-1/2 -translate-y-1/2 flex items-center gap-1 text-xs text-muted hover:text-[#2d2d1a] transition-colors"
                 @click="showLoginPassword = !showLoginPassword"
               >
                 <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -221,7 +220,7 @@ const googleBtnLabel = computed(() => {
             <p v-if="loginError" class="text-xs text-red-500">{{ loginError }}</p>
 
             <div class="text-right pt-1">
-              <a href="#" class="text-sm text-[#8a8a6a] hover:text-[#2d2d1a] underline underline-offset-2 transition-colors">
+              <a href="#" class="text-sm text-muted hover:text-[#2d2d1a] underline underline-offset-2 transition-colors">
                 Forgot your password?
               </a>
             </div>
@@ -244,7 +243,7 @@ const googleBtnLabel = computed(() => {
               <h2 class="font-display text-2xl font-bold text-[#6b7a3a] mb-2">
                 Check your inbox
               </h2>
-              <p class="text-sm text-[#8a8a6a] max-w-xs">
+              <p class="text-sm text-muted max-w-xs">
                 We sent a confirmation link to <span class="text-[#2d2d1a] font-medium">{{ signupEmail }}</span>. Click it to activate your account.
               </p>
               <button class="mt-6 text-sm text-[#7a8355] hover:underline" @click="setTab('login')">
@@ -259,7 +258,7 @@ const googleBtnLabel = computed(() => {
             >
               Join Syncyard
             </h1>
-            <p class="text-sm text-[#8a8a6a] mb-8">
+            <p class="text-sm text-muted mb-8">
               Create an account to host rooms,<br />save your favorites, and build your profile.
             </p>
 
@@ -324,7 +323,7 @@ const googleBtnLabel = computed(() => {
                 />
                 <button
                   type="button"
-                  class="absolute right-4 top-1/2 -translate-y-1/2 flex items-center gap-1 text-xs text-[#8a8a6a] hover:text-[#2d2d1a] transition-colors"
+                  class="absolute right-4 top-1/2 -translate-y-1/2 flex items-center gap-1 text-xs text-muted hover:text-[#2d2d1a] transition-colors"
                   @click="showSignupPassword = !showSignupPassword"
                 >
                   <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -338,7 +337,7 @@ const googleBtnLabel = computed(() => {
               <p v-if="signupError" class="text-xs text-red-500">{{ signupError }}</p>
 
               <div class="text-right pt-1">
-                <a href="#" class="text-sm text-[#8a8a6a] hover:text-[#2d2d1a] underline underline-offset-2 transition-colors">
+                <a href="#" class="text-sm text-muted hover:text-[#2d2d1a] underline underline-offset-2 transition-colors">
                   Forgot your password?
                 </a>
               </div>
@@ -361,7 +360,7 @@ const googleBtnLabel = computed(() => {
           >
             Just browsing?
           </h1>
-          <p class="text-sm text-[#8a8a6a] mb-8">
+          <p class="text-sm text-muted mb-8">
             Pick a name and jump straight into any open room.<br />No account needed.
           </p>
 
@@ -388,7 +387,7 @@ const googleBtnLabel = computed(() => {
           </ul>
 
           <div class="bg-[#f5f5ee] border border-[#e0e0d4] rounded-xl px-4 py-3 flex gap-3 mb-6">
-            <svg class="h-4 w-4 text-[#8a8a6a] shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg class="h-4 w-4 text-muted shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
             </svg>
             <p class="text-xs text-[#6b6b5a] leading-relaxed">
@@ -411,7 +410,7 @@ const googleBtnLabel = computed(() => {
       <!-- Footer -->
       <div class="px-8 py-6 bg-[#f8f8f5] border-t border-gray-100 text-center">
         <template v-if="activeTab === 'login'">
-          <p class="text-sm text-[#8a8a6a]">
+          <p class="text-sm text-muted">
             Don't have an account?
             <button class="text-[#2d2d1a] font-semibold underline underline-offset-2 hover:text-[#5a6e2a] transition-colors" @click="setTab('signup')">
               Create an account
@@ -419,7 +418,7 @@ const googleBtnLabel = computed(() => {
           </p>
         </template>
         <template v-else-if="activeTab === 'signup'">
-          <p class="text-sm text-[#8a8a6a]">
+          <p class="text-sm text-muted">
             Already have an account?
             <button class="text-[#2d2d1a] font-semibold underline underline-offset-2 hover:text-[#5a6e2a] transition-colors" @click="setTab('login')">
               Login
@@ -427,7 +426,7 @@ const googleBtnLabel = computed(() => {
           </p>
         </template>
         <template v-else>
-          <p class="text-sm text-[#8a8a6a]">
+          <p class="text-sm text-muted">
             Want the full experience?
             <button class="text-[#2d2d1a] font-semibold underline underline-offset-2 hover:text-[#5a6e2a] transition-colors" @click="setTab('signup')">
               Sign up free!

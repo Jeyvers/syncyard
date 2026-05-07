@@ -16,6 +16,12 @@
   --color-earth-900: #2a1e19;
   --color-earth-950: #1a1210;
 
+  /* Olive */
+  --color-olive: #41431b;
+  --color-olive-dark: #2d2e12;
+
+  --color-muted: #8a8a6a;
+
   /* Sage green */
   --color-sage-50: #f4f5eb;
   --color-sage-100: #e8ead9;
@@ -32,20 +38,20 @@
 
 @theme {
   --font-display: 'Montserrat Alternates', sans-serif;
-  --font-body: 'Plus Jakarta Sans', sans-serif;
+  --font-body: 'Google Sans Flex', sans-serif;
 }
 
 @layer base {
   html {
     background-color: #f5f5f2;
     color: #2a2a1a;
-    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-family: 'Google Sans Flex', sans-serif;
   }
 
   html.dark {
     background-color: #2a1e19;
     color: #f3e4c9;
-    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-family: 'Google Sans Flex', sans-serif;
   }
 }
 
@@ -65,4 +71,16 @@
 
 .animate-scroll-tags:hover {
   animation-play-state: paused;
+}
+
+@utility rounded-blob {
+  clip-path: path('M 44 0 C 18 0 0 15 0 33 C 0 51 18 66 44 66 C 80 66 110 58 140 58 C 170 58 200 66 236 66 C 262 66 280 51 280 33 C 280 15 262 0 236 0 C 200 0 170 8 140 8 C 110 8 80 0 44 0 Z');
+}
+
+button {
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: 90;
 }

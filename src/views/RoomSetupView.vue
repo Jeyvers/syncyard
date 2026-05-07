@@ -65,12 +65,11 @@ async function handleCreate() {
 <template>
   <div
     class="min-h-screen flex items-center justify-center bg-[#f5f5f2] px-4"
-    style="font-family: 'Plus Jakarta Sans', sans-serif"
   >
     <!-- Back -->
     <RouterLink
       to="/discover"
-      class="fixed top-5 left-5 flex items-center gap-2 text-sm text-[#8a8a6a] hover:text-[#2d2d1a] transition-colors"
+      class="fixed top-5 left-5 flex items-center gap-2 text-sm text-muted hover:text-[#2d2d1a] transition-colors"
     >
       <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>

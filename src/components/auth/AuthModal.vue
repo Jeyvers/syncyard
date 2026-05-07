@@ -100,7 +100,6 @@ watch(activeTab, () => {
     <div
       v-if="isOpen"
       class="fixed inset-0 z-50 flex items-center justify-center p-4"
-      style="font-family: 'Plus Jakarta Sans', sans-serif"
       @click.self="closeModal"
     >
       <!-- Backdrop -->
@@ -112,7 +111,7 @@ watch(activeTab, () => {
         <div class="flex items-center justify-between px-6 py-4 border-b border-gray-100 shrink-0">
           <img src="/images/logo.png" alt="Syncyard" class="h-5 w-auto" />
           <button
-            class="text-[#8a8a6a] hover:text-[#2d2d1a] transition-colors"
+            class="text-muted hover:text-[#2d2d1a] transition-colors"
             @click="closeModal"
           >
             <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -144,7 +143,7 @@ watch(activeTab, () => {
             <h2 class="font-display text-2xl font-bold text-[#6b7a3a] mb-1">
               Welcome back
             </h2>
-            <p class="text-sm text-[#8a8a6a] mb-6">Log in to join rooms and meet people.</p>
+            <p class="text-sm text-muted mb-6">Log in to join rooms and meet people.</p>
 
             <button :disabled="googleLoading"
               class="w-full flex items-center justify-center gap-3 border border-[#e0e0d4] rounded-xl px-4 py-2.5 text-sm font-medium text-[#2d2d1a] hover:bg-gray-50 transition-colors mb-4 disabled:opacity-50"
@@ -175,7 +174,7 @@ watch(activeTab, () => {
               <div class="relative">
                 <input v-model="loginPassword" :type="showLoginPw ? 'text' : 'password'" placeholder="Password" required
                   class="w-full border border-[#e0e0d4] rounded-xl px-4 py-2.5 text-sm text-[#2d2d1a] placeholder-[#b0b09a] focus:outline-none focus:border-[#9aa374] focus:ring-1 focus:ring-[#9aa374] transition-colors pr-16"/>
-                <button type="button" class="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-[#8a8a6a] hover:text-[#2d2d1a] flex items-center gap-1"
+                <button type="button" class="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-muted hover:text-[#2d2d1a] flex items-center gap-1"
                   @click="showLoginPw = !showLoginPw">
                   <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path v-if="showLoginPw" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21"/>
@@ -186,7 +185,7 @@ watch(activeTab, () => {
               </div>
               <p v-if="loginError" class="text-xs text-red-500">{{ loginError }}</p>
               <div class="text-right">
-                <a href="#" class="text-xs text-[#8a8a6a] hover:text-[#2d2d1a] underline underline-offset-2">Forgot your password?</a>
+                <a href="#" class="text-xs text-muted hover:text-[#2d2d1a] underline underline-offset-2">Forgot your password?</a>
               </div>
               <button type="submit" :disabled="loginLoading"
                 class="w-full bg-[#5a6e2a] hover:bg-[#4a5e1a] text-white font-semibold py-3 rounded-xl transition-colors disabled:opacity-50">
@@ -201,7 +200,7 @@ watch(activeTab, () => {
               <div class="py-8 text-center">
                 <div class="text-4xl mb-3">✉️</div>
                 <h2 class="text-xl font-bold text-[#6b7a3a] mb-2">Check your inbox</h2>
-                <p class="text-sm text-[#8a8a6a]">We sent a link to <span class="text-[#2d2d1a] font-medium">{{ signupEmail }}</span></p>
+                <p class="text-sm text-muted">We sent a link to <span class="text-[#2d2d1a] font-medium">{{ signupEmail }}</span></p>
                 <button class="mt-5 text-sm text-[#7a8355] hover:underline" @click="setTab('login')">Back to log in →</button>
               </div>
             </template>
@@ -209,7 +208,7 @@ watch(activeTab, () => {
               <h2 class="font-display text-2xl font-bold text-[#6b7a3a] mb-1">
                 Join Syncyard
               </h2>
-              <p class="text-sm text-[#8a8a6a] mb-6">Create an account to host rooms, save your favorites, and build your profile.</p>
+              <p class="text-sm text-muted mb-6">Create an account to host rooms, save your favorites, and build your profile.</p>
 
               <button :disabled="googleLoading"
                 class="w-full flex items-center justify-center gap-3 border border-[#e0e0d4] rounded-xl px-4 py-2.5 text-sm font-medium text-[#2d2d1a] hover:bg-gray-50 transition-colors mb-4 disabled:opacity-50"
@@ -246,7 +245,7 @@ watch(activeTab, () => {
                 <div class="relative">
                   <input v-model="signupPassword" :type="showSignupPw ? 'text' : 'password'" placeholder="Password" required
                     class="w-full border border-[#e0e0d4] rounded-xl px-4 py-2.5 text-sm text-[#2d2d1a] placeholder-[#b0b09a] focus:outline-none focus:border-[#9aa374] focus:ring-1 focus:ring-[#9aa374] transition-colors pr-16"/>
-                  <button type="button" class="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-[#8a8a6a] hover:text-[#2d2d1a] flex items-center gap-1"
+                  <button type="button" class="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-muted hover:text-[#2d2d1a] flex items-center gap-1"
                     @click="showSignupPw = !showSignupPw">
                     <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path v-if="showSignupPw" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21"/>
@@ -269,7 +268,7 @@ watch(activeTab, () => {
             <h2 class="font-display text-2xl font-bold text-[#6b7a3a] mb-1">
               Just browsing?
             </h2>
-            <p class="text-sm text-[#8a8a6a] mb-6">Pick a name and jump straight into any open room. No account needed.</p>
+            <p class="text-sm text-muted mb-6">Pick a name and jump straight into any open room. No account needed.</p>
 
             <input v-model="guestName" type="text" placeholder="What should we call you?"
               class="w-full border border-[#e0e0d4] rounded-xl px-4 py-2.5 text-sm text-[#2d2d1a] placeholder-[#b0b09a] focus:outline-none focus:border-[#9aa374] focus:ring-1 focus:ring-[#9aa374] transition-colors mb-5"
@@ -288,7 +287,7 @@ watch(activeTab, () => {
             </ul>
 
             <div class="bg-[#f5f5ee] border border-[#e0e0d4] rounded-xl px-4 py-3 flex gap-3 mb-5">
-              <svg class="h-4 w-4 text-[#8a8a6a] shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg class="h-4 w-4 text-muted shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
               </svg>
               <p class="text-xs text-[#6b6b5a] leading-relaxed">Guests can't host rooms or save favorites. Create a free account to unlock everything.</p>
@@ -304,17 +303,17 @@ watch(activeTab, () => {
         <!-- Footer -->
         <div class="px-6 py-4 bg-[#f8f8f5] border-t border-gray-100 text-center shrink-0">
           <template v-if="activeTab === 'login'">
-            <p class="text-sm text-[#8a8a6a]">Don't have an account?
+            <p class="text-sm text-muted">Don't have an account?
               <button class="text-[#2d2d1a] font-semibold underline underline-offset-2 hover:text-[#5a6e2a]" @click="setTab('signup')">Create an account</button>
             </p>
           </template>
           <template v-else-if="activeTab === 'signup'">
-            <p class="text-sm text-[#8a8a6a]">Already have an account?
+            <p class="text-sm text-muted">Already have an account?
               <button class="text-[#2d2d1a] font-semibold underline underline-offset-2 hover:text-[#5a6e2a]" @click="setTab('login')">Login</button>
             </p>
           </template>
           <template v-else>
-            <p class="text-sm text-[#8a8a6a]">Want the full experience?
+            <p class="text-sm text-muted">Want the full experience?
               <button class="text-[#2d2d1a] font-semibold underline underline-offset-2 hover:text-[#5a6e2a]" @click="setTab('signup')">Sign up free!</button>
             </p>
           </template>

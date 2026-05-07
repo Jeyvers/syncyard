@@ -146,7 +146,7 @@ const avatarColors = [
               <span class="h-1.5 w-1.5 rounded-full bg-green-500" />
               LIVE
             </span>
-            <span class="text-xs text-[#8a8a6a] flex items-center gap-1">
+            <span class="text-xs text-muted flex items-center gap-1">
               {{ room.flag }} {{ room.location }}
             </span>
           </div>
@@ -154,13 +154,12 @@ const avatarColors = [
           <!-- Title -->
           <h3
             class="text-[#1a1a0e] font-bold text-lg leading-snug mb-2"
-            style="font-family: 'Plus Jakarta Sans', sans-serif"
           >
             {{ room.title }}
           </h3>
 
           <!-- Description -->
-          <p class="text-[#8a8a6a] text-sm leading-relaxed flex-1 mb-4">
+          <p class="text-muted text-sm leading-relaxed flex-1 mb-4">
             {{ room.description }}
           </p>
 
@@ -192,7 +191,7 @@ const avatarColors = [
 
           <!-- Footer: joined count + join button -->
           <div class="flex items-center justify-between">
-            <div class="flex items-center gap-1.5 text-[#8a8a6a]">
+            <div class="flex items-center gap-1.5 text-muted">
               <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path
                   stroke-linecap="round"

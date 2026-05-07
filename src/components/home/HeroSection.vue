@@ -53,37 +53,25 @@ import { RouterLink } from 'vue-router'
     <div class="relative max-w-3xl mx-auto text-center">
       <!-- Pills row -->
       <div class="flex items-center justify-center gap-4 mb-10 flex-wrap">
-        <span
-          class="font-display text-xs font-semibold tracking-[0.15em] text-sage-500 uppercase"
-        >
-          Open Rooms
-        </span>
-        <span class="text-sage-400 text-xs font-bold">■</span>
-        <span
-          class="font-display text-xs font-semibold tracking-[0.15em] text-sage-500 uppercase"
-        >
+        <span class="font-display tracking-[0.15em] text-sage-400 uppercase"> Open Rooms </span>
+        <span class="text-sage-400 font-bold">■</span>
+        <span class="font-display tracking-[0.15em] text-sage-500 uppercase">
           Different People
         </span>
-        <span class="text-sage-400 text-xs font-bold">■</span>
-        <span
-          class="font-display text-xs font-semibold tracking-[0.15em] text-sage-500 uppercase"
-        >
-          Right Now
-        </span>
+        <span class="text-sage-400 font-bold">■</span>
+        <span class="font-display tracking-[0.15em] text-sage-500 uppercase"> Right Now </span>
       </div>
 
       <!-- Headline -->
       <h1
-        class="text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.1] tracking-tight mb-6 text-[#2d2d1a]"
-        style="font-family: 'Plus Jakarta Sans', sans-serif"
+        class="text-4xl sm:text-5xl lg:text-7xl leading-[1.1] tracking-tight mb-6 text-olive"
       >
         Your next conversation<br />is already happening.
       </h1>
 
       <!-- Subtext -->
       <p
-        class="text-[#6b6b5a] text-base sm:text-lg max-w-xl mx-auto mb-10 leading-relaxed"
-        style="font-family: 'Plus Jakarta Sans', sans-serif"
+        class="text-olive text-base sm:text-lg max-w-xl mx-auto mb-10 leading-relaxed"
       >
         Syncyard is where people from anywhere drop into live rooms, meet strangers, share ideas,
         and just... talk.
@@ -92,8 +80,7 @@ import { RouterLink } from 'vue-router'
       <!-- CTA -->
       <a
         href="#live-rooms"
-        class="inline-flex items-center gap-2 bg-[#2d2d1a] hover:bg-[#3d3d2a] text-white text-sm font-semibold px-7 py-3.5 rounded-full transition-colors"
-        style="font-family: 'Plus Jakarta Sans', sans-serif"
+        class="font-body inline-block bg-olive-dark text-white font-semibold text-xl px-12 py-5 rounded-blob shadow-lg hover:scale-105 transition-transform duration-200"
       >
         See live rooms
       </a>
@@ -101,16 +88,16 @@ import { RouterLink } from 'vue-router'
       <!-- Stats -->
       <div class="mt-16 flex items-center justify-center gap-8 sm:gap-12 flex-wrap">
         <div>
-          <span class="text-2xl font-bold text-[#2d2d1a]">24</span>
-          <span class="ml-1.5 text-sm text-[#8a8a6a]">rooms open now</span>
+          <span class="text-2xl font-semibold text-olive">24</span>
+          <span class="ml-1.5 text-sm text-muted">rooms open now</span>
         </div>
         <div>
-          <span class="text-2xl font-bold text-[#2d2d1a]">82</span>
-          <span class="ml-1.5 text-sm text-[#8a8a6a]">people connected recently</span>
+          <span class="text-2xl font-semibold text-olive">82</span>
+          <span class="ml-1.5 text-sm text-muted">people connected recently</span>
         </div>
         <div>
-          <span class="text-2xl font-bold text-[#2d2d1a]">3</span>
-          <span class="ml-1.5 text-sm text-[#8a8a6a]">countries</span>
+          <span class="text-2xl font-semibold text-olive">3</span>
+          <span class="ml-1.5 text-sm text-muted">countries</span>
         </div>
       </div>
     </div>

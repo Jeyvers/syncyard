@@ -61,7 +61,7 @@ function roomInitials(name: string) {
 </script>
 
 <template>
-  <div class="min-h-screen bg-[#f5f5f2]" style="font-family: 'Plus Jakarta Sans', sans-serif">
+  <div class="min-h-screen bg-[#f5f5f2]">
     <div class="max-w-6xl mx-auto px-4 pt-20 pb-16">
       <div class="flex gap-8 items-start">
 
@@ -114,12 +114,12 @@ function roomInitials(name: string) {
                   <span class="inline-flex items-center gap-1.5 bg-[#e8f0e3] text-[#3a5a2d] text-xs font-bold px-2.5 py-0.5 rounded-full">
                     <span class="h-1.5 w-1.5 rounded-full bg-green-500" />LIVE
                   </span>
-                  <span class="text-[10px] text-[#8a8a6a]">{{ room.flag }} {{ room.location }}</span>
+                  <span class="text-[10px] text-muted">{{ room.flag }} {{ room.location }}</span>
                 </div>
                 <!-- Title -->
                 <h3 class="text-[#1a1a0e] font-bold text-sm leading-snug mb-2">{{ room.title }}</h3>
                 <!-- Description -->
-                <p class="text-[#8a8a6a] text-xs leading-relaxed flex-1 mb-3">{{ room.description }}</p>
+                <p class="text-muted text-xs leading-relaxed flex-1 mb-3">{{ room.description }}</p>
                 <!-- Host -->
                 <div class="flex items-center gap-2 mb-3">
                   <div :class="['h-6 w-6 rounded-full flex items-center justify-center text-[10px] font-bold shrink-0', room.color]">
@@ -132,7 +132,7 @@ function roomInitials(name: string) {
                 </div>
                 <!-- Footer -->
                 <div class="border-t border-[#e8e8e0] pt-2.5 flex items-center justify-between">
-                  <div class="flex items-center gap-1 text-[#8a8a6a]">
+                  <div class="flex items-center gap-1 text-muted">
                     <svg class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
                     </svg>
@@ -166,10 +166,10 @@ function roomInitials(name: string) {
                   <span class="inline-flex items-center gap-1.5 bg-[#e8f0e3] text-[#3a5a2d] text-xs font-bold px-2.5 py-0.5 rounded-full">
                     <span class="h-1.5 w-1.5 rounded-full bg-green-500" />LIVE
                   </span>
-                  <span class="text-[10px] text-[#8a8a6a] truncate max-w-[100px] text-right">{{ room.flag }} {{ room.location }}</span>
+                  <span class="text-[10px] text-muted truncate max-w-[100px] text-right">{{ room.flag }} {{ room.location }}</span>
                 </div>
                 <h3 class="text-[#1a1a0e] font-bold text-sm leading-snug mb-2">{{ room.title }}</h3>
-                <p class="text-[#8a8a6a] text-xs leading-relaxed flex-1 mb-3">{{ room.description }}</p>
+                <p class="text-muted text-xs leading-relaxed flex-1 mb-3">{{ room.description }}</p>
                 <div class="flex items-center gap-2 mb-3">
                   <div :class="['h-6 w-6 rounded-full flex items-center justify-center text-[10px] font-bold shrink-0', room.color]">
                     {{ roomInitials(room.creator) }}
@@ -177,7 +177,7 @@ function roomInitials(name: string) {
                   <p class="text-[10px] font-bold text-[#2d2d1a] uppercase tracking-wider truncate">{{ room.creator }}</p>
                 </div>
                 <div class="border-t border-[#e8e8e0] pt-2.5 flex items-center justify-between">
-                  <div class="flex items-center gap-1 text-[#8a8a6a]">
+                  <div class="flex items-center gap-1 text-muted">
                     <svg class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
                     </svg>
@@ -202,20 +202,20 @@ function roomInitials(name: string) {
             <p class="font-display font-bold text-[#1a1a0e] text-sm uppercase tracking-wide">
               {{ auth.profile?.full_name || auth.user?.user_metadata?.full_name || 'Your Name' }}
             </p>
-            <p class="text-xs text-[#8a8a6a] mt-0.5">@{{ handle }} · joined recently</p>
+            <p class="text-xs text-muted mt-0.5">@{{ handle }} · joined recently</p>
 
             <div class="flex items-center justify-around mt-4 py-3 border-y border-[#c8d8b0]">
               <div class="text-center">
                 <p class="text-base font-bold text-[#2d2d1a]">7</p>
-                <p class="text-[9px] text-[#8a8a6a] uppercase tracking-wider">Rooms</p>
+                <p class="text-[9px] text-muted uppercase tracking-wider">Rooms</p>
               </div>
               <div class="text-center">
                 <p class="text-base font-bold text-[#2d2d1a]">43</p>
-                <p class="text-[9px] text-[#8a8a6a] uppercase tracking-wider">Met</p>
+                <p class="text-[9px] text-muted uppercase tracking-wider">Met</p>
               </div>
               <div class="text-center">
                 <p class="text-base font-bold text-[#2d2d1a]">2</p>
-                <p class="text-[9px] text-[#8a8a6a] uppercase tracking-wider">Hosted</p>
+                <p class="text-[9px] text-muted uppercase tracking-wider">Hosted</p>
               </div>
             </div>
 
@@ -229,7 +229,7 @@ function roomInitials(name: string) {
 
           <!-- People you may like -->
           <div>
-            <p class="text-xs font-bold text-[#8a8a6a] uppercase tracking-widest mb-3">People you may like</p>
+            <p class="text-xs font-bold text-muted uppercase tracking-widest mb-3">People you may like</p>
             <div class="space-y-2">
               <div v-for="(person, i) in suggestions" :key="i"
                 class="flex items-center gap-3 bg-white border border-[#e8e8e0] rounded-xl px-3 py-2.5">
@@ -238,7 +238,7 @@ function roomInitials(name: string) {
                 </div>
                 <div class="flex-1 min-w-0">
                   <p class="text-xs font-semibold text-[#1a1a0e] truncate">{{ person.name }}</p>
-                  <p class="text-[10px] text-[#8a8a6a] truncate">{{ person.role }}</p>
+                  <p class="text-[10px] text-muted truncate">{{ person.role }}</p>
                 </div>
                 <button
                   :class="[
