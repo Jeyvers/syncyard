@@ -43,10 +43,13 @@ export const useAuthStore = defineStore('auth', () => {
     await fetchProfile()
   }
 
-  async function signUp(email: string, password: string) {
+  async function signUp(email: string, password: string, fullName?: string) {
     // Email/password signup always requires email confirmation.
-    // Google OAuth users are confirmed automatically and never call this function.
-    const { error } = await supabase.auth.signUp({ email, password })
+    const { error } = await supabase.auth.signUp({
+      email,
+      password,
+      options: fullName ? { data: { full_name: fullName } } : undefined,
+    })
     if (error) throw error
   }
 

@@ -1,86 +1,98 @@
 <script setup lang="ts">
-import AppButton from '@/components/ui/AppButton.vue'
-
-function scrollToHowItWorks() {
-  document.getElementById('how-it-works')?.scrollIntoView({ behavior: 'smooth' })
-}
+import { RouterLink } from 'vue-router'
 </script>
 
 <template>
-  <section
-    id="hero"
-    class="relative min-h-screen flex items-center justify-center px-4 pt-16 overflow-hidden"
-  >
-    <!-- Radial glow -->
-    <div class="absolute inset-0 pointer-events-none overflow-hidden">
-      <div
-        class="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[700px] rounded-full opacity-20"
-        style="background: radial-gradient(ellipse at center, #7a8355 0%, transparent 70%)"
-      />
-      <div
-        class="absolute top-1/3 left-1/2 -translate-x-1/2 w-[500px] h-[400px] rounded-full opacity-10"
-        style="background: radial-gradient(ellipse at center, #babf94 0%, transparent 70%)"
-      />
+  <section id="hero" class="relative overflow-hidden bg-[#f5f5f2] pt-28 pb-20 px-4">
+    <!-- Squiggle left -->
+    <div class="absolute left-8 top-1/2 -translate-y-8 hidden lg:block pointer-events-none">
+      <svg width="120" height="44" viewBox="0 0 120 44" fill="none">
+        <path
+          d="M0,14 C10,4 20,24 30,14 C40,4 50,24 60,14 C70,4 80,24 90,14 C100,4 110,24 120,14"
+          stroke="#9aa374" stroke-width="2" stroke-linecap="round" fill="none"
+        />
+        <path
+          d="M0,28 C10,18 20,38 30,28 C40,18 50,38 60,28 C70,18 80,38 90,28 C100,18 110,38 120,28"
+          stroke="#9aa374" stroke-width="2" stroke-linecap="round" fill="none"
+        />
+      </svg>
     </div>
 
-    <!-- Subtle grid -->
-    <div
-      class="absolute inset-0 opacity-[0.025] pointer-events-none"
-      style="
-        background-image: linear-gradient(rgba(255,255,255,0.15) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(255,255,255,0.15) 1px, transparent 1px);
-        background-size: 72px 72px;
-      "
-    />
+    <!-- Circle decoration -->
+    <div class="absolute right-20 top-1/2 -translate-y-12 hidden lg:block pointer-events-none">
+      <div class="h-20 w-20 rounded-full bg-[#e8e8e0]" />
+    </div>
+
+    <!-- Squiggle right -->
+    <div class="absolute right-8 top-1/2 translate-y-8 hidden lg:block pointer-events-none">
+      <svg width="130" height="44" viewBox="0 0 130 44" fill="none">
+        <path
+          d="M0,14 C10,4 20,24 30,14 C40,4 50,24 60,14 C70,4 80,24 90,14 C100,4 110,24 120,14 C125,9 128,16 130,14"
+          stroke="#9aa374" stroke-width="2" stroke-linecap="round" fill="none"
+        />
+        <path
+          d="M0,28 C10,18 20,38 30,28 C40,18 50,38 60,28 C70,18 80,38 90,28 C100,18 110,38 120,28 C125,23 128,30 130,28"
+          stroke="#9aa374" stroke-width="2" stroke-linecap="round" fill="none"
+        />
+      </svg>
+    </div>
 
     <!-- Content -->
-    <div class="relative z-10 text-center max-w-4xl mx-auto">
-      <!-- Badge -->
-      <div class="inline-flex items-center gap-2 bg-earth-900/60 border border-earth-600/40 rounded-full px-4 py-1.5 mb-8">
-        <span class="h-1.5 w-1.5 rounded-full bg-sage-400 animate-pulse" />
-        <span class="text-sage-300 text-sm font-medium">Now in early access</span>
+    <div class="relative max-w-3xl mx-auto text-center">
+      <!-- Pills row -->
+      <div class="flex items-center justify-center gap-4 mb-10 flex-wrap">
+        <span class="text-xs font-semibold tracking-[0.15em] text-sage-500 uppercase"
+          style="font-family: 'Montserrat Alternates', sans-serif">
+          Open Rooms
+        </span>
+        <span class="text-sage-400 text-xs font-bold">■</span>
+        <span class="text-xs font-semibold tracking-[0.15em] text-sage-500 uppercase"
+          style="font-family: 'Montserrat Alternates', sans-serif">
+          Different People
+        </span>
+        <span class="text-sage-400 text-xs font-bold">■</span>
+        <span class="text-xs font-semibold tracking-[0.15em] text-sage-500 uppercase"
+          style="font-family: 'Montserrat Alternates', sans-serif">
+          Right Now
+        </span>
       </div>
 
       <!-- Headline -->
       <h1
-        class="text-5xl sm:text-6xl lg:text-7xl font-bold text-earth-100 leading-[1.08] tracking-tight mb-6"
+        class="text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.1] tracking-tight mb-6 text-[#2d2d1a]"
+        style="font-family: 'Plus Jakarta Sans', sans-serif"
       >
-        Where creatives<br />
-        <span
-          class="bg-gradient-to-r from-sage-400 via-sage-200 to-sage-400 bg-clip-text text-transparent"
-        >
-          sync.
-        </span>
+        Your next conversation<br />is already happening.
       </h1>
 
-      <!-- Subheadline -->
-      <p class="text-earth-300 text-lg sm:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
-        Syncyard brings together artists, designers, musicians, and makers — so the right people
-        find each other and great work actually happens.
+      <!-- Subtext -->
+      <p class="text-[#6b6b5a] text-base sm:text-lg max-w-xl mx-auto mb-10 leading-relaxed"
+        style="font-family: 'Plus Jakarta Sans', sans-serif">
+        Syncyard is where people from anywhere drop into live rooms, meet strangers, share ideas, and just... talk.
       </p>
 
-      <!-- CTAs -->
-      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-        <RouterLink to="/signup">
-          <AppButton size="lg" class="px-8 text-base">Get started — it's free</AppButton>
-        </RouterLink>
-        <button
-          class="inline-flex items-center gap-2 text-earth-300 hover:text-earth-100 text-sm transition-colors"
-          @click="scrollToHowItWorks"
-        >
-          See how it works
-          <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-          </svg>
-        </button>
-      </div>
+      <!-- CTA -->
+      <RouterLink
+        to="/discover"
+        class="inline-flex items-center gap-2 bg-[#2d2d1a] hover:bg-[#3d3d2a] text-white text-sm font-semibold px-7 py-3.5 rounded-full transition-colors"
+        style="font-family: 'Plus Jakarta Sans', sans-serif"
+      >
+        See live rooms
+      </RouterLink>
 
-      <!-- Scroll hint -->
-      <div class="mt-20 flex justify-center">
-        <div class="flex flex-col items-center gap-2 opacity-30">
-          <div class="h-10 w-6 rounded-full border border-earth-600 flex items-start justify-center pt-1.5">
-            <div class="h-2 w-0.5 bg-earth-400 rounded-full animate-bounce" />
-          </div>
+      <!-- Stats -->
+      <div class="mt-16 flex items-center justify-center gap-8 sm:gap-12 flex-wrap">
+        <div>
+          <span class="text-2xl font-bold text-[#2d2d1a]">24</span>
+          <span class="ml-1.5 text-sm text-[#8a8a6a]">rooms open now</span>
+        </div>
+        <div>
+          <span class="text-2xl font-bold text-[#2d2d1a]">82</span>
+          <span class="ml-1.5 text-sm text-[#8a8a6a]">people connected recently</span>
+        </div>
+        <div>
+          <span class="text-2xl font-bold text-[#2d2d1a]">3</span>
+          <span class="ml-1.5 text-sm text-[#8a8a6a]">countries</span>
         </div>
       </div>
     </div>

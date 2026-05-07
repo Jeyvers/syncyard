@@ -7,7 +7,7 @@ const isDark = computed(() => theme.theme === 'dark')
 </script>
 
 <template>
-  <button
+  <button class="hidden"
     type="button"
     role="switch"
     :aria-checked="isDark"

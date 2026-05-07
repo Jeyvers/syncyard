@@ -11,6 +11,11 @@ export interface Profile {
 export interface Workspace {
   id: string
   name: string
+  description?: string | null
+  category?: string | null
+  max_members?: number | null
+  creator_id?: string | null
+  like_count?: number
   created_at: string
   members?: WorkspaceMember[]
 }

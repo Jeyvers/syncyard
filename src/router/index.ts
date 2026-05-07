@@ -15,29 +15,30 @@ const router = createRouter({
     },
     {
       path: '/login',
-      component: () => import('@/views/LoginView.vue'),
+      component: () => import('@/views/AuthView.vue'),
       meta: { guest: true },
     },
     {
       path: '/signup',
-      component: () => import('@/views/SignupView.vue'),
+      component: () => import('@/views/AuthView.vue'),
       meta: { guest: true },
+    },
+    {
+      path: '/room/create',
+      component: () => import('@/views/RoomSetupView.vue'),
+      meta: { auth: true },
+    },
+    {
+      path: '/room/:id/join',
+      component: () => import('@/views/RoomJoinView.vue'),
     },
     {
       path: '/onboarding',
       component: () => import('@/views/OnboardingView.vue'),
       meta: { auth: true },
     },
-    {
-      path: '/dashboard',
-      component: () => import('@/views/DashboardView.vue'),
-      meta: { auth: true },
-    },
-    {
-      path: '/discover',
-      component: () => import('@/views/DiscoverView.vue'),
-      meta: { auth: true },
-    },
+    { path: '/dashboard', redirect: '/' },
+    { path: '/discover', redirect: '/' },
     {
       path: '/profile/:username',
       component: () => import('@/views/ProfileView.vue'),
@@ -53,13 +54,13 @@ const router = createRouter({
 router.beforeEach((to) => {
   const auth = useAuthStore()
 
-  // Redirect unauthenticated users away from protected routes
-  if (to.meta.auth && !auth.isAuthenticated) return '/login'
+  // Unauthenticated users hitting protected routes → home with modal
+  if (to.meta.auth && !auth.isAuthenticated) return '/?auth=login'
 
-  // Redirect authenticated users away from guest-only routes
-  if (to.meta.guest && auth.isAuthenticated) return '/dashboard'
+  // Authenticated users hitting old login/signup routes → home (now the dashboard)
+  if (to.meta.guest && auth.isAuthenticated) return '/'
 
-  // Force onboarding for authenticated users who haven't completed it
+  // Force onboarding for users who haven't set a username yet
   if (
     to.meta.auth &&
     auth.isAuthenticated &&

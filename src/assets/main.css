@@ -30,17 +30,22 @@
   --color-sage-950: #12140d;
 }
 
+@theme {
+  --font-display: 'Montserrat Alternates', sans-serif;
+  --font-body: 'Plus Jakarta Sans', sans-serif;
+}
+
 @layer base {
-  /* Light mode defaults */
   html {
-    background-color: #f3e4c9; /* earth-100 — warm cream */
-    color: #2a1e19;            /* earth-900 — warm dark brown */
+    background-color: #f5f5f2;
+    color: #2a2a1a;
+    font-family: 'Plus Jakarta Sans', sans-serif;
   }
 
-  /* Dark mode overrides */
   html.dark {
-    background-color: #2a1e19; /* earth-900 — warm dark brown */
-    color: #f3e4c9;            /* earth-100 — warm cream */
+    background-color: #2a1e19;
+    color: #f3e4c9;
+    font-family: 'Plus Jakarta Sans', sans-serif;
   }
 }
 

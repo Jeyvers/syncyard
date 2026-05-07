@@ -1,0 +1,201 @@
+<script setup lang="ts">
+import { useAuthModal } from '@/composables/useAuthModal'
+import { useAuthStore } from '@/stores/auth'
+import { useRouter } from 'vue-router'
+
+const { openModal } = useAuthModal()
+const auth = useAuthStore()
+const router = useRouter()
+
+function handleJoin() {
+  if (auth.isAuthenticated) {
+    document.getElementById('happening-right-now')?.scrollIntoView({ behavior: 'smooth' })
+  } else {
+    openModal('login')
+  }
+}
+
+const rooms = [
+  {
+    title: 'Solo founders accountability check',
+    description: "Building alone? Join this open circle. Share your week, get unstuck, move forward.",
+    creator: 'Tunde Obi',
+    flag: '🇧🇷',
+    location: 'Sao Paulo, Brazil',
+    joined: 18,
+  },
+  {
+    title: 'Late night chill — anything goes',
+    description: 'No agenda. Just vibes. Come hang, vent, laugh, or listen in.',
+    creator: 'Mariana F...',
+    flag: '🇮🇳',
+    location: 'Bangalore, India',
+    joined: 2,
+  },
+  {
+    title: 'Learn in public — what are you...',
+    description: "Open room for makers to share what they're working on. No gatekeeping.",
+    creator: 'Riya Pillai',
+    flag: '🇧🇪',
+    location: 'Croatia, Belgium',
+    joined: 2,
+  },
+  {
+    title: 'Learn in public — what are you...',
+    description: "Open room for makers to share what they're working on. No gatekeeping.",
+    creator: 'Riya Pillai',
+    flag: '🇧🇪',
+    location: 'Croatia, Belgium',
+    joined: 2,
+  },
+  {
+    title: 'Solo founders accountability check',
+    description: "Building alone? Join this open circle. Share your week, get unstuck, move forward.",
+    creator: 'Tunde Obi',
+    flag: '🇧🇷',
+    location: 'Sao Paulo, Brazil',
+    joined: 18,
+  },
+  {
+    title: 'Late night chill — anything goes',
+    description: 'No agenda. Just vibes. Come hang, vent, laugh, or listen in.',
+    creator: 'Mariana F...',
+    flag: '🇮🇳',
+    location: 'Bangalore, India',
+    joined: 2,
+  },
+  {
+    title: 'Design critique & feedback',
+    description: "Bring your work. Get honest, kind feedback from other designers and makers.",
+    creator: 'Aria Mensah',
+    flag: '🇬🇧',
+    location: 'London, UK',
+    joined: 6,
+  },
+  {
+    title: 'Writers room — open session',
+    description: "Writing in silence together. Drop in, mute, and get stuff done.",
+    creator: 'Lena Park',
+    flag: '🇰🇷',
+    location: 'Seoul, Korea',
+    joined: 5,
+  },
+]
+
+function initials(name: string) {
+  return name.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase()
+}
+
+const avatarColors = [
+  'bg-orange-200 text-orange-800',
+  'bg-violet-200 text-violet-800',
+  'bg-teal-200 text-teal-800',
+  'bg-rose-200 text-rose-800',
+  'bg-orange-200 text-orange-800',
+  'bg-violet-200 text-violet-800',
+  'bg-amber-200 text-amber-800',
+  'bg-sky-200 text-sky-800',
+]
+</script>
+
+<template>
+  <section class="py-12 px-4 bg-[#f5f5f2]">
+    <div class="max-w-6xl mx-auto">
+      <!-- Header -->
+      <div class="flex items-center justify-between mb-8">
+        <div class="flex items-center gap-3">
+          <span class="h-2.5 w-2.5 rounded-full bg-green-500 animate-pulse" />
+          <h2
+            class="text-sm font-bold text-[#3a5a2d] uppercase tracking-widest"
+            style="font-family: 'Montserrat Alternates', sans-serif"
+          >
+            Happening Right Now
+          </h2>
+          <span class="border border-[#b5cfb0] text-[#3a5a2d] text-xs font-semibold px-3 py-0.5 rounded-full">
+            247 open
+          </span>
+        </div>
+        <button
+          class="text-sm text-[#6b6b5a] hover:text-[#2d2d1a] transition-colors"
+          @click="handleJoin"
+        >
+          See all rooms →
+        </button>
+      </div>
+
+      <!-- Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div
+          v-for="(room, i) in rooms"
+          :key="i"
+          class="bg-white border border-[#e8e8e0] rounded-2xl p-5 flex flex-col gap-0 transition-all duration-150 cursor-pointer hover:bg-[#faf9e8] hover:border-[#c8c89e] hover:shadow-sm group"
+        >
+          <!-- LIVE + location -->
+          <div class="flex items-center justify-between mb-4">
+            <span class="inline-flex items-center gap-1.5 bg-[#e8f0e3] text-[#3a5a2d] text-xs font-semibold px-3 py-1 rounded-full">
+              <span class="h-1.5 w-1.5 rounded-full bg-green-500" />
+              LIVE
+            </span>
+            <span class="text-xs text-[#8a8a6a] flex items-center gap-1">
+              {{ room.flag }} {{ room.location }}
+            </span>
+          </div>
+
+          <!-- Title -->
+          <h3
+            class="text-[#1a1a0e] font-bold text-lg leading-snug mb-2"
+            style="font-family: 'Plus Jakarta Sans', sans-serif"
+          >
+            {{ room.title }}
+          </h3>
+
+          <!-- Description -->
+          <p class="text-[#8a8a6a] text-sm leading-relaxed flex-1 mb-4">
+            {{ room.description }}
+          </p>
+
+          <!-- Divider -->
+          <div class="border-t border-[#e8e8e0] mb-3" />
+
+          <!-- Host -->
+          <div class="mb-3">
+            <p class="text-[#a0a08a] text-[10px] uppercase tracking-widest mb-1.5">Host</p>
+            <div class="flex items-center gap-2">
+              <div
+                :class="['h-8 w-8 rounded-full flex items-center justify-center text-xs font-bold shrink-0', avatarColors[i]]"
+              >
+                {{ initials(room.creator) }}
+              </div>
+              <span
+                class="text-xs font-semibold text-[#2d2d1a] uppercase tracking-wider"
+                style="font-family: 'Montserrat Alternates', sans-serif"
+              >
+                {{ room.creator }}
+              </span>
+            </div>
+          </div>
+
+          <!-- Divider -->
+          <div class="border-t border-[#e8e8e0] mb-3" />
+
+          <!-- Footer: joined count + join button -->
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-1.5 text-[#8a8a6a]">
+              <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+              </svg>
+              <span class="text-xs">{{ room.joined }} joined</span>
+            </div>
+            <button
+              class="bg-[#2d4a1e] hover:bg-[#3a5a28] text-white text-xs font-semibold px-5 py-1.5 rounded-full transition-colors"
+              @click.stop="handleJoin"
+            >
+              Join
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</template>
