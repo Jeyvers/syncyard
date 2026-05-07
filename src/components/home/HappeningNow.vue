@@ -111,7 +111,7 @@ const avatarColors = [
       <!-- Header -->
       <div class="flex items-center justify-between mb-8">
         <div class="flex items-center gap-3">
-          <span class="h-2.5 w-2.5 rounded-full bg-[#387C00] animate-pulse" />
+          <span class="h-2.5 w-2.5 rounded-full bg-[#387C00] animate-pulse-fast" />
           <h2 class="font-display font-medium text-[#387C00] uppercase tracking-widest">
             Happening Right Now
           </h2>
@@ -139,9 +139,9 @@ const avatarColors = [
           <!-- LIVE + location -->
           <div class="flex items-center justify-between">
             <span
-              class="inline-flex items-center gap-1.5 bg-[#e8f0e3] text-green-500 text-xs font-semibold px-3 py-1.5 rounded-full"
+              class="inline-flex items-center gap-1.5 bg-[#e8f0e3] text-[#387C00] text-xs font-semibold px-3 py-1.5 rounded-full"
             >
-              <span class="h-2 w-2 rounded-full bg-green-500 animate-pulse" />
+              <span class="h-2 w-2 rounded-full bg-[#387C00] animate-pulse-fast" />
               LIVE
             </span>
             <span class="text-xs text-muted flex items-center gap-1">
@@ -150,7 +150,7 @@ const avatarColors = [
           </div>
 
           <!-- Title -->
-          <h3 class="text-[#1a1a0e] font-semibold text-lg leading-snug">
+          <h3 class="text-[#41431B] font-sans font-semibold text-xl leading-snug">
             {{ room.title }}
           </h3>
 

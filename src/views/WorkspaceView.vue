@@ -149,7 +149,7 @@ onUnmounted(() => { jitsiApi?.dispose() })
           <img src="/images/logo.png" alt="Syncyard" class="h-4 w-auto brightness-0 invert opacity-80" />
         </RouterLink>
         <span class="inline-flex items-center gap-1.5 bg-green-500/20 text-green-400 text-xs font-semibold px-2.5 py-1 rounded-full">
-          <span class="h-1.5 w-1.5 rounded-full bg-green-400 animate-pulse" />
+          <span class="h-1.5 w-1.5 rounded-full bg-green-400 animate-pulse-fast" />
           LIVE
         </span>
       </div>

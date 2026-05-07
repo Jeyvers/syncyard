@@ -148,7 +148,7 @@ function roomInitials(name: string) {
           <div id="happening-right-now">
             <div class="flex items-center justify-between mb-4">
               <div class="flex items-center gap-3">
-                <span class="h-2.5 w-2.5 rounded-full bg-green-500 animate-pulse" />
+                <span class="h-2.5 w-2.5 rounded-full bg-green-500 animate-pulse-fast" />
                 <h2 class="font-display text-xs font-bold text-[#3a5a2d] uppercase tracking-widest">
                   Happening Right Now
                 </h2>

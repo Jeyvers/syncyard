@@ -92,7 +92,7 @@ async function toggleLike() {
       <div class="bg-white border border-[#e8e8e0] rounded-2xl p-6 mb-6">
         <div class="flex items-center justify-between mb-4">
           <span class="inline-flex items-center gap-1.5 bg-[#e8f0e3] text-[#3a5a2d] text-xs font-bold px-3 py-1 rounded-full">
-            <span class="h-1.5 w-1.5 rounded-full bg-green-500 animate-pulse" />
+            <span class="h-1.5 w-1.5 rounded-full bg-green-500 animate-pulse-fast" />
             LIVE
           </span>
           <button

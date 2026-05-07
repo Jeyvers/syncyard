@@ -88,7 +88,7 @@ const topics = [
                 v-if="topic.live > 0"
                 class="flex items-center gap-1 text-xs text-[#E2FF07] font-medium"
               >
-                <span class="h-1.5 w-1.5 rounded-full bg-[#E2FF07] animate-pulse" />
+                <span class="h-1.5 w-1.5 rounded-full bg-[#E2FF07] animate-pulse-fast" />
                 {{ topic.live }} live
               </span>
             </div>

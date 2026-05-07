@@ -75,6 +75,10 @@
   animation-play-state: paused;
 }
 
+@utility animate-pulse-fast {
+  animation: pulse 0.7s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
 @utility rounded-blob {
   clip-path: path(
     'M 40 0 C 18 0 0 15 0 34 C 0 53 18 68 40 68 C 63 68 83 59 120 59 C 157 59 177 68 200 68 C 222 68 240 53 240 34 C 240 15 222 0 200 0 C 177 0 157 9 120 9 C 83 9 63 0 40 0 Z'
