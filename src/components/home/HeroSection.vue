@@ -9,11 +9,17 @@ import { RouterLink } from 'vue-router'
       <svg width="120" height="44" viewBox="0 0 120 44" fill="none">
         <path
           d="M0,14 C10,4 20,24 30,14 C40,4 50,24 60,14 C70,4 80,24 90,14 C100,4 110,24 120,14"
-          stroke="#9aa374" stroke-width="2" stroke-linecap="round" fill="none"
+          stroke="#9aa374"
+          stroke-width="2"
+          stroke-linecap="round"
+          fill="none"
         />
         <path
           d="M0,28 C10,18 20,38 30,28 C40,18 50,38 60,28 C70,18 80,38 90,28 C100,18 110,38 120,28"
-          stroke="#9aa374" stroke-width="2" stroke-linecap="round" fill="none"
+          stroke="#9aa374"
+          stroke-width="2"
+          stroke-linecap="round"
+          fill="none"
         />
       </svg>
     </div>
@@ -28,11 +34,17 @@ import { RouterLink } from 'vue-router'
       <svg width="130" height="44" viewBox="0 0 130 44" fill="none">
         <path
           d="M0,14 C10,4 20,24 30,14 C40,4 50,24 60,14 C70,4 80,24 90,14 C100,4 110,24 120,14 C125,9 128,16 130,14"
-          stroke="#9aa374" stroke-width="2" stroke-linecap="round" fill="none"
+          stroke="#9aa374"
+          stroke-width="2"
+          stroke-linecap="round"
+          fill="none"
         />
         <path
           d="M0,28 C10,18 20,38 30,28 C40,18 50,38 60,28 C70,18 80,38 90,28 C100,18 110,38 120,28 C125,23 128,30 130,28"
-          stroke="#9aa374" stroke-width="2" stroke-linecap="round" fill="none"
+          stroke="#9aa374"
+          stroke-width="2"
+          stroke-linecap="round"
+          fill="none"
         />
       </svg>
     </div>
@@ -41,18 +53,21 @@ import { RouterLink } from 'vue-router'
     <div class="relative max-w-3xl mx-auto text-center">
       <!-- Pills row -->
       <div class="flex items-center justify-center gap-4 mb-10 flex-wrap">
-        <span class="text-xs font-semibold tracking-[0.15em] text-sage-500 uppercase"
-          style="font-family: 'Montserrat Alternates', sans-serif">
+        <span
+          class="font-display text-xs font-semibold tracking-[0.15em] text-sage-500 uppercase"
+        >
           Open Rooms
         </span>
         <span class="text-sage-400 text-xs font-bold">■</span>
-        <span class="text-xs font-semibold tracking-[0.15em] text-sage-500 uppercase"
-          style="font-family: 'Montserrat Alternates', sans-serif">
+        <span
+          class="font-display text-xs font-semibold tracking-[0.15em] text-sage-500 uppercase"
+        >
           Different People
         </span>
         <span class="text-sage-400 text-xs font-bold">■</span>
-        <span class="text-xs font-semibold tracking-[0.15em] text-sage-500 uppercase"
-          style="font-family: 'Montserrat Alternates', sans-serif">
+        <span
+          class="font-display text-xs font-semibold tracking-[0.15em] text-sage-500 uppercase"
+        >
           Right Now
         </span>
       </div>
@@ -66,19 +81,22 @@ import { RouterLink } from 'vue-router'
       </h1>
 
       <!-- Subtext -->
-      <p class="text-[#6b6b5a] text-base sm:text-lg max-w-xl mx-auto mb-10 leading-relaxed"
-        style="font-family: 'Plus Jakarta Sans', sans-serif">
-        Syncyard is where people from anywhere drop into live rooms, meet strangers, share ideas, and just... talk.
+      <p
+        class="text-[#6b6b5a] text-base sm:text-lg max-w-xl mx-auto mb-10 leading-relaxed"
+        style="font-family: 'Plus Jakarta Sans', sans-serif"
+      >
+        Syncyard is where people from anywhere drop into live rooms, meet strangers, share ideas,
+        and just... talk.
       </p>
 
       <!-- CTA -->
-      <RouterLink
-        to="/discover"
+      <a
+        href="#live-rooms"
         class="inline-flex items-center gap-2 bg-[#2d2d1a] hover:bg-[#3d3d2a] text-white text-sm font-semibold px-7 py-3.5 rounded-full transition-colors"
         style="font-family: 'Plus Jakarta Sans', sans-serif"
       >
         See live rooms
-      </RouterLink>
+      </a>
 
       <!-- Stats -->
       <div class="mt-16 flex items-center justify-center gap-8 sm:gap-12 flex-wrap">

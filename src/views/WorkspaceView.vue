@@ -163,8 +163,7 @@ onUnmounted(() => { jitsiApi?.dispose() })
       <template v-else-if="isCreator">
         <div class="flex-1 px-5 py-5">
           <p class="text-[#a8c890] text-xs font-semibold uppercase tracking-widest mb-1">Your sync</p>
-          <h2 class="text-white font-bold text-sm mb-5 leading-snug"
-            style="font-family: 'Montserrat Alternates', sans-serif">
+          <h2 class="font-display text-white font-bold text-sm mb-5 leading-snug">
             Add a bit more information<br />for your sync
           </h2>
 

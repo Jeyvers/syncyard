@@ -70,7 +70,7 @@ function roomInitials(name: string) {
 
           <!-- Greeting -->
           <div class="mb-7">
-            <h1 class="text-2xl font-bold text-[#5a6e2a]" style="font-family: 'Montserrat Alternates', sans-serif">
+            <h1 class="font-display text-2xl font-bold text-[#5a6e2a]">
               Hey, {{ firstName }} 👋
             </h1>
             <p class="text-sm text-[#6b6b5a] mt-1">Here's what's happening in your world right now.</p>
@@ -149,7 +149,7 @@ function roomInitials(name: string) {
             <div class="flex items-center justify-between mb-4">
               <div class="flex items-center gap-3">
                 <span class="h-2.5 w-2.5 rounded-full bg-green-500 animate-pulse" />
-                <h2 class="text-xs font-bold text-[#3a5a2d] uppercase tracking-widest" style="font-family: 'Montserrat Alternates', sans-serif">
+                <h2 class="font-display text-xs font-bold text-[#3a5a2d] uppercase tracking-widest">
                   Happening Right Now
                 </h2>
                 <span class="border border-[#b5cfb0] text-[#3a5a2d] text-xs font-semibold px-3 py-0.5 rounded-full">247 open</span>
@@ -199,7 +199,7 @@ function roomInitials(name: string) {
             <div class="h-14 w-14 rounded-full bg-[#2d4a1e] flex items-center justify-center text-white font-bold text-lg mx-auto mb-3">
               {{ initials }}
             </div>
-            <p class="font-bold text-[#1a1a0e] text-sm uppercase tracking-wide" style="font-family: 'Montserrat Alternates', sans-serif">
+            <p class="font-display font-bold text-[#1a1a0e] text-sm uppercase tracking-wide">
               {{ auth.profile?.full_name || auth.user?.user_metadata?.full_name || 'Your Name' }}
             </p>
             <p class="text-xs text-[#8a8a6a] mt-0.5">@{{ handle }} · joined recently</p>

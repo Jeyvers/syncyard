@@ -141,7 +141,7 @@ watch(activeTab, () => {
 
           <!-- ── LOGIN ── -->
           <template v-if="activeTab === 'login'">
-            <h2 class="text-2xl font-bold text-[#6b7a3a] mb-1" style="font-family: 'Montserrat Alternates', sans-serif">
+            <h2 class="font-display text-2xl font-bold text-[#6b7a3a] mb-1">
               Welcome back
             </h2>
             <p class="text-sm text-[#8a8a6a] mb-6">Log in to join rooms and meet people.</p>
@@ -206,7 +206,7 @@ watch(activeTab, () => {
               </div>
             </template>
             <template v-else>
-              <h2 class="text-2xl font-bold text-[#6b7a3a] mb-1" style="font-family: 'Montserrat Alternates', sans-serif">
+              <h2 class="font-display text-2xl font-bold text-[#6b7a3a] mb-1">
                 Join Syncyard
               </h2>
               <p class="text-sm text-[#8a8a6a] mb-6">Create an account to host rooms, save your favorites, and build your profile.</p>
@@ -266,7 +266,7 @@ watch(activeTab, () => {
 
           <!-- ── GUEST ── -->
           <template v-else>
-            <h2 class="text-2xl font-bold text-[#6b7a3a] mb-1" style="font-family: 'Montserrat Alternates', sans-serif">
+            <h2 class="font-display text-2xl font-bold text-[#6b7a3a] mb-1">
               Just browsing?
             </h2>
             <p class="text-sm text-[#8a8a6a] mb-6">Pick a name and jump straight into any open room. No account needed.</p>

@@ -14,7 +14,9 @@ const scrolled = ref(false)
 const userMenuOpen = ref(false)
 const userMenuRef = ref<HTMLDivElement | null>(null)
 
-function onScroll() { scrolled.value = window.scrollY > 24 }
+function onScroll() {
+  scrolled.value = window.scrollY > 24
+}
 
 function scrollTo(id: string) {
   mobileOpen.value = false
@@ -25,7 +27,14 @@ function scrollTo(id: string) {
 
 function initials() {
   const name = auth.profile?.full_name || auth.user?.user_metadata?.full_name || ''
-  return name.split(' ').map((n: string) => n[0]).join('').slice(0, 2).toUpperCase() || 'ME'
+  return (
+    name
+      .split(' ')
+      .map((n: string) => n[0])
+      .join('')
+      .slice(0, 2)
+      .toUpperCase() || 'ME'
+  )
 }
 
 function closeMenuOnOutsideClick(e: MouseEvent) {
@@ -59,7 +68,7 @@ onUnmounted(() => {
         ? 'bg-[#f5f5f2]/95 backdrop-blur-md border-b border-[#e0e0d4]'
         : 'bg-[#f5f5f2] border-b border-[#e8e8e0]',
     ]"
-    style="font-family: 'Plus Jakarta Sans', sans-serif"
+    class="font-body"
   >
     <div class="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between">
       <!-- Logo -->
@@ -69,13 +78,22 @@ onUnmounted(() => {
 
       <!-- Desktop nav -->
       <nav class="hidden md:flex items-center gap-1">
-        <button class="px-4 py-1.5 text-sm text-[#6b6b5a] hover:text-[#2d2d1a] transition-colors" @click="scrollTo('happening-right-now')">
+        <button
+          class="px-4 py-1.5 text-sm text-[#6b6b5a] hover:text-[#2d2d1a] transition-colors"
+          @click="scrollTo('live-rooms')"
+        >
           Explore
         </button>
-        <button class="px-4 py-1.5 text-sm text-[#6b6b5a] hover:text-[#2d2d1a] transition-colors" @click="scrollTo('how-it-works')">
+        <button
+          class="px-4 py-1.5 text-sm text-[#6b6b5a] hover:text-[#2d2d1a] transition-colors"
+          @click="scrollTo('how-it-works')"
+        >
           How it works
         </button>
-        <button class="px-4 py-1.5 text-sm text-[#6b6b5a] hover:text-[#2d2d1a] transition-colors" @click="emit('start-room')">
+        <button
+          class="px-4 py-1.5 text-sm text-[#6b6b5a] hover:text-[#2d2d1a] transition-colors"
+          @click="emit('start-room')"
+        >
           Host a room
         </button>
       </nav>
@@ -116,8 +134,18 @@ onUnmounted(() => {
                   class="flex items-center gap-2.5 px-4 py-2.5 text-sm text-[#2d2d1a] hover:bg-[#f5f5f0] transition-colors"
                   @click="userMenuOpen = false"
                 >
-                  <svg class="h-4 w-4 text-[#8a8a6a]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                  <svg
+                    class="h-4 w-4 text-[#8a8a6a]"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                    />
                   </svg>
                   My Profile
                 </RouterLink>
@@ -126,8 +154,18 @@ onUnmounted(() => {
                   class="flex items-center gap-2.5 px-4 py-2.5 text-sm text-[#2d2d1a] hover:bg-[#f5f5f0] transition-colors"
                   @click="userMenuOpen = false"
                 >
-                  <svg class="h-4 w-4 text-[#8a8a6a]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                  <svg
+                    class="h-4 w-4 text-[#8a8a6a]"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                    />
                   </svg>
                   Settings
                 </RouterLink>
@@ -137,7 +175,12 @@ onUnmounted(() => {
                     @click="handleLogout"
                   >
                     <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
+                      />
                     </svg>
                     Log out
                   </button>
@@ -148,22 +191,47 @@ onUnmounted(() => {
         </template>
 
         <template v-else>
-          <button class="text-sm text-[#6b6b5a] hover:text-[#2d2d1a] transition-colors px-3 py-1.5" @click="openModal('login')">
+          <button
+            class="text-sm text-[#6b6b5a] hover:text-[#2d2d1a] transition-colors px-3 py-1.5"
+            @click="openModal('login')"
+          >
             Sign in
           </button>
-          <button class="bg-[#2d4a1e] hover:bg-[#3a5a28] text-white text-sm font-semibold px-5 py-2 rounded-full transition-colors" @click="openModal('signup')">
+          <button
+            class="bg-[#2d4a1e] hover:bg-[#3a5a28] text-white text-sm font-semibold px-5 py-2 rounded-full transition-colors"
+            @click="openModal('signup')"
+          >
             Get started
           </button>
         </template>
       </div>
 
       <!-- Mobile hamburger -->
-      <button class="md:hidden p-2 text-[#6b6b5a] hover:text-[#2d2d1a] transition-colors" @click="mobileOpen = !mobileOpen">
-        <svg v-if="!mobileOpen" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+      <button
+        class="md:hidden p-2 text-[#6b6b5a] hover:text-[#2d2d1a] transition-colors"
+        @click="mobileOpen = !mobileOpen"
+      >
+        <svg
+          v-if="!mobileOpen"
+          class="h-5 w-5"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M4 6h16M4 12h16M4 18h16"
+          />
         </svg>
         <svg v-else class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M6 18L18 6M6 6l12 12"
+          />
         </svg>
       </button>
     </div>
@@ -177,30 +245,63 @@ onUnmounted(() => {
       leave-from-class="opacity-100 translate-y-0"
       leave-to-class="opacity-0 -translate-y-2"
     >
-      <div v-if="mobileOpen" class="md:hidden bg-[#f5f5f2] border-t border-[#e8e8e0] px-4 py-3 space-y-1">
-        <button class="block w-full text-left px-3 py-2.5 text-sm text-[#6b6b5a] hover:text-[#2d2d1a] rounded-lg transition-colors" @click="scrollTo('happening-right-now')">
+      <div
+        v-if="mobileOpen"
+        class="md:hidden bg-[#f5f5f2] border-t border-[#e8e8e0] px-4 py-3 space-y-1"
+      >
+        <button
+          class="block w-full text-left px-3 py-2.5 text-sm text-[#6b6b5a] hover:text-[#2d2d1a] rounded-lg transition-colors"
+          @click="scrollTo('live-rooms')"
+        >
           Explore
         </button>
-        <button class="block w-full text-left px-3 py-2.5 text-sm text-[#6b6b5a] hover:text-[#2d2d1a] rounded-lg transition-colors" @click="scrollTo('how-it-works')">
+        <button
+          class="block w-full text-left px-3 py-2.5 text-sm text-[#6b6b5a] hover:text-[#2d2d1a] rounded-lg transition-colors"
+          @click="scrollTo('how-it-works')"
+        >
           How it works
         </button>
-        <button class="block w-full text-left px-3 py-2.5 text-sm text-[#6b6b5a] hover:text-[#2d2d1a] rounded-lg transition-colors" @click="mobileOpen = false; emit('start-room')">
+        <button
+          class="block w-full text-left px-3 py-2.5 text-sm text-[#6b6b5a] hover:text-[#2d2d1a] rounded-lg transition-colors"
+          @click="mobileOpen = false; emit('start-room')"
+        >
           Host a room
         </button>
 
         <div class="pt-3 border-t border-[#e8e8e0] flex flex-col gap-2">
           <template v-if="auth.isAuthenticated">
-            <RouterLink v-if="auth.profile?.username" :to="`/profile/${auth.profile.username}`" class="block px-3 py-2.5 text-sm text-[#2d2d1a] rounded-lg" @click="mobileOpen = false">
+            <RouterLink
+              v-if="auth.profile?.username"
+              :to="`/profile/${auth.profile.username}`"
+              class="block px-3 py-2.5 text-sm text-[#2d2d1a] rounded-lg"
+              @click="mobileOpen = false"
+            >
               My Profile
             </RouterLink>
-            <RouterLink to="/onboarding" class="block px-3 py-2.5 text-sm text-[#2d2d1a] rounded-lg" @click="mobileOpen = false">
+            <RouterLink
+              to="/onboarding"
+              class="block px-3 py-2.5 text-sm text-[#2d2d1a] rounded-lg"
+              @click="mobileOpen = false"
+            >
               Settings
             </RouterLink>
-            <button class="text-sm text-red-600 py-2.5 text-left px-3" @click="handleLogout">Log out</button>
+            <button class="text-sm text-red-600 py-2.5 text-left px-3" @click="handleLogout">
+              Log out
+            </button>
           </template>
           <template v-else>
-            <button class="text-sm text-[#6b6b5a] py-2 text-center" @click="mobileOpen = false; openModal('login')">Sign in</button>
-            <button class="bg-[#2d4a1e] text-white text-sm font-semibold py-2.5 rounded-full" @click="mobileOpen = false; openModal('signup')">Get started</button>
+            <button
+              class="text-sm text-[#6b6b5a] py-2 text-center"
+              @click="mobileOpen = false; openModal('login')"
+            >
+              Sign in
+            </button>
+            <button
+              class="bg-[#2d4a1e] text-white text-sm font-semibold py-2.5 rounded-full"
+              @click="mobileOpen = false; openModal('signup')"
+            >
+              Get started
+            </button>
           </template>
         </div>
       </div>

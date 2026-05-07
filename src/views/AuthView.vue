@@ -156,8 +156,7 @@ const googleBtnLabel = computed(() => {
         <!-- ── LOGIN ── -->
         <template v-if="activeTab === 'login'">
           <h1
-            class="text-3xl font-bold mb-1 text-[#6b7a3a]"
-            style="font-family: 'Montserrat Alternates', sans-serif"
+            class="font-display text-3xl font-bold mb-1 text-[#6b7a3a]"
           >
             Welcome back
           </h1>
@@ -242,7 +241,7 @@ const googleBtnLabel = computed(() => {
           <template v-if="signupSubmitted">
             <div class="flex-1 flex flex-col items-center justify-center text-center py-12">
               <div class="text-4xl mb-4">✉️</div>
-              <h2 class="text-2xl font-bold text-[#6b7a3a] mb-2" style="font-family: 'Montserrat Alternates', sans-serif">
+              <h2 class="font-display text-2xl font-bold text-[#6b7a3a] mb-2">
                 Check your inbox
               </h2>
               <p class="text-sm text-[#8a8a6a] max-w-xs">
@@ -256,8 +255,7 @@ const googleBtnLabel = computed(() => {
 
           <template v-else>
             <h1
-              class="text-3xl font-bold mb-1 text-[#6b7a3a]"
-              style="font-family: 'Montserrat Alternates', sans-serif"
+              class="font-display text-3xl font-bold mb-1 text-[#6b7a3a]"
             >
               Join Syncyard
             </h1>
@@ -359,8 +357,7 @@ const googleBtnLabel = computed(() => {
         <!-- ── GUEST ── -->
         <template v-else>
           <h1
-            class="text-3xl font-bold mb-1 text-[#6b7a3a]"
-            style="font-family: 'Montserrat Alternates', sans-serif"
+            class="font-display text-3xl font-bold mb-1 text-[#6b7a3a]"
           >
             Just browsing?
           </h1>

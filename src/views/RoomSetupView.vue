@@ -81,8 +81,7 @@ async function handleCreate() {
     <!-- Panel -->
     <div class="w-full max-w-sm bg-[#dde8c8]/60 border border-[#c8d8b0] rounded-2xl p-7">
       <h2
-        class="text-[#2d5a1a] font-semibold text-base leading-snug mb-6"
-        style="font-family: 'Montserrat Alternates', sans-serif"
+        class="font-display text-[#2d5a1a] font-semibold text-base leading-snug mb-6"
       >
         Add a bit more information<br />for your sync
       </h2>
