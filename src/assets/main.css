@@ -19,6 +19,7 @@
   /* Olive */
   --color-olive: #41431b;
   --color-olive-dark: #2d2e12;
+  --color-forest: #3a5a28;
 
   --color-muted: #8a8a6a;
 
@@ -74,7 +75,16 @@
 }
 
 @utility rounded-blob {
-  clip-path: path('M 44 0 C 18 0 0 15 0 33 C 0 51 18 66 44 66 C 80 66 110 58 140 58 C 170 58 200 66 236 66 C 262 66 280 51 280 33 C 280 15 262 0 236 0 C 200 0 170 8 140 8 C 110 8 80 0 44 0 Z');
+  clip-path: path(
+    'M 40 0 C 18 0 0 15 0 34 C 0 53 18 68 40 68 C 63 68 83 59 120 59 C 157 59 177 68 200 68 C 222 68 240 53 240 34 C 240 15 222 0 200 0 C 177 0 157 9 120 9 C 83 9 63 0 40 0 Z'
+  );
+  width: 240px;
+  height: 68px;
+}
+
+@utility rounded-action-blob {
+  border-radius: 60% 40% 50% 50% / 50% 50% 40% 60%;
+  padding: 1rem 3rem;
 }
 
 button {

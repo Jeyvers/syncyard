@@ -63,16 +63,12 @@ import { RouterLink } from 'vue-router'
       </div>
 
       <!-- Headline -->
-      <h1
-        class="text-4xl sm:text-5xl lg:text-7xl leading-[1.1] tracking-tight mb-6 text-olive"
-      >
+      <h1 class="text-4xl sm:text-5xl lg:text-7xl leading-[1.1] tracking-tight mb-6 text-olive">
         Your next conversation<br />is already happening.
       </h1>
 
       <!-- Subtext -->
-      <p
-        class="text-olive text-base sm:text-lg max-w-xl mx-auto mb-10 leading-relaxed"
-      >
+      <p class="text-olive-500 text-base sm:text-lg max-w-xl mx-auto mb-10 leading-relaxed">
         Syncyard is where people from anywhere drop into live rooms, meet strangers, share ideas,
         and just... talk.
       </p>
@@ -80,24 +76,24 @@ import { RouterLink } from 'vue-router'
       <!-- CTA -->
       <a
         href="#live-rooms"
-        class="font-body inline-block bg-olive-dark text-white font-semibold text-xl px-12 py-5 rounded-blob shadow-lg hover:scale-105 transition-transform duration-200"
+        class="font-body inline-flex items-center justify-center bg-olive-dark text-white font-medium px-12 py-5 rounded-blob shadow-lg hover:scale-105 transition-transform duration-200"
       >
         See live rooms
       </a>
 
       <!-- Stats -->
-      <div class="mt-16 flex items-center justify-center gap-8 sm:gap-12 flex-wrap">
+      <div class="mt-16 flex items-center justify-center gap-8 sm:gap-12 flex-wrap font-sans">
         <div>
           <span class="text-2xl font-semibold text-olive">24</span>
-          <span class="ml-1.5 text-sm text-muted">rooms open now</span>
+          <span class="ml-1.5 text-sm font-light text-muted">rooms open now</span>
         </div>
         <div>
           <span class="text-2xl font-semibold text-olive">82</span>
-          <span class="ml-1.5 text-sm text-muted">people connected recently</span>
+          <span class="ml-1.5 text-sm font-light text-muted">people connected recently</span>
         </div>
         <div>
           <span class="text-2xl font-semibold text-olive">3</span>
-          <span class="ml-1.5 text-sm text-muted">countries</span>
+          <span class="ml-1.5 text-sm font-light text-muted">countries</span>
         </div>
       </div>
     </div>

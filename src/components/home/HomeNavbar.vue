@@ -213,7 +213,7 @@ onUnmounted(() => {
             Sign in
           </button>
           <button
-            class="bg-[#2d4a1e] hover:bg-[#3a5a28] text-white text-sm font-semibold px-5 py-2 rounded-full transition-colors"
+            class="bg-olive-600 hover:bg-[#3a5a28] text-white text-sm px-6 py-3 rounded-full transition-colors"
             @click="openModal('signup')"
           >
             Get started
