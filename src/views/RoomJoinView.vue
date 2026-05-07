@@ -125,7 +125,7 @@ async function toggleLike() {
 
         <button
           :disabled="joining"
-          class="w-full bg-[#2d4a1e] hover:bg-[#3a5a28] text-white font-bold py-3.5 rounded-xl transition-colors disabled:opacity-50 text-base"
+          class="w-full bg-[#2d4a1e] hover:bg-forest text-white font-bold py-3.5 rounded-xl transition-colors disabled:opacity-50 text-base"
           @click="handleJoin"
         >
           {{ joining ? 'Joining...' : 'Join this sync →' }}

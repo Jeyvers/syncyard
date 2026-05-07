@@ -79,7 +79,7 @@ function roomInitials(name: string) {
           <!-- Action row -->
           <div class="flex items-center gap-3 mb-10">
             <button
-              class="inline-flex items-center gap-2 bg-[#2d4a1e] hover:bg-[#3a5a28] text-white text-sm font-semibold px-5 py-3 rounded-full transition-colors shrink-0"
+              class="inline-flex items-center gap-2 bg-[#2d4a1e] hover:bg-forest text-white text-sm font-semibold px-5 py-3 rounded-full transition-colors shrink-0"
               @click="emit('start-room')"
             >
               Start a room
@@ -138,7 +138,7 @@ function roomInitials(name: string) {
                     </svg>
                     <span class="text-xs">{{ room.joined }} joined</span>
                   </div>
-                  <button class="bg-[#2d4a1e] hover:bg-[#3a5a28] text-white text-xs font-semibold px-4 py-1.5 rounded-full transition-colors" @click.stop="scrollToHappening">Join</button>
+                  <button class="bg-[#2d4a1e] hover:bg-forest text-white text-xs font-semibold px-4 py-1.5 rounded-full transition-colors" @click.stop="scrollToHappening">Join</button>
                 </div>
               </div>
             </div>
@@ -183,7 +183,7 @@ function roomInitials(name: string) {
                     </svg>
                     <span class="text-xs">{{ room.joined }} joined</span>
                   </div>
-                  <button class="bg-[#2d4a1e] hover:bg-[#3a5a28] text-white text-xs font-semibold px-4 py-1.5 rounded-full transition-colors" @click.stop="scrollToHappening">Join</button>
+                  <button class="bg-[#2d4a1e] hover:bg-forest text-white text-xs font-semibold px-4 py-1.5 rounded-full transition-colors" @click.stop="scrollToHappening">Join</button>
                 </div>
               </div>
             </div>

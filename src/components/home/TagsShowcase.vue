@@ -62,30 +62,33 @@ const topics = [
 </script>
 
 <template>
-  <section class="py-12 px-4 bg-earth-100">
+  <section class="py-12 px-4 bg-[#F7F8EF]">
     <div class="max-w-6xl mx-auto">
-      <p class="text-xs font-bold text-earth-600 uppercase tracking-widest mb-6">Browse by topics</p>
+      <p class="font-display font-medium text-earth-600 uppercase tracking-widest mb-6">
+        Browse by topics
+      </p>
 
-      <div class="flex gap-4 overflow-x-auto pb-3 scrollbar-hide -mx-1 px-1">
+      <div class="flex gap-4 justify-between overflow-x-auto pb-3 scrollbar-hide -mx-1 px-1">
         <div
           v-for="topic in topics"
           :key="topic.name"
-          :class="['relative shrink-0 w-36 h-48 rounded-2xl overflow-hidden cursor-pointer group bg-gradient-to-b', topic.gradient]"
+          :class="[
+            'flex shrink-0 w-48 h-52 rounded-2xl overflow-hidden cursor-pointer group bg-gradient-to-b',
+            topic.gradient,
+          ]"
           @click="handleTopicClick"
         >
-          <!-- Noise texture overlay -->
-          <div class="absolute inset-0 opacity-10" :class="topic.accent" />
-
-          <!-- Bottom overlay -->
-          <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-
-          <!-- Content -->
-          <div class="absolute bottom-0 left-0 right-0 p-3">
-            <p class="text-white text-xs font-semibold leading-snug mb-2">{{ topic.name }}</p>
+          <div class="p-3 flex flex-col">
+            <p class="text-white uppercase font-bold font-display tracking-wider mb-2">
+              {{ topic.name }}
+            </p>
             <div class="flex items-center gap-2">
               <span class="text-white/70 text-xs">{{ topic.rooms }}+ rooms</span>
-              <span v-if="topic.live > 0" class="flex items-center gap-1 text-xs text-green-400 font-medium">
-                <span class="h-1.5 w-1.5 rounded-full bg-green-400" />
+              <span
+                v-if="topic.live > 0"
+                class="flex items-center gap-1 text-xs text-[#E2FF07] font-medium"
+              >
+                <span class="h-1.5 w-1.5 rounded-full bg-[#E2FF07] animate-pulse" />
                 {{ topic.live }} live
               </span>
             </div>

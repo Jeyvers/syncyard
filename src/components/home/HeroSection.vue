@@ -3,7 +3,7 @@ import { RouterLink } from 'vue-router'
 </script>
 
 <template>
-  <section id="hero" class="relative overflow-hidden bg-[#f5f5f2] pt-28 pb-20 px-4">
+  <section id="hero" class="relative overflow-hidden pt-28 pb-20 px-4">
     <!-- Squiggle left -->
     <div class="absolute left-8 top-1/2 -translate-y-8 hidden lg:block pointer-events-none">
       <svg width="120" height="44" viewBox="0 0 120 44" fill="none">

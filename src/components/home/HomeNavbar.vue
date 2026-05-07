@@ -81,7 +81,7 @@ onUnmounted(() => {
       'fixed inset-x-0 top-0 z-40 transition-all duration-300',
       scrolled
         ? 'bg-[#f5f5f2]/95 backdrop-blur-md border-b border-[#e0e0d4]'
-        : 'bg-[#f5f5f2] border-b border-[#e8e8e0]',
+        : 'bg-transparent border-b border-[#e8e8e0]',
     ]"
     class="font-body"
   >
@@ -119,7 +119,7 @@ onUnmounted(() => {
           <!-- Avatar + dropdown -->
           <div ref="userMenuRef" class="relative">
             <button
-              class="h-8 w-8 rounded-full bg-[#2d4a1e] flex items-center justify-center text-white text-xs font-bold hover:bg-[#3a5a28] transition-colors"
+              class="h-8 w-8 rounded-full bg-[#2d4a1e] flex items-center justify-center text-white text-xs font-bold hover:bg-forest transition-colors"
               @click="userMenuOpen = !userMenuOpen"
             >
               {{ initials() }}
@@ -213,7 +213,7 @@ onUnmounted(() => {
             Sign in
           </button>
           <button
-            class="bg-olive-600 hover:bg-[#3a5a28] text-white text-sm px-6 py-3 rounded-full transition-colors"
+            class="bg-olive-600 hover:bg-forest text-white text-sm px-6 py-3 rounded-full transition-colors"
             @click="openModal('signup')"
           >
             Get started

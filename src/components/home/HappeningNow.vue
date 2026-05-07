@@ -106,15 +106,13 @@ const avatarColors = [
 </script>
 
 <template>
-  <section id="live-rooms" class="py-12 px-4 bg-[#f5f5f2]">
+  <section id="live-rooms" class="py-16 px-4">
     <div class="max-w-6xl mx-auto">
       <!-- Header -->
       <div class="flex items-center justify-between mb-8">
         <div class="flex items-center gap-3">
-          <span class="h-2.5 w-2.5 rounded-full bg-green-500 animate-pulse" />
-          <h2
-            class="font-display text-sm font-bold text-[#3a5a2d] uppercase tracking-widest"
-          >
+          <span class="h-2.5 w-2.5 rounded-full bg-[#387C00] animate-pulse" />
+          <h2 class="font-display font-medium text-[#387C00] uppercase tracking-widest">
             Happening Right Now
           </h2>
           <span
@@ -132,18 +130,18 @@ const avatarColors = [
       </div>
 
       <!-- Grid -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 font-sans">
         <div
           v-for="(room, i) in rooms"
           :key="i"
-          class="bg-white border border-[#e8e8e0] rounded-2xl p-5 flex flex-col gap-0 transition-all duration-150 cursor-pointer hover:bg-[#faf9e8] hover:border-[#c8c89e] hover:shadow-sm group"
+          class="bg-white border border-[#e8e8e0] rounded-3xl p-7 flex flex-col gap-4 transition-all duration-200 cursor-pointer hover:shadow-md hover:border-[#c8c89e] hover:-translate-y-0.5 group"
         >
           <!-- LIVE + location -->
-          <div class="flex items-center justify-between mb-4">
+          <div class="flex items-center justify-between">
             <span
-              class="inline-flex items-center gap-1.5 bg-[#e8f0e3] text-[#3a5a2d] text-xs font-semibold px-3 py-1 rounded-full"
+              class="inline-flex items-center gap-1.5 bg-[#e8f0e3] text-green-500 text-xs font-semibold px-3 py-1.5 rounded-full"
             >
-              <span class="h-1.5 w-1.5 rounded-full bg-green-500" />
+              <span class="h-2 w-2 rounded-full bg-green-500 animate-pulse" />
               LIVE
             </span>
             <span class="text-xs text-muted flex items-center gap-1">
@@ -152,32 +150,27 @@ const avatarColors = [
           </div>
 
           <!-- Title -->
-          <h3
-            class="text-[#1a1a0e] font-bold text-lg leading-snug mb-2"
-          >
+          <h3 class="text-[#1a1a0e] font-semibold text-lg leading-snug">
             {{ room.title }}
           </h3>
 
           <!-- Description -->
-          <p class="text-muted text-sm leading-relaxed flex-1 mb-4">
+          <p class="text-muted text-sm leading-relaxed flex-1">
             {{ room.description }}
           </p>
 
-          <!-- Divider -->
-          <div class="border-t border-[#e8e8e0] mb-3" />
-
           <!-- Host -->
-          <div class="mb-3">
-            <p class="text-[#a0a08a] text-[10px] uppercase tracking-widest mb-1.5">Host</p>
-            <div class="flex items-center gap-2">
-              <div
-                :class="[
-                  'h-8 w-8 rounded-full flex items-center justify-center text-xs font-bold shrink-0',
-                  avatarColors[i],
-                ]"
-              >
-                {{ initials(room.creator) }}
-              </div>
+          <div class="flex items-center gap-3 mt-8">
+            <div
+              :class="[
+                'h-9 w-9 rounded-full flex items-center justify-center text-xs font-bold shrink-0',
+                avatarColors[i],
+              ]"
+            >
+              {{ initials(room.creator) }}
+            </div>
+            <div>
+              <p class="text-[#a0a08a] text-[10px] uppercase tracking-widest mb-0.5">Host</p>
               <span
                 class="font-display text-xs font-semibold text-[#2d2d1a] uppercase tracking-wider"
               >
@@ -187,9 +180,9 @@ const avatarColors = [
           </div>
 
           <!-- Divider -->
-          <div class="border-t border-[#e8e8e0] mb-3" />
+          <div class="border-t border-[#f0f0e8]" />
 
-          <!-- Footer: joined count + join button -->
+          <!-- Footer -->
           <div class="flex items-center justify-between">
             <div class="flex items-center gap-1.5 text-muted">
               <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -203,7 +196,7 @@ const avatarColors = [
               <span class="text-xs">{{ room.joined }} joined</span>
             </div>
             <button
-              class="bg-[#2d4a1e] hover:bg-[#3a5a28] text-white text-xs font-semibold px-5 py-1.5 rounded-full transition-colors"
+              class="bg-[#387C00] hover:bg-forest text-white text-xs font-semibold px-7 py-2 rounded-full transition-colors"
               @click.stop="handleJoin"
             >
               Join

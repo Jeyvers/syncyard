@@ -25,11 +25,15 @@ onMounted(() => {
 })
 
 async function startRoom() {
-  if (!auth.isAuthenticated) { openModal('login'); return }
+  if (!auth.isAuthenticated) {
+    openModal('login')
+    return
+  }
   const { data: ws } = await supabase
     .from('workspaces')
     .insert({ name: 'New Sync', creator_id: auth.user?.id })
-    .select().single()
+    .select()
+    .single()
   if (ws) {
     await supabase.from('workspace_members').insert({ workspace_id: ws.id, user_id: auth.user?.id })
     router.push(`/workspace/${ws.id}`)
@@ -38,7 +42,7 @@ async function startRoom() {
 </script>
 
 <template>
-  <div class="bg-[#f5f5f2] text-[#2d2d1a]">
+  <div class="bg-white text-[#2d2d1a]">
     <HomeNavbar @start-room="startRoom" />
 
     <template v-if="auth.isAuthenticated">
