@@ -90,10 +90,10 @@ watch(activeTab, () => {
 
 <template>
   <Transition
-    enter-active-class="transition-opacity duration-200"
+    enter-active-class="transition-opacity duration-250 ease-out"
     enter-from-class="opacity-0"
     enter-to-class="opacity-100"
-    leave-active-class="transition-opacity duration-150"
+    leave-active-class="transition-opacity duration-200 ease-in"
     leave-from-class="opacity-100"
     leave-to-class="opacity-0"
   >
@@ -106,10 +106,16 @@ watch(activeTab, () => {
       <div class="absolute inset-0 bg-black/40 backdrop-blur-sm" @click="closeModal" />
 
       <!-- Modal -->
-      <div class="relative w-full max-w-md bg-white rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
+      <Transition
+        appear
+        enter-active-class="transition-all duration-350 ease-out"
+        enter-from-class="opacity-0 translate-y-16"
+        enter-to-class="opacity-100 translate-y-0"
+      >
+      <div class="relative w-full max-w-lg bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col max-h-[92vh]">
         <!-- Header -->
-        <div class="flex items-center justify-between px-6 py-4 border-b border-gray-100 shrink-0">
-          <img src="/images/logo.png" alt="Syncyard" class="h-5 w-auto" />
+        <div class="flex items-center justify-between px-8 pt-7 pb-5 shrink-0">
+          <img src="/images/logo.png" alt="Syncyard" class="h-6 w-auto" />
           <button
             class="text-muted hover:text-[#2d2d1a] transition-colors"
             @click="closeModal"
@@ -121,14 +127,14 @@ watch(activeTab, () => {
         </div>
 
         <!-- Tabs -->
-        <div class="flex items-center border-b border-gray-100 px-6 shrink-0">
+        <div class="flex items-center justify-center border-b border-gray-100 px-8 gap-8 shrink-0">
           <button
             v-for="(label, tab) in { signup: 'Sign Up', login: 'Login', guest: 'Continue as guest' }"
             :key="tab"
-            :class="['py-3 text-sm font-medium mr-5 border-b-2 -mb-px transition-colors whitespace-nowrap',
+            :class="['py-4 text-sm font-medium border-b-2 -mb-px transition-colors whitespace-nowrap',
               activeTab === tab
-                ? 'border-[#7a8355] text-[#2d2d1a]'
-                : 'border-transparent text-[#a0a08a] hover:text-[#6b6b5a]']"
+                ? 'border-[#7C824E] text-[#7C824E]'
+                : 'border-transparent text-gray-400 hover:text-gray-500']"
             @click="setTab(tab as AuthTab)"
           >
             {{ label }}
@@ -136,17 +142,17 @@ watch(activeTab, () => {
         </div>
 
         <!-- Scrollable form body -->
-        <div class="overflow-y-auto flex-1 px-6 pt-6 pb-4">
+        <div class="overflow-y-auto flex-1 px-8 pt-8 pb-6">
 
           <!-- ── LOGIN ── -->
           <template v-if="activeTab === 'login'">
-            <h2 class="font-display text-2xl font-bold text-[#6b7a3a] mb-1">
+            <h2 class="font-display text-3xl font-medium text-[#A5AC74] mb-2 text-center">
               Welcome back
             </h2>
-            <p class="text-sm text-muted mb-6">Log in to join rooms and meet people.</p>
+            <p class="text-sm text-gray-500 mb-8 text-center">Log in to join rooms and meet people.</p>
 
             <button :disabled="googleLoading"
-              class="w-full flex items-center justify-center gap-3 border border-[#e0e0d4] rounded-xl px-4 py-2.5 text-sm font-medium text-[#2d2d1a] hover:bg-gray-50 transition-colors mb-4 disabled:opacity-50"
+              class="w-full flex items-center justify-center gap-3 border border-gray-200 rounded-2xl px-4 py-4 text-sm font-medium text-[#2d2d1a] hover:bg-gray-50 transition-colors mb-5 disabled:opacity-50"
               @click="handleGoogle">
               <svg v-if="googleLoading" class="animate-spin h-4 w-4 text-gray-400" fill="none" viewBox="0 0 24 24">
                 <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/>
@@ -164,17 +170,17 @@ watch(activeTab, () => {
 
             <div class="flex items-center gap-3 mb-4">
               <div class="flex-1 h-px bg-[#e8e8e0]" />
-              <span class="text-xs text-[#a0a08a] uppercase tracking-wider">or</span>
+              <span class="text-xs text-gray-400 uppercase tracking-wider">or</span>
               <div class="flex-1 h-px bg-[#e8e8e0]" />
             </div>
 
-            <form class="space-y-3" @submit.prevent="handleLogin">
+            <form class="space-y-4" @submit.prevent="handleLogin">
               <input v-model="loginEmail" type="email" placeholder="Email address" required
-                class="w-full border border-[#e0e0d4] rounded-xl px-4 py-2.5 text-sm text-[#2d2d1a] placeholder-[#b0b09a] focus:outline-none focus:border-[#9aa374] focus:ring-1 focus:ring-[#9aa374] transition-colors"/>
+                class="w-full border border-gray-200 rounded-2xl px-5 py-3.5 text-sm text-[#2d2d1a] placeholder-gray-400 focus:outline-none focus:border-sage-400 focus:ring-1 focus:ring-sage-400 transition-colors"/>
               <div class="relative">
                 <input v-model="loginPassword" :type="showLoginPw ? 'text' : 'password'" placeholder="Password" required
-                  class="w-full border border-[#e0e0d4] rounded-xl px-4 py-2.5 text-sm text-[#2d2d1a] placeholder-[#b0b09a] focus:outline-none focus:border-[#9aa374] focus:ring-1 focus:ring-[#9aa374] transition-colors pr-16"/>
-                <button type="button" class="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-muted hover:text-[#2d2d1a] flex items-center gap-1"
+                  class="w-full border border-gray-200 rounded-2xl px-5 py-3.5 text-sm text-[#2d2d1a] placeholder-gray-400 focus:outline-none focus:border-sage-400 focus:ring-1 focus:ring-sage-400 transition-colors pr-20"/>
+                <button type="button" class="absolute right-4 top-1/2 -translate-y-1/2 text-xs text-muted hover:text-[#2d2d1a] flex items-center gap-1.5"
                   @click="showLoginPw = !showLoginPw">
                   <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path v-if="showLoginPw" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21"/>
@@ -188,7 +194,7 @@ watch(activeTab, () => {
                 <a href="#" class="text-xs text-muted hover:text-[#2d2d1a] underline underline-offset-2">Forgot your password?</a>
               </div>
               <button type="submit" :disabled="loginLoading"
-                class="w-full bg-[#5a6e2a] hover:bg-[#4a5e1a] text-white font-semibold py-3 rounded-xl transition-colors disabled:opacity-50">
+                class="w-full bg-[#7C824E] hover:bg-[#6a7040] text-white font-semibold py-4 rounded-2xl transition-colors disabled:opacity-50 text-base mt-2">
                 {{ loginLoading ? 'Logging in...' : 'Log in' }}
               </button>
             </form>
@@ -199,19 +205,19 @@ watch(activeTab, () => {
             <template v-if="signupSubmitted">
               <div class="py-8 text-center">
                 <div class="text-4xl mb-3">✉️</div>
-                <h2 class="text-xl font-bold text-[#6b7a3a] mb-2">Check your inbox</h2>
+                <h2 class="text-xl font-bold text-[#A5AC74] mb-2">Check your inbox</h2>
                 <p class="text-sm text-muted">We sent a link to <span class="text-[#2d2d1a] font-medium">{{ signupEmail }}</span></p>
                 <button class="mt-5 text-sm text-[#7a8355] hover:underline" @click="setTab('login')">Back to log in →</button>
               </div>
             </template>
             <template v-else>
-              <h2 class="font-display text-2xl font-bold text-[#6b7a3a] mb-1">
+              <h2 class="font-display text-3xl font-medium text-[#A5AC74] mb-2 text-center">
                 Join Syncyard
               </h2>
-              <p class="text-sm text-muted mb-6">Create an account to host rooms, save your favorites, and build your profile.</p>
+              <p class="text-sm text-gray-500 mb-8 text-center">Create an account to host rooms, save your favorites, and build your profile.</p>
 
               <button :disabled="googleLoading"
-                class="w-full flex items-center justify-center gap-3 border border-[#e0e0d4] rounded-xl px-4 py-2.5 text-sm font-medium text-[#2d2d1a] hover:bg-gray-50 transition-colors mb-4 disabled:opacity-50"
+                class="w-full flex items-center justify-center gap-3 border border-gray-200 rounded-2xl px-4 py-4 text-sm font-medium text-[#2d2d1a] hover:bg-gray-50 transition-colors mb-5 disabled:opacity-50"
                 @click="handleGoogle">
                 <svg v-if="googleLoading" class="animate-spin h-4 w-4 text-gray-400" fill="none" viewBox="0 0 24 24">
                   <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/>
@@ -227,25 +233,25 @@ watch(activeTab, () => {
               </button>
               <p v-if="googleError" class="text-xs text-red-500 mb-3">{{ googleError }}</p>
 
-              <div class="flex items-center gap-3 mb-4">
-                <div class="flex-1 h-px bg-[#e8e8e0]" />
-                <span class="text-xs text-[#a0a08a] uppercase tracking-wider">or</span>
-                <div class="flex-1 h-px bg-[#e8e8e0]" />
+              <div class="flex items-center gap-3 mb-5">
+                <div class="flex-1 h-px bg-gray-100" />
+                <span class="text-xs text-gray-400 uppercase tracking-wider">or</span>
+                <div class="flex-1 h-px bg-gray-100" />
               </div>
 
-              <form class="space-y-3" @submit.prevent="handleSignup">
+              <form class="space-y-4" @submit.prevent="handleSignup">
                 <div class="grid grid-cols-2 gap-3">
                   <input v-model="signupFirstName" type="text" placeholder="First Name" required
-                    class="border border-[#e0e0d4] rounded-xl px-4 py-2.5 text-sm text-[#2d2d1a] placeholder-[#b0b09a] focus:outline-none focus:border-[#9aa374] focus:ring-1 focus:ring-[#9aa374] transition-colors"/>
+                    class="border border-gray-200 rounded-2xl px-5 py-3.5 text-sm text-[#2d2d1a] placeholder-gray-400 focus:outline-none focus:border-sage-400 focus:ring-1 focus:ring-sage-400 transition-colors"/>
                   <input v-model="signupLastName" type="text" placeholder="Last Name"
-                    class="border border-[#e0e0d4] rounded-xl px-4 py-2.5 text-sm text-[#2d2d1a] placeholder-[#b0b09a] focus:outline-none focus:border-[#9aa374] focus:ring-1 focus:ring-[#9aa374] transition-colors"/>
+                    class="border border-gray-200 rounded-2xl px-5 py-3.5 text-sm text-[#2d2d1a] placeholder-gray-400 focus:outline-none focus:border-sage-400 focus:ring-1 focus:ring-sage-400 transition-colors"/>
                 </div>
                 <input v-model="signupEmail" type="email" placeholder="Email address" required
-                  class="w-full border border-[#e0e0d4] rounded-xl px-4 py-2.5 text-sm text-[#2d2d1a] placeholder-[#b0b09a] focus:outline-none focus:border-[#9aa374] focus:ring-1 focus:ring-[#9aa374] transition-colors"/>
+                  class="w-full border border-gray-200 rounded-2xl px-5 py-3.5 text-sm text-[#2d2d1a] placeholder-gray-400 focus:outline-none focus:border-sage-400 focus:ring-1 focus:ring-sage-400 transition-colors"/>
                 <div class="relative">
                   <input v-model="signupPassword" :type="showSignupPw ? 'text' : 'password'" placeholder="Password" required
-                    class="w-full border border-[#e0e0d4] rounded-xl px-4 py-2.5 text-sm text-[#2d2d1a] placeholder-[#b0b09a] focus:outline-none focus:border-[#9aa374] focus:ring-1 focus:ring-[#9aa374] transition-colors pr-16"/>
-                  <button type="button" class="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-muted hover:text-[#2d2d1a] flex items-center gap-1"
+                    class="w-full border border-gray-200 rounded-2xl px-5 py-3.5 text-sm text-[#2d2d1a] placeholder-gray-400 focus:outline-none focus:border-sage-400 focus:ring-1 focus:ring-sage-400 transition-colors pr-20"/>
+                  <button type="button" class="absolute right-4 top-1/2 -translate-y-1/2 text-xs text-muted hover:text-[#2d2d1a] flex items-center gap-1.5"
                     @click="showSignupPw = !showSignupPw">
                     <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path v-if="showSignupPw" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21"/>
@@ -256,7 +262,7 @@ watch(activeTab, () => {
                 </div>
                 <p v-if="signupError" class="text-xs text-red-500">{{ signupError }}</p>
                 <button type="submit" :disabled="signupLoading"
-                  class="w-full bg-[#5a6e2a] hover:bg-[#4a5e1a] text-white font-semibold py-3 rounded-xl transition-colors disabled:opacity-50">
+                  class="w-full bg-[#7C824E] hover:bg-[#6a7040] text-white font-semibold py-4 rounded-2xl transition-colors disabled:opacity-50 text-base mt-2">
                   {{ signupLoading ? 'Creating account...' : 'Sign up' }}
                 </button>
               </form>
@@ -265,13 +271,13 @@ watch(activeTab, () => {
 
           <!-- ── GUEST ── -->
           <template v-else>
-            <h2 class="font-display text-2xl font-bold text-[#6b7a3a] mb-1">
+            <h2 class="font-display text-3xl font-medium text-[#A5AC74] mb-2 text-center">
               Just browsing?
             </h2>
-            <p class="text-sm text-muted mb-6">Pick a name and jump straight into any open room. No account needed.</p>
+            <p class="text-sm text-gray-500 mb-8 text-center">Pick a name and jump straight into any open room. No account needed.</p>
 
             <input v-model="guestName" type="text" placeholder="What should we call you?"
-              class="w-full border border-[#e0e0d4] rounded-xl px-4 py-2.5 text-sm text-[#2d2d1a] placeholder-[#b0b09a] focus:outline-none focus:border-[#9aa374] focus:ring-1 focus:ring-[#9aa374] transition-colors mb-5"
+              class="w-full border border-gray-200 rounded-2xl px-5 py-3.5 text-sm text-[#2d2d1a] placeholder-gray-400 focus:outline-none focus:border-sage-400 focus:ring-1 focus:ring-sage-400 transition-colors mb-5"
               @keydown.enter="handleGuest"/>
 
             <ul class="space-y-2 mb-5">
@@ -286,39 +292,40 @@ watch(activeTab, () => {
               </li>
             </ul>
 
-            <div class="bg-[#f5f5ee] border border-[#e0e0d4] rounded-xl px-4 py-3 flex gap-3 mb-5">
+            <div class="bg-[#f5f5ee] border border-gray-200 rounded-xl px-4 py-3 flex gap-3 mb-5">
               <svg class="h-4 w-4 text-muted shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
               </svg>
-              <p class="text-xs text-[#6b6b5a] leading-relaxed">Guests can't host rooms or save favorites. Create a free account to unlock everything.</p>
+              <p class="text-xs text-gray-500 leading-relaxed">Guests can't host rooms or save favorites. Create a free account to unlock everything.</p>
             </div>
 
             <p v-if="guestError" class="text-xs text-red-500 mb-3">{{ guestError }}</p>
-            <button class="w-full bg-[#5a6e2a] hover:bg-[#4a5e1a] text-white font-semibold py-3 rounded-xl transition-colors" @click="handleGuest">
+            <button class="w-full bg-[#7C824E] hover:bg-[#6a7040] text-white font-semibold py-4 rounded-2xl transition-colors text-base" @click="handleGuest">
               Continue as guest
             </button>
           </template>
         </div>
 
         <!-- Footer -->
-        <div class="px-6 py-4 bg-[#f8f8f5] border-t border-gray-100 text-center shrink-0">
+        <div class="px-8 py-5 bg-[#f8f8f5] border-t border-gray-100 text-center shrink-0">
           <template v-if="activeTab === 'login'">
             <p class="text-sm text-muted">Don't have an account?
-              <button class="text-[#2d2d1a] font-semibold underline underline-offset-2 hover:text-[#5a6e2a]" @click="setTab('signup')">Create an account</button>
+              <button class="text-[#7C824E] font-semibold underline underline-offset-2 hover:text-[#6a7040]" @click="setTab('signup')">Create an account</button>
             </p>
           </template>
           <template v-else-if="activeTab === 'signup'">
             <p class="text-sm text-muted">Already have an account?
-              <button class="text-[#2d2d1a] font-semibold underline underline-offset-2 hover:text-[#5a6e2a]" @click="setTab('login')">Login</button>
+              <button class="text-[#7C824E] font-semibold underline underline-offset-2 hover:text-[#6a7040]" @click="setTab('login')">Login</button>
             </p>
           </template>
           <template v-else>
             <p class="text-sm text-muted">Want the full experience?
-              <button class="text-[#2d2d1a] font-semibold underline underline-offset-2 hover:text-[#5a6e2a]" @click="setTab('signup')">Sign up free!</button>
+              <button class="text-[#7C824E] font-semibold underline underline-offset-2 hover:text-[#6a7040]" @click="setTab('signup')">Sign up free!</button>
             </p>
           </template>
         </div>
       </div>
+      </Transition>
     </div>
   </Transition>
 </template>
