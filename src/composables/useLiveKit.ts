@@ -12,9 +12,10 @@ export type AnyParticipant = LocalParticipant | RemoteParticipant
 
 export function useLiveKit() {
   const room = shallowRef<Room | null>(null)
-  // Using a plain ref array. We replace it (trigger reactivity) on every
-  // structural change; ParticipantTile handles intra-participant changes itself.
-  const participants = ref<AnyParticipant[]>([])
+  // shallowRef: we replace the array wholesale on every structural change,
+  // so deep reactivity on individual participant objects is unnecessary and
+  // causes TypeScript to lose the LocalParticipant | RemoteParticipant types.
+  const participants = shallowRef<AnyParticipant[]>([])
   const isMicEnabled = ref(false)
   const isCameraEnabled = ref(false)
   const isConnected = ref(false)

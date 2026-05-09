@@ -96,6 +96,7 @@ const googleBtnLabel = computed(() => {
 </script>
 
 <template>
+  <div class="flex min-h-screen">
     <!-- Left panel — photo -->
     <div
       class="hidden md:block md:w-1/2 relative overflow-hidden bg-[#1a2010]"
