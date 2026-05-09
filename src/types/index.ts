@@ -16,6 +16,8 @@ export interface Workspace {
   max_members?: number | null
   creator_id?: string | null
   like_count?: number
+  participant_count?: number
+  is_active?: boolean
   created_at: string
   members?: WorkspaceMember[]
 }
@@ -35,4 +37,14 @@ export interface Message {
   content: string
   created_at: string
   sender?: Profile
+}
+
+export interface RoomMessage {
+  id: string
+  room_id: string
+  user_id: string
+  display_name: string
+  avatar_url: string | null
+  content: string
+  created_at: string
 }

@@ -54,8 +54,10 @@ const router = createRouter({
 router.beforeEach((to) => {
   const auth = useAuthStore()
 
-  // Unauthenticated users hitting protected routes → home with modal
-  if (to.meta.auth && !auth.isAuthenticated) return '/?auth=login'
+  // Unauthenticated users hitting protected routes → home with modal (preserve intended destination)
+  if (to.meta.auth && !auth.isAuthenticated) {
+    return `/?auth=login&redirect=${encodeURIComponent(to.fullPath)}`
+  }
 
   // Authenticated users hitting old login/signup routes → home (now the dashboard)
   if (to.meta.guest && auth.isAuthenticated) return '/'

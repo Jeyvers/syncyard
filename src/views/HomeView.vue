@@ -29,13 +29,20 @@ async function startRoom() {
     openModal('login')
     return
   }
-  const { data: ws } = await supabase
+  const { data: ws, error: wsErr } = await supabase
     .from('workspaces')
     .insert({ name: 'New Sync', creator_id: auth.user?.id })
     .select()
     .single()
+  if (wsErr) {
+    console.error('[startRoom] workspace insert failed:', wsErr.message, wsErr.details, wsErr.hint)
+    return
+  }
   if (ws) {
-    await supabase.from('workspace_members').insert({ workspace_id: ws.id, user_id: auth.user?.id })
+    const { error: memberErr } = await supabase
+      .from('workspace_members')
+      .insert({ workspace_id: ws.id, user_id: auth.user?.id })
+    if (memberErr) console.error('[startRoom] member insert failed:', memberErr.message)
     router.push(`/workspace/${ws.id}`)
   }
 }

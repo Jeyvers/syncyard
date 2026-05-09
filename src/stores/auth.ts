@@ -66,6 +66,13 @@ export const useAuthStore = defineStore('auth', () => {
     if (error) throw error
   }
 
+  async function resetPassword(email: string) {
+    const { error } = await supabase.auth.resetPasswordForEmail(email, {
+      redirectTo: `${window.location.origin}/auth/callback`,
+    })
+    if (error) throw error
+  }
+
   async function signOut() {
     await supabase.auth.signOut()
     user.value = null
@@ -83,6 +90,7 @@ export const useAuthStore = defineStore('auth', () => {
     signIn,
     signUp,
     signInWithGoogle,
+    resetPassword,
     signOut,
   }
 })

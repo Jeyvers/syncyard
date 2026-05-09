@@ -17,8 +17,10 @@ const historyFilterRef = ref<HTMLDivElement | null>(null)
 const filterOptions = ['All rooms', 'Most popular', 'By location', 'By topic']
 
 function onClickOutside(e: MouseEvent) {
-  if (liveFilterRef.value && !liveFilterRef.value.contains(e.target as Node)) liveFilterOpen.value = false
-  if (historyFilterRef.value && !historyFilterRef.value.contains(e.target as Node)) historyFilterOpen.value = false
+  if (liveFilterRef.value && !liveFilterRef.value.contains(e.target as Node))
+    liveFilterOpen.value = false
+  if (historyFilterRef.value && !historyFilterRef.value.contains(e.target as Node))
+    historyFilterOpen.value = false
 }
 
 onMounted(() => document.addEventListener('click', onClickOutside))
@@ -31,7 +33,14 @@ const firstName = computed(() => {
 
 const initials = computed(() => {
   const name = auth.profile?.full_name || auth.user?.user_metadata?.full_name || ''
-  return name.split(' ').map((n: string) => n[0]).join('').slice(0, 2).toUpperCase() || 'ME'
+  return (
+    name
+      .split(' ')
+      .map((n: string) => n[0])
+      .join('')
+      .slice(0, 2)
+      .toUpperCase() || 'ME'
+  )
 })
 
 const fullName = computed(
@@ -61,19 +70,100 @@ const avatarColors = [
 ]
 
 const liveRooms = [
-  { title: 'Solo founders accountability check', description: "Building alone? Join this open circle. Share your week, get unstuck, move forward.", creator: 'Tunde Obi', flag: '🇧🇷', location: 'Sao Paulo, Brazil', joined: 18 },
-  { title: 'Late night chill — anything goes', description: 'No agenda. Just vibes. Come hang, vent, laugh, or listen in.', creator: 'Mariana F...', flag: '🇮🇳', location: 'Bangalore, India', joined: 2 },
-  { title: 'Learn in public — what are you...', description: "Open room for makers to share what they're working on. No gatekeeping.", creator: 'Riya Pillai', flag: '🇧🇪', location: 'Croatia, Belgium', joined: 2 },
-  { title: 'Learn in public — what are you...', description: "Open room for makers to share what they're working on. No gatekeeping.", creator: 'Riya Pillai', flag: '🇧🇪', location: 'Croatia, Belgium', joined: 2 },
-  { title: 'Solo founders accountability check', description: "Building alone? Join this open circle. Share your week, get unstuck, move forward.", creator: 'Tunde Obi', flag: '🇧🇷', location: 'Sao Paulo, Brazil', joined: 18 },
-  { title: 'Late night chill — anything goes', description: 'No agenda. Just vibes. Come hang, vent, laugh, or listen in.', creator: 'Mariana F...', flag: '🇮🇳', location: 'Bangalore, India', joined: 2 },
-  { title: 'Learn in public — what are you...', description: "Open room for makers to share what they're working on. No gatekeeping.", creator: 'Riya Pillai', flag: '🇧🇪', location: 'Croatia, Belgium', joined: 2 },
-  { title: 'Learn in public — what are you...', description: "Open room for makers to share what they're working on. No gatekeeping.", creator: 'Riya Pillai', flag: '🇧🇪', location: 'Croatia, Belgium', joined: 2 },
+  {
+    title: 'Solo founders accountability check',
+    description:
+      'Building alone? Join this open circle. Share your week, get unstuck, move forward.',
+    creator: 'Tunde Obi',
+    flag: '🇧🇷',
+    location: 'Sao Paulo, Brazil',
+    joined: 18,
+  },
+  {
+    title: 'Late night chill — anything goes',
+    description: 'No agenda. Just vibes. Come hang, vent, laugh, or listen in.',
+    creator: 'Mariana F...',
+    flag: '🇮🇳',
+    location: 'Bangalore, India',
+    joined: 2,
+  },
+  {
+    title: 'Learn in public — what are you...',
+    description: "Open room for makers to share what they're working on. No gatekeeping.",
+    creator: 'Riya Pillai',
+    flag: '🇧🇪',
+    location: 'Croatia, Belgium',
+    joined: 2,
+  },
+  {
+    title: 'Learn in public — what are you...',
+    description: "Open room for makers to share what they're working on. No gatekeeping.",
+    creator: 'Riya Pillai',
+    flag: '🇧🇪',
+    location: 'Croatia, Belgium',
+    joined: 2,
+  },
+  {
+    title: 'Solo founders accountability check',
+    description:
+      'Building alone? Join this open circle. Share your week, get unstuck, move forward.',
+    creator: 'Tunde Obi',
+    flag: '🇧🇷',
+    location: 'Sao Paulo, Brazil',
+    joined: 18,
+  },
+  {
+    title: 'Late night chill — anything goes',
+    description: 'No agenda. Just vibes. Come hang, vent, laugh, or listen in.',
+    creator: 'Mariana F...',
+    flag: '🇮🇳',
+    location: 'Bangalore, India',
+    joined: 2,
+  },
+  {
+    title: 'Learn in public — what are you...',
+    description: "Open room for makers to share what they're working on. No gatekeeping.",
+    creator: 'Riya Pillai',
+    flag: '🇧🇪',
+    location: 'Croatia, Belgium',
+    joined: 2,
+  },
+  {
+    title: 'Learn in public — what are you...',
+    description: "Open room for makers to share what they're working on. No gatekeeping.",
+    creator: 'Riya Pillai',
+    flag: '🇧🇪',
+    location: 'Croatia, Belgium',
+    joined: 2,
+  },
 ]
 
 const historyRooms = [
-  { title: 'Solo founders accountability check', description: "Building alone? Join this open circle. Share your week, get unstuck, move forward.", creator: 'Tunde Obi', flag: '🇧🇷', location: 'Sao Paulo, Brazil', joined: 18, timeAgo: '2 days ago', lasted: '12mins', stayed: '2 mins', color: 'bg-orange-200 text-orange-800' },
-  { title: 'Late night chill — anything goes', description: 'No agenda. Just vibes. Come hang, vent, laugh, or listen in.', creator: 'Mariana F...', flag: '🇮🇳', location: 'Bangalore, India', joined: 5, timeAgo: '4 days ago', lasted: '45mins', stayed: '18 mins', color: 'bg-violet-200 text-violet-800' },
+  {
+    title: 'Solo founders accountability check',
+    description:
+      'Building alone? Join this open circle. Share your week, get unstuck, move forward.',
+    creator: 'Tunde Obi',
+    flag: '🇧🇷',
+    location: 'Sao Paulo, Brazil',
+    joined: 18,
+    timeAgo: '2 days ago',
+    lasted: '12mins',
+    stayed: '2 mins',
+    color: 'bg-orange-200 text-orange-800',
+  },
+  {
+    title: 'Late night chill — anything goes',
+    description: 'No agenda. Just vibes. Come hang, vent, laugh, or listen in.',
+    creator: 'Mariana F...',
+    flag: '🇮🇳',
+    location: 'Bangalore, India',
+    joined: 5,
+    timeAgo: '4 days ago',
+    lasted: '45mins',
+    stayed: '18 mins',
+    color: 'bg-violet-200 text-violet-800',
+  },
 ]
 
 const filteredLive = computed(() =>
@@ -90,23 +180,26 @@ const filteredHistory = computed(() =>
 )
 
 function roomInitials(name: string) {
-  return name.split(' ').map((n) => n[0]).join('').slice(0, 2).toUpperCase()
+  return name
+    .split(' ')
+    .map((n) => n[0])
+    .join('')
+    .slice(0, 2)
+    .toUpperCase()
 }
 </script>
 
 <template>
   <div class="min-h-screen bg-[#f5f5f2]">
     <div class="max-w-6xl mx-auto px-4 pt-24 pb-16">
-
       <!-- Top row: greeting + profile card -->
       <div class="flex items-start justify-between gap-8 mb-10">
-
         <!-- Greeting + actions -->
         <div>
-          <h1 class="font-display text-2xl font-bold text-[#5a6e2a]">
-            Hey, {{ firstName }} 👋
-          </h1>
-          <p class="text-sm text-[#6b6b5a] mt-1">Here's what's happening in your world right now.</p>
+          <h1 class="font-display text-2xl font-bold text-[#5a6e2a]">Hey, {{ firstName }} 👋</h1>
+          <p class="text-sm text-[#6b6b5a] mt-1">
+            Here's what's happening in your world right now.
+          </p>
 
           <div class="flex items-center gap-3 mt-5">
             <button
@@ -115,9 +208,21 @@ function roomInitials(name: string) {
             >
               Start a room
             </button>
-            <div class="flex items-center gap-2 border border-[#e0e0d4] bg-white rounded-full px-4 py-3 w-64">
-              <svg class="h-4 w-4 text-[#b0b09a] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
+            <div
+              class="flex items-center gap-2 border border-[#e0e0d4] bg-white rounded-full px-4 py-3 w-64"
+            >
+              <svg
+                class="h-4 w-4 text-[#b0b09a] shrink-0"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"
+                />
               </svg>
               <input
                 type="text"
@@ -131,7 +236,9 @@ function roomInitials(name: string) {
         <!-- Profile card -->
         <div class="shrink-0 hidden lg:block">
           <div class="bg-[#dde8c8]/70 border border-[#c8d8b0] rounded-2xl p-5 text-center w-56">
-            <div class="h-14 w-14 rounded-full bg-[#2d4a1e] flex items-center justify-center text-white font-bold text-lg mx-auto mb-3">
+            <div
+              class="h-14 w-14 rounded-full bg-[#2d4a1e] flex items-center justify-center text-white font-bold text-lg mx-auto mb-3"
+            >
               {{ initials }}
             </div>
             <p class="font-display font-bold text-[#1a1a0e] text-sm uppercase tracking-wide">
@@ -159,19 +266,31 @@ function roomInitials(name: string) {
 
       <!-- ── Live Rooms ─────────────────────────────────── -->
       <div class="mb-14">
-
         <!-- Section header -->
         <div class="flex items-center gap-2.5 mb-4">
           <span class="h-2 w-2 rounded-full bg-green-500" />
           <span class="text-sm font-medium text-[#2d2d1a]">live</span>
-          <span class="border border-[#b5cfb0] text-[#3a5a2d] text-xs font-medium px-3 py-0.5 rounded-full">247 open</span>
+          <span
+            class="border border-[#b5cfb0] text-[#3a5a2d] text-xs font-medium px-3 py-0.5 rounded-full"
+            >247 open</span
+          >
         </div>
 
         <!-- Search + filter row -->
         <div class="flex items-center gap-3 mb-6">
           <div class="flex items-center gap-2 bg-[#ebebdf] rounded-lg px-3 py-2.5 w-64">
-            <svg class="h-4 w-4 text-[#9a9a82] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            <svg
+              class="h-4 w-4 text-[#9a9a82] shrink-0"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+              />
             </svg>
             <input
               v-model="liveSearch"
@@ -182,7 +301,12 @@ function roomInitials(name: string) {
           </div>
           <button class="p-2 text-[#9a9a82] hover:text-[#2d2d1a] transition-colors">
             <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.5"
+                d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+              />
             </svg>
           </button>
 
@@ -193,8 +317,19 @@ function roomInitials(name: string) {
               @click.stop="liveFilterOpen = !liveFilterOpen"
             >
               {{ liveFilter }}
-              <svg class="h-3.5 w-3.5 shrink-0 transition-transform" :class="liveFilterOpen ? 'rotate-180' : ''" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              <svg
+                class="h-3.5 w-3.5 shrink-0 transition-transform"
+                :class="liveFilterOpen ? 'rotate-180' : ''"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 9l-7 7-7-7"
+                />
               </svg>
             </button>
             <Transition
@@ -232,27 +367,41 @@ function roomInitials(name: string) {
           >
             <!-- LIVE + location -->
             <div class="flex items-center justify-between">
-              <span class="inline-flex items-center gap-1.5 bg-[#e8f0e3] text-[#387C00] text-xs font-semibold px-3 py-1.5 rounded-full">
+              <span
+                class="inline-flex items-center gap-1.5 bg-[#e8f0e3] text-[#387C00] text-xs font-semibold px-3 py-1.5 rounded-full"
+              >
                 <span class="h-2 w-2 rounded-full bg-[#387C00] animate-pulse-fast" />
                 LIVE
               </span>
-              <span class="text-xs text-muted flex items-center gap-1">{{ room.flag }} {{ room.location }}</span>
+              <span class="text-xs text-muted flex items-center gap-1"
+                >{{ room.flag }} {{ room.location }}</span
+              >
             </div>
 
             <!-- Title -->
-            <h3 class="text-[#41431B] font-sans font-semibold text-xl leading-snug">{{ room.title }}</h3>
+            <h3 class="text-[#41431B] font-sans font-semibold text-xl leading-snug">
+              {{ room.title }}
+            </h3>
 
             <!-- Description -->
             <p class="text-muted text-sm leading-relaxed flex-1">{{ room.description }}</p>
 
             <!-- Host -->
             <div class="flex items-center gap-3 mt-8">
-              <div :class="['h-9 w-9 rounded-full flex items-center justify-center text-xs font-bold shrink-0', avatarColors[i]]">
+              <div
+                :class="[
+                  'h-9 w-9 rounded-full flex items-center justify-center text-xs font-bold shrink-0',
+                  avatarColors[i],
+                ]"
+              >
                 {{ roomInitials(room.creator) }}
               </div>
               <div>
                 <p class="text-[#a0a08a] text-[10px] uppercase tracking-widest mb-0.5">Host</p>
-                <span class="font-display text-xs font-semibold text-[#2d2d1a] uppercase tracking-wider">{{ room.creator }}</span>
+                <span
+                  class="font-display text-xs font-semibold text-[#2d2d1a] uppercase tracking-wider"
+                  >{{ room.creator }}</span
+                >
               </div>
             </div>
 
@@ -263,11 +412,18 @@ function roomInitials(name: string) {
             <div class="flex items-center justify-between">
               <div class="flex items-center gap-1.5 text-muted">
                 <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                  />
                 </svg>
                 <span class="text-xs">{{ room.joined }} joined</span>
               </div>
-              <button class="bg-[#387C00] hover:bg-forest text-white text-xs font-semibold px-7 py-2 rounded-full transition-colors">
+              <button
+                class="bg-[#387C00] hover:bg-forest text-white text-xs font-semibold px-7 py-2 rounded-full transition-colors"
+              >
                 Join
               </button>
             </div>
@@ -277,12 +433,15 @@ function roomInitials(name: string) {
 
       <!-- ── History ─────────────────────────────────────── -->
       <div>
-
         <!-- Section header -->
         <div class="flex items-center gap-2.5 mb-4">
-          <span class="h-2 w-2 rounded-full bg-green-500" />
           <svg class="h-4 w-4 text-[#6b6b5a]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+            />
           </svg>
           <span class="text-sm font-medium text-[#2d2d1a]">history of rooms you've joined</span>
         </div>
@@ -290,8 +449,18 @@ function roomInitials(name: string) {
         <!-- Search + filter row -->
         <div class="flex items-center gap-3 mb-6">
           <div class="flex items-center gap-2 bg-[#ebebdf] rounded-lg px-3 py-2.5 w-64">
-            <svg class="h-4 w-4 text-[#9a9a82] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            <svg
+              class="h-4 w-4 text-[#9a9a82] shrink-0"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+              />
             </svg>
             <input
               v-model="historySearch"
@@ -302,7 +471,12 @@ function roomInitials(name: string) {
           </div>
           <button class="p-2 text-[#9a9a82] hover:text-[#2d2d1a] transition-colors">
             <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.5"
+                d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+              />
             </svg>
           </button>
 
@@ -313,8 +487,19 @@ function roomInitials(name: string) {
               @click.stop="historyFilterOpen = !historyFilterOpen"
             >
               {{ historyFilter }}
-              <svg class="h-3.5 w-3.5 shrink-0 transition-transform" :class="historyFilterOpen ? 'rotate-180' : ''" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              <svg
+                class="h-3.5 w-3.5 shrink-0 transition-transform"
+                :class="historyFilterOpen ? 'rotate-180' : ''"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 9l-7 7-7-7"
+                />
               </svg>
             </button>
             <Transition
@@ -352,26 +537,40 @@ function roomInitials(name: string) {
           >
             <!-- Time + location -->
             <div class="flex items-center justify-between">
-              <span class="bg-[#f0f0e4] text-[#6b6b5a] text-xs font-medium px-3 py-1.5 rounded-full">
+              <span
+                class="bg-[#f0f0e4] text-[#6b6b5a] text-xs font-medium px-3 py-1.5 rounded-full"
+              >
                 {{ room.timeAgo }}
               </span>
-              <span class="text-xs text-muted flex items-center gap-1">{{ room.flag }} {{ room.location }}</span>
+              <span class="text-xs text-muted flex items-center gap-1"
+                >{{ room.flag }} {{ room.location }}</span
+              >
             </div>
 
             <!-- Title -->
-            <h3 class="text-[#41431B] font-sans font-semibold text-xl leading-snug">{{ room.title }}</h3>
+            <h3 class="text-[#41431B] font-sans font-semibold text-xl leading-snug">
+              {{ room.title }}
+            </h3>
 
             <!-- Description -->
             <p class="text-muted text-sm leading-relaxed flex-1">{{ room.description }}</p>
 
             <!-- Host -->
             <div class="flex items-center gap-3 mt-8">
-              <div :class="['h-9 w-9 rounded-full flex items-center justify-center text-xs font-bold shrink-0', room.color]">
+              <div
+                :class="[
+                  'h-9 w-9 rounded-full flex items-center justify-center text-xs font-bold shrink-0',
+                  room.color,
+                ]"
+              >
                 {{ roomInitials(room.creator) }}
               </div>
               <div>
                 <p class="text-[#a0a08a] text-[10px] uppercase tracking-widest mb-0.5">Host</p>
-                <span class="font-display text-xs font-semibold text-[#2d2d1a] uppercase tracking-wider">{{ room.creator }}</span>
+                <span
+                  class="font-display text-xs font-semibold text-[#2d2d1a] uppercase tracking-wider"
+                  >{{ room.creator }}</span
+                >
               </div>
             </div>
 
@@ -382,7 +581,12 @@ function roomInitials(name: string) {
             <div class="flex items-center justify-between">
               <div class="flex items-center gap-1.5 text-muted">
                 <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                  />
                 </svg>
                 <span class="text-xs">{{ room.joined }} joined</span>
               </div>
@@ -398,7 +602,6 @@ function roomInitials(name: string) {
           No room history yet.
         </div>
       </div>
-
     </div>
   </div>
 </template>
