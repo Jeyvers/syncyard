@@ -157,6 +157,10 @@ let leftMarked = false
 async function markActive() {
   if (!auth.isAuthenticated) return
   await supabase.rpc('increment_participant_count', { workspace_id: workspaceId })
+  await supabase.from('workspace_members').upsert(
+    { workspace_id: workspaceId, user_id: auth.user!.id },
+    { onConflict: 'workspace_id,user_id' },
+  )
 }
 
 async function markLeft() {
@@ -225,8 +229,8 @@ onMounted(async () => {
 
     // Auto-expire: no user for 5+ minutes (use last_empty_at if set, else created_at for never-used syncs)
     if ((ws.participant_count ?? 0) === 0 && !ws.ended_at) {
-      const ref = ws.last_empty_at ?? ws.created_at
-      if (ref && Date.now() - new Date(ref).getTime() > 5 * 60 * 1000) {
+      const emptyRef = ws.last_empty_at ?? ws.created_at
+      if (emptyRef && Date.now() - new Date(emptyRef).getTime() > 5 * 60 * 1000) {
         isEnded.value = true
         supabase.from('workspaces').update({ ended_at: new Date().toISOString() }).eq('id', workspaceId)
         loading.value = false
@@ -252,15 +256,10 @@ onMounted(async () => {
 
   await livekit.connect(workspaceId, localIdentity.value, displayName.value)
 
-  // Rejoin guard: if connect failed and DB still shows room as active, it's stale — reset it
+  // If connect failed, leave the DB untouched — one user's connection error must never
+  // reset an active room. RoomView will surface livekit.error.value to the user.
   if (livekit.error.value) {
     window.removeEventListener('beforeunload', handleBeforeUnload)
-    if (workspace.value?.is_active) {
-      await supabase.from('workspaces').update({
-        is_active: false, participant_count: 0, last_empty_at: new Date().toISOString(),
-      }).eq('id', workspaceId)
-      isEnded.value = true
-    }
     return
   }
 
@@ -306,7 +305,7 @@ async function saveRoomInfo() {
 
 async function toggleLike() {
   liked.value = !liked.value
-  likeCount.value += liked.value ? 1 : -1
+  likeCount.value = Math.max(0, likeCount.value + (liked.value ? 1 : -1))
   await supabase.from('workspaces').update({ like_count: likeCount.value }).eq('id', workspaceId)
 }
 
@@ -328,6 +327,21 @@ async function endSync() {
   router.push('/')
 }
 
+async function createNewSync() {
+  if (!auth.isAuthenticated || !auth.user) { router.push('/'); return }
+  const { data } = await supabase
+    .from('workspaces')
+    .insert({ name: 'New Sync', creator_id: auth.user.id, is_active: true })
+    .select('id')
+    .single()
+  if (data?.id) {
+    await supabase.from('workspace_members').insert({ workspace_id: data.id, user_id: auth.user.id })
+    router.push(`/workspace/${data.id}`)
+  } else {
+    router.push('/')
+  }
+}
+
 async function submitRating(goTo: 'home' | 'new') {
   if (endedRating.value > 0 && localIdentity.value) {
     await supabase.from('workspace_ratings').upsert({
@@ -338,7 +352,11 @@ async function submitRating(goTo: 'home' | 'new') {
   }
   ratingSubmitted.value = true
   await livekit.disconnect()
-  router.push('/')
+  if (goTo === 'new') {
+    await createNewSync()
+  } else {
+    router.push('/')
+  }
 }
 </script>
 
@@ -483,6 +501,12 @@ async function submitRating(goTo: 'home' | 'new') {
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
                       </svg>
                       {{ linkCopied ? 'Link copied!' : 'Copy invite link' }}
+                    </button>
+                    <button
+                      class="mt-2 w-full flex items-center justify-center gap-1.5 border border-red-500/30 text-red-400 hover:bg-red-500/10 text-xs font-medium py-2 rounded-lg transition-colors"
+                      @click="endSync"
+                    >
+                      End Sync
                     </button>
                   </template>
 
@@ -834,7 +858,7 @@ async function submitRating(goTo: 'home' | 'new') {
               </div>
               <button
                 class="flex items-center gap-1.5 bg-white/10 hover:bg-white/20 text-white text-xs font-semibold px-3 py-2 rounded-lg transition-colors"
-                @click="liked = true; likeCount += liked ? 0 : 1"
+                @click="!liked && toggleLike()"
               >
                 <svg class="h-3.5 w-3.5" :fill="liked ? 'currentColor' : 'none'" viewBox="0 0 24 24" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />

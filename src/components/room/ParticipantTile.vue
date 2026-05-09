@@ -47,6 +47,10 @@ watch([videoTrack, videoEl], ([track, el], [oldTrack]) => {
   if (track && el) track.attach(el)
 }, { immediate: true })
 
+function onIsSpeakingChanged(speaking: boolean) {
+  isSpeaking.value = speaking
+}
+
 onMounted(() => {
   refreshTrack()
   props.participant.on(ParticipantEvent.TrackSubscribed, refreshTrack)
@@ -55,9 +59,7 @@ onMounted(() => {
   props.participant.on(ParticipantEvent.LocalTrackUnpublished, refreshTrack)
   props.participant.on(ParticipantEvent.TrackMuted, refreshTrack)
   props.participant.on(ParticipantEvent.TrackUnmuted, refreshTrack)
-  props.participant.on(ParticipantEvent.IsSpeakingChanged, (speaking: boolean) => {
-    isSpeaking.value = speaking
-  })
+  props.participant.on(ParticipantEvent.IsSpeakingChanged, onIsSpeakingChanged)
 })
 
 onUnmounted(() => {
@@ -68,6 +70,7 @@ onUnmounted(() => {
   props.participant.off(ParticipantEvent.LocalTrackUnpublished, refreshTrack)
   props.participant.off(ParticipantEvent.TrackMuted, refreshTrack)
   props.participant.off(ParticipantEvent.TrackUnmuted, refreshTrack)
+  props.participant.off(ParticipantEvent.IsSpeakingChanged, onIsSpeakingChanged)
 })
 
 function initials(name: string) {

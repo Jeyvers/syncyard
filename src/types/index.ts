@@ -18,6 +18,8 @@ export interface Workspace {
   like_count?: number
   participant_count?: number
   is_active?: boolean
+  ended_at?: string | null
+  last_empty_at?: string | null
   created_at: string
   members?: WorkspaceMember[]
 }

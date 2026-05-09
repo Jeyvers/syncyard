@@ -80,9 +80,10 @@ useRealtimeWorkspaces(liveWorkspaces, {
   onRemoved: () => { liveCount.value = Math.max(0, liveCount.value - 1) },
 })
 
-// History list: patch existing cards in place when status/count changes
+// History list: patch in place, and add a workspace the moment it ends
+// (e.g. user is on the dashboard when a sync they joined wraps up)
 useRealtimeWorkspaces(historyWorkspaces, {
-  filter: ws => historyWorkspaces.value.some(h => h.id === ws.id),
+  filter: ws => !!ws.ended_at && historyWorkspaces.value.some(h => h.id === ws.id),
   channelName: 'dashboard-history',
 })
 
@@ -141,8 +142,9 @@ async function fetchHistory() {
     .from('workspaces')
     .select('*')
     .in('id', ids)
-    .order('created_at', { ascending: false })
-    .limit(12)
+    .not('ended_at', 'is', null)
+    .order('ended_at', { ascending: false })
+    .limit(24)
 
   historyWorkspaces.value = data ?? []
 
@@ -378,7 +380,7 @@ const filteredHistory = computed(() =>
           <svg class="h-4 w-4 text-[#6b6b5a]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
-          <span class="text-sm font-medium text-[#2d2d1a]">syncs you've joined & created</span>
+          <span class="text-sm font-medium text-[#2d2d1a]">past syncs</span>
         </div>
 
         <!-- Search + filter -->
@@ -425,20 +427,12 @@ const filteredHistory = computed(() =>
           <div
             v-for="(ws, i) in filteredHistory"
             :key="ws.id"
-            class="bg-white border border-[#e8e8e0] rounded-3xl p-7 flex flex-col gap-4 transition-all duration-200 cursor-pointer hover:shadow-md hover:border-[#c8c89e] hover:-translate-y-0.5"
-            @click="router.push(`/workspace/${ws.id}`)"
+            class="bg-white border border-[#e8e8e0] rounded-3xl p-7 flex flex-col gap-4 opacity-80"
           >
             <!-- Status + category -->
             <div class="flex items-center justify-between">
-              <span
-                v-if="ws.is_active && !ws.ended_at"
-                class="inline-flex items-center gap-1.5 bg-[#e8f0e3] text-[#387C00] text-xs font-semibold px-3 py-1.5 rounded-full"
-              >
-                <span class="h-1.5 w-1.5 rounded-full bg-[#387C00] animate-pulse" />
-                LIVE
-              </span>
-              <span v-else class="bg-[#f0f0e4] text-[#6b6b5a] text-xs font-medium px-3 py-1.5 rounded-full">
-                {{ ws.ended_at ? timeAgo(ws.ended_at) : timeAgo(ws.created_at) }}
+              <span class="bg-[#f0f0e4] text-[#6b6b5a] text-xs font-medium px-3 py-1.5 rounded-full">
+                {{ timeAgo(ws.ended_at) }}
               </span>
               <span v-if="ws.category" class="text-xs text-muted truncate max-w-25">{{ ws.category }}</span>
             </div>
@@ -471,13 +465,6 @@ const filteredHistory = computed(() =>
                 </svg>
                 <span class="text-xs">{{ ws.participant_count ?? 0 }} joined</span>
               </div>
-              <button
-                v-if="ws.is_active && !ws.ended_at"
-                class="bg-[#387C00] hover:bg-forest text-white text-xs font-semibold px-4 py-2 rounded-full transition-colors"
-                @click.stop="router.push(`/workspace/${ws.id}`)"
-              >
-                Rejoin
-              </button>
             </div>
           </div>
         </div>
