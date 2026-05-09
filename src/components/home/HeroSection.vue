@@ -1,5 +1,25 @@
 <script setup lang="ts">
+import { ref, onMounted } from 'vue'
 import { RouterLink } from 'vue-router'
+import { supabase } from '@/lib/supabase'
+
+const liveCount = ref(0)
+const totalParticipants = ref(0)
+
+onMounted(async () => {
+  const { count: live } = await supabase
+    .from('workspaces')
+    .select('id', { count: 'exact', head: true })
+    .eq('is_active', true)
+    .is('ended_at', null)
+  liveCount.value = live ?? 0
+
+  const { data } = await supabase
+    .from('workspaces')
+    .select('participant_count')
+    .gt('participant_count', 0)
+  totalParticipants.value = (data ?? []).reduce((sum: number, w: any) => sum + (w.participant_count ?? 0), 0)
+})
 </script>
 
 <template>
@@ -84,16 +104,12 @@ import { RouterLink } from 'vue-router'
       <!-- Stats -->
       <div class="mt-16 flex items-center justify-center gap-8 sm:gap-12 flex-wrap font-sans">
         <div>
-          <span class="text-2xl font-semibold text-olive">24</span>
+          <span class="text-2xl font-semibold text-olive">{{ liveCount || '0' }}</span>
           <span class="ml-1.5 text-sm font-light text-muted">syncs live</span>
         </div>
         <div>
-          <span class="text-2xl font-semibold text-olive">82</span>
-          <span class="ml-1.5 text-sm font-light text-muted">people connected recently</span>
-        </div>
-        <div>
-          <span class="text-2xl font-semibold text-olive">3</span>
-          <span class="ml-1.5 text-sm font-light text-muted">countries</span>
+          <span class="text-2xl font-semibold text-olive">{{ totalParticipants || '0' }}</span>
+          <span class="ml-1.5 text-sm font-light text-muted">people in syncs now</span>
         </div>
       </div>
     </div>

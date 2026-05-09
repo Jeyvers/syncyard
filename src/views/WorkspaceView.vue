@@ -1,11 +1,12 @@
 <script setup lang="ts">
-import { ref, computed, watch, onMounted } from 'vue'
+import { ref, computed, watch, onMounted, onUnmounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { supabase } from '@/lib/supabase'
 import { useAuthStore } from '@/stores/auth'
 import { useLiveKit } from '@/composables/useLiveKit'
 import { useRoomChat } from '@/composables/useRoomChat'
 import { useGuestSession } from '@/composables/useGuestSession'
+import { useRealtimeRoom } from '@/composables/useRealtimeRoom'
 import RoomView from '@/components/room/RoomView.vue'
 import RoomChat from '@/components/room/RoomChat.vue'
 import ControlBar from '@/components/room/ControlBar.vue'
@@ -20,6 +21,14 @@ const workspace = ref<any>(null)
 const creator = ref<any>(null)
 const loading = ref(true)
 const isEnded = ref(false)
+
+// Sync-ended overlay (shows when others cause the sync to end)
+const showEndedOverlay = ref(false)
+const endedRating = ref(0)
+const ratingSubmitted = ref(false)
+
+// Live in-room subscription — patches workspace ref and triggers ended overlay
+useRealtimeRoom(workspaceId, workspace, () => { showEndedOverlay.value = true })
 
 // LiveKit
 const livekit = useLiveKit()
@@ -55,11 +64,59 @@ const isChatActive = computed(() => isPanelOpen.value && activeTab.value === 'ch
 
 // ── Auth ───────────────────────────────────────────────────────────────────
 const isCreator = computed(() => !!auth.user?.id && workspace.value?.creator_id === auth.user.id)
+// Only "starting" when creator enters a brand-new, untitled sync
+const isStarting = computed(() => isCreator.value && !infoFilled.value)
 const localIdentity = computed(() => auth.user?.id ?? guestSession.guestId.value ?? 'guest')
 const displayName = computed(() => {
   if (auth.isAuthenticated) return auth.profile?.full_name || auth.user?.user_metadata?.full_name || 'User'
   return guestSession.guestName.value || 'Guest'
 })
+
+// ── Inactivity timeout ─────────────────────────────────────────────────────
+const showInactiveModal = ref(false)
+const autoLeaveCountdown = ref(60)
+let inactivityTimer: ReturnType<typeof setTimeout> | null = null
+let autoLeaveInterval: ReturnType<typeof setInterval> | null = null
+
+const INACTIVITY_MS = 10 * 60 * 1000
+const EXTRA_MS = 5 * 60 * 1000
+const AUTO_LEAVE_SECS = 60
+
+function clearInactivityTimer() {
+  if (inactivityTimer) { clearTimeout(inactivityTimer); inactivityTimer = null }
+}
+
+function clearAutoLeave() {
+  if (autoLeaveInterval) { clearInterval(autoLeaveInterval); autoLeaveInterval = null }
+}
+
+function resetInactivity(ms = INACTIVITY_MS) {
+  if (!livekit.isConnected.value) return
+  clearInactivityTimer()
+  inactivityTimer = setTimeout(showInactivityPrompt, ms)
+}
+
+function showInactivityPrompt() {
+  showInactiveModal.value = true
+  autoLeaveCountdown.value = AUTO_LEAVE_SECS
+  autoLeaveInterval = setInterval(() => {
+    autoLeaveCountdown.value--
+    if (autoLeaveCountdown.value <= 0) {
+      clearAutoLeave()
+      leaveRoom()
+    }
+  }, 1000)
+}
+
+function giveMoreTime() {
+  showInactiveModal.value = false
+  clearAutoLeave()
+  resetInactivity(EXTRA_MS)
+}
+
+function onUserActivity() {
+  if (!showInactiveModal.value) resetInactivity()
+}
 
 // ── Creator form (bottom sheet) ────────────────────────────────────────────
 const title = ref('')
@@ -93,24 +150,57 @@ const categories = [
 ]
 
 // ── Supabase sync ──────────────────────────────────────────────────────────
+
+// Guard so markLeft never double-fires (watcher + onUnmounted + beforeunload all try to call it)
+let leftMarked = false
+
 async function markActive() {
   if (!auth.isAuthenticated) return
-  await supabase
-    .from('workspaces')
-    .update({ is_active: true, participant_count: (workspace.value?.participant_count ?? 0) + 1 })
-    .eq('id', workspaceId)
+  await supabase.rpc('increment_participant_count', { workspace_id: workspaceId })
 }
 
 async function markLeft() {
-  if (!auth.isAuthenticated) return
-  const next = Math.max(0, (workspace.value?.participant_count ?? 1) - 1)
-  const updates: Record<string, unknown> = { participant_count: next, is_active: next > 0 }
-  if (next === 0) updates.ended_at = new Date().toISOString()
-  await supabase.from('workspaces').update(updates).eq('id', workspaceId)
+  if (leftMarked || !auth.isAuthenticated) return
+  leftMarked = true
+  await supabase.rpc('decrement_participant_count', { workspace_id: workspaceId })
 }
+
+// keepalive fetch used in beforeunload — regular await isn't reliable on tab close
+const accessToken = ref<string | null>(null)
+function markLeftBeacon() {
+  if (leftMarked || !auth.isAuthenticated) return
+  leftMarked = true
+  fetch(
+    `${import.meta.env.VITE_SUPABASE_URL}/rest/v1/rpc/decrement_participant_count`,
+    {
+      method: 'POST',
+      keepalive: true,
+      headers: {
+        'Content-Type': 'application/json',
+        'apikey': import.meta.env.VITE_SUPABASE_ANON_KEY,
+        'Authorization': `Bearer ${accessToken.value ?? import.meta.env.VITE_SUPABASE_ANON_KEY}`,
+      },
+      body: JSON.stringify({ workspace_id: workspaceId }),
+    },
+  )
+}
+
+function handleBeforeUnload() {
+  markLeftBeacon()
+}
+
+// Catch unexpected drops (network cut, LiveKit server restart, etc.)
+watch(() => livekit.isConnected.value, (connected, wasConnected) => {
+  if (wasConnected && !connected) markLeft()
+})
 
 // ── Lifecycle ──────────────────────────────────────────────────────────────
 onMounted(async () => {
+  // Store access token now so beforeunload can use it synchronously
+  const { data: { session } } = await supabase.auth.getSession()
+  accessToken.value = session?.access_token ?? null
+  window.addEventListener('beforeunload', handleBeforeUnload)
+
   const { data: ws } = await supabase
     .from('workspaces')
     .select('*')
@@ -129,15 +219,20 @@ onMounted(async () => {
     if (ws.ended_at) {
       isEnded.value = true
       loading.value = false
+      window.removeEventListener('beforeunload', handleBeforeUnload)
       return
     }
 
-    // Auto-expire: no one present for 30+ minutes
-    const ageMs = Date.now() - new Date(ws.created_at).getTime()
-    if (!ws.is_active && (ws.participant_count ?? 0) === 0 && ageMs > 30 * 60 * 1000) {
-      isEnded.value = true
-      loading.value = false
-      return
+    // Auto-expire: no user for 5+ minutes (use last_empty_at if set, else created_at for never-used syncs)
+    if ((ws.participant_count ?? 0) === 0 && !ws.ended_at) {
+      const ref = ws.last_empty_at ?? ws.created_at
+      if (ref && Date.now() - new Date(ref).getTime() > 5 * 60 * 1000) {
+        isEnded.value = true
+        supabase.from('workspaces').update({ ended_at: new Date().toISOString() }).eq('id', workspaceId)
+        loading.value = false
+        window.removeEventListener('beforeunload', handleBeforeUnload)
+        return
+      }
     }
 
     // If the sync already has a real title, info is considered filled
@@ -156,7 +251,35 @@ onMounted(async () => {
   loading.value = false
 
   await livekit.connect(workspaceId, localIdentity.value, displayName.value)
+
+  // Rejoin guard: if connect failed and DB still shows room as active, it's stale — reset it
+  if (livekit.error.value) {
+    window.removeEventListener('beforeunload', handleBeforeUnload)
+    if (workspace.value?.is_active) {
+      await supabase.from('workspaces').update({
+        is_active: false, participant_count: 0, last_empty_at: new Date().toISOString(),
+      }).eq('id', workspaceId)
+      isEnded.value = true
+    }
+    return
+  }
+
   await markActive()
+
+  // Start inactivity tracking now that we're live
+  const activityEvents = ['mousemove', 'keydown', 'mousedown', 'touchstart'] as const
+  activityEvents.forEach(e => document.addEventListener(e, onUserActivity, { passive: true }))
+  resetInactivity()
+
+})
+
+onUnmounted(() => {
+  window.removeEventListener('beforeunload', handleBeforeUnload)
+  markLeft() // covers navigation-away without clicking Leave
+  const activityEvents = ['mousemove', 'keydown', 'mousedown', 'touchstart'] as const
+  activityEvents.forEach(e => document.removeEventListener(e, onUserActivity))
+  clearInactivityTimer()
+  clearAutoLeave()
 })
 
 // ── Actions ────────────────────────────────────────────────────────────────
@@ -195,6 +318,27 @@ async function leaveRoom() {
 
 function creatorInitials(name: string = '') {
   return name.split(' ').map((n: string) => n[0]).join('').slice(0, 2).toUpperCase()
+}
+
+async function endSync() {
+  clearInactivityTimer()
+  clearAutoLeave()
+  await supabase.from('workspaces').update({ ended_at: new Date().toISOString(), is_active: false }).eq('id', workspaceId)
+  await livekit.disconnect()
+  router.push('/')
+}
+
+async function submitRating(goTo: 'home' | 'new') {
+  if (endedRating.value > 0 && localIdentity.value) {
+    await supabase.from('workspace_ratings').upsert({
+      workspace_id: workspaceId,
+      user_id: localIdentity.value,
+      stars: endedRating.value,
+    }, { onConflict: 'workspace_id,user_id' }).select()
+  }
+  ratingSubmitted.value = true
+  await livekit.disconnect()
+  router.push('/')
 }
 </script>
 
@@ -236,7 +380,7 @@ function creatorInitials(name: string = '') {
         :participants="livekit.participants.value"
         :local-identity="localIdentity"
         :is-connecting="livekit.isConnecting.value"
-        :is-creator="isCreator"
+        :is-starting="isStarting"
         :error="livekit.error.value"
         @leave="leaveRoom"
       />
@@ -486,7 +630,7 @@ function creatorInitials(name: string = '') {
             :current-user-id="localIdentity"
             :is-guest="guestSession.isGuest.value && !auth.isAuthenticated"
             class="flex-1 min-h-0"
-            @send="chat.sendMessage($event)"
+            @send="chat.sendMessage($event); resetInactivity()"
             @close="isPanelOpen = false"
           />
         </div>
@@ -573,12 +717,150 @@ function creatorInitials(name: string = '') {
       :participant-count="livekit.participantCount.value"
       :is-chat-open="isChatActive"
       :unread-count="chat.unreadCount.value"
-      @toggle-mic="livekit.toggleMic()"
-      @toggle-camera="livekit.toggleCamera()"
+      @toggle-mic="livekit.toggleMic(); resetInactivity()"
+      @toggle-camera="livekit.toggleCamera(); resetInactivity()"
       @toggle-chat="handleToggleChat"
       @leave="leaveRoom"
     />
 
     </template><!-- end v-else (not ended) -->
+
+    <!-- ── Inactivity popup ──────────────────────────────────────────────── -->
+    <Transition
+      enter-active-class="transition-all duration-300 ease-out"
+      enter-from-class="opacity-0 scale-95"
+      enter-to-class="opacity-100 scale-100"
+      leave-active-class="transition-all duration-200 ease-in"
+      leave-from-class="opacity-100 scale-100"
+      leave-to-class="opacity-0 scale-95"
+    >
+      <div
+        v-if="showInactiveModal"
+        class="fixed inset-0 z-40 flex items-center justify-center bg-black/60 backdrop-blur-sm px-4"
+      >
+        <div class="w-full max-w-sm bg-[#1a2e10] border border-white/15 rounded-3xl shadow-2xl overflow-hidden">
+          <!-- Header -->
+          <div class="px-6 pt-7 pb-5 text-center">
+            <div class="h-14 w-14 rounded-full bg-white/10 flex items-center justify-center mx-auto mb-4">
+              <svg class="h-7 w-7 text-white/60" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <h2 class="text-white font-semibold text-lg">Are you still there?</h2>
+            <p class="text-white/40 text-sm mt-2 leading-relaxed">
+              You've been inactive for a while. We'll disconnect you in
+              <span :class="['font-semibold tabular-nums', autoLeaveCountdown <= 10 ? 'text-red-400' : 'text-white/70']">{{ autoLeaveCountdown }}s</span>
+              unless you respond.
+            </p>
+          </div>
+
+          <!-- Actions -->
+          <div class="px-5 pb-5 flex gap-3">
+            <button
+              class="flex-1 bg-[#4a7a28] hover:bg-[#5a8a34] text-white text-sm font-semibold py-3 rounded-xl transition-colors"
+              @click="giveMoreTime"
+            >
+              Give me 5 more minutes
+            </button>
+            <button
+              class="flex-1 border border-white/20 text-white/60 hover:border-red-500/40 hover:text-red-400 text-sm font-medium py-3 rounded-xl transition-colors"
+              @click="leaveRoom"
+            >
+              Leave Sync
+            </button>
+          </div>
+        </div>
+      </div>
+    </Transition>
+
+    <!-- ── Sync-ended overlay (shown to active viewers when sync ends) ──── -->
+    <Transition
+      enter-active-class="transition-all duration-300 ease-out"
+      enter-from-class="opacity-0"
+      enter-to-class="opacity-100"
+    >
+      <div
+        v-if="showEndedOverlay"
+        class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm"
+      >
+        <div class="w-full max-w-md bg-[#1c2e10] border border-white/20 rounded-3xl shadow-2xl overflow-hidden">
+          <!-- Header -->
+          <div class="px-7 pt-7 pb-5 text-center border-b border-white/10">
+            <div class="h-14 w-14 rounded-full bg-white/10 flex items-center justify-center mx-auto mb-4">
+              <svg class="h-7 w-7 text-white/60" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <h2 class="text-white font-semibold text-xl leading-snug">This sync just ended</h2>
+            <p class="text-white/50 text-sm mt-1.5">Thanks for joining! How was it?</p>
+          </div>
+
+          <!-- Body -->
+          <div class="px-7 py-6 space-y-5">
+            <!-- Star rating -->
+            <div class="text-center">
+              <p class="text-white/60 text-xs uppercase tracking-widest mb-3">Rate this sync</p>
+              <div class="flex items-center justify-center gap-2">
+                <button
+                  v-for="star in 5"
+                  :key="star"
+                  class="text-3xl transition-transform hover:scale-110"
+                  @click="endedRating = star"
+                >
+                  <span :class="star <= endedRating ? 'text-amber-400' : 'text-white/20'">★</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Reward badge -->
+            <div class="flex items-center gap-3 bg-amber-500/10 border border-amber-400/20 rounded-xl px-4 py-3">
+              <span class="text-2xl">⭐</span>
+              <div>
+                <p class="text-amber-300 text-sm font-semibold">You earned a star!</p>
+                <p class="text-white/40 text-xs">For joining a sync without any complaints.</p>
+              </div>
+            </div>
+
+            <!-- Host info + like/follow -->
+            <div v-if="creator" class="flex items-center justify-between bg-white/5 rounded-xl px-4 py-3">
+              <div class="flex items-center gap-2.5">
+                <div class="h-9 w-9 rounded-full bg-[#4a7a28] flex items-center justify-center text-white text-xs font-bold shrink-0">
+                  {{ creatorInitials(creator.full_name || creator.username) }}
+                </div>
+                <div>
+                  <p class="text-white text-sm font-semibold">{{ creator.full_name || creator.username }}</p>
+                  <p v-if="creator.username" class="text-white/40 text-xs">@{{ creator.username }}</p>
+                </div>
+              </div>
+              <button
+                class="flex items-center gap-1.5 bg-white/10 hover:bg-white/20 text-white text-xs font-semibold px-3 py-2 rounded-lg transition-colors"
+                @click="liked = true; likeCount += liked ? 0 : 1"
+              >
+                <svg class="h-3.5 w-3.5" :fill="liked ? 'currentColor' : 'none'" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                </svg>
+                {{ liked ? 'Liked' : 'Like' }}
+              </button>
+            </div>
+
+            <!-- Action buttons -->
+            <div class="flex gap-3 pt-1">
+              <button
+                class="flex-1 bg-[#4a7a28] hover:bg-[#5a8a34] text-white text-sm font-semibold py-3 rounded-xl transition-colors"
+                @click="submitRating('new')"
+              >
+                Start a new sync
+              </button>
+              <button
+                class="flex-1 border border-white/20 text-white/70 hover:text-white text-sm font-medium py-3 rounded-xl transition-colors"
+                @click="submitRating('home')"
+              >
+                Go home
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </Transition>
   </div>
 </template>

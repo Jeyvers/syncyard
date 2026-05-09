@@ -111,9 +111,15 @@ export function useLiveKit() {
 
   async function disconnect() {
     if (room.value) {
+      // Explicitly stop every local media track so the browser releases camera/mic hardware
+      room.value.localParticipant.trackPublications.forEach((pub) => {
+        pub.track?.stop()
+      })
       await room.value.disconnect()
       room.value = null
     }
+    isMicEnabled.value = false
+    isCameraEnabled.value = false
     isConnected.value = false
     participants.value = []
   }
