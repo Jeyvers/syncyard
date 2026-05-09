@@ -32,7 +32,7 @@
               class="inline-flex items-center gap-2 border border-earth-50/40 hover:border-earth-50 text-earth-50 text-sm font-medium px-4 py-2 rounded-full transition-colors"
             >
               <span class="h-2 w-2 rounded-full bg-green-400 shrink-0" />
-              Start a room now
+              Start a Sync now
             </RouterLink>
           </div>
 
@@ -44,7 +44,7 @@
                 <RouterLink
                   to="/discover"
                   class="text-sm text-sage-100 hover:text-white transition-colors"
-                  >Browse rooms</RouterLink
+                  >Browse syncs</RouterLink
                 >
               </li>
               <li>
@@ -98,7 +98,7 @@
                 <RouterLink
                   to="/signup"
                   class="text-sm text-sage-100 hover:text-white transition-colors"
-                  >Host a room</RouterLink
+                  >Host a Sync</RouterLink
                 >
               </li>
               <li>
@@ -130,7 +130,7 @@
               </li>
               <li>
                 <a href="#" class="text-sm text-sage-100 hover:text-white transition-colors"
-                  >Report a room</a
+                  >Report a Sync</a
                 >
               </li>
               <li>

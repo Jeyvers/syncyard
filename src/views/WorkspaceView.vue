@@ -19,6 +19,7 @@ const workspaceId = route.params.id as string
 const workspace = ref<any>(null)
 const creator = ref<any>(null)
 const loading = ref(true)
+const isEnded = ref(false)
 
 // LiveKit
 const livekit = useLiveKit()
@@ -88,7 +89,7 @@ async function copyRoomLink() {
 
 const categories = [
   'Tech & Founders', 'Creatives (Art, Music, Writing)', 'Late Night Chats',
-  'Girlies', 'Design Critique', 'Writers Room', 'Everything', 'Story Time', 'Other',
+  'Girlies', 'Design Critique', 'Writers Sync', 'Everything', 'Story Time', 'Other',
 ]
 
 // ── Supabase sync ──────────────────────────────────────────────────────────
@@ -103,10 +104,9 @@ async function markActive() {
 async function markLeft() {
   if (!auth.isAuthenticated) return
   const next = Math.max(0, (workspace.value?.participant_count ?? 1) - 1)
-  await supabase
-    .from('workspaces')
-    .update({ participant_count: next, is_active: next > 0 })
-    .eq('id', workspaceId)
+  const updates: Record<string, unknown> = { participant_count: next, is_active: next > 0 }
+  if (next === 0) updates.ended_at = new Date().toISOString()
+  await supabase.from('workspaces').update(updates).eq('id', workspaceId)
 }
 
 // ── Lifecycle ──────────────────────────────────────────────────────────────
@@ -125,7 +125,22 @@ onMounted(async () => {
     maxEntry.value = ws.max_members ?? ''
     likeCount.value = ws.like_count ?? 0
 
-    // If the room already has a real title, info is considered filled
+    // Mark as ended if ended_at is set
+    if (ws.ended_at) {
+      isEnded.value = true
+      loading.value = false
+      return
+    }
+
+    // Auto-expire: no one present for 30+ minutes
+    const ageMs = Date.now() - new Date(ws.created_at).getTime()
+    if (!ws.is_active && (ws.participant_count ?? 0) === 0 && ageMs > 30 * 60 * 1000) {
+      isEnded.value = true
+      loading.value = false
+      return
+    }
+
+    // If the sync already has a real title, info is considered filled
     if (ws.name && ws.name !== 'New Sync') infoFilled.value = true
 
     if (ws.creator_id) {
@@ -186,7 +201,22 @@ function creatorInitials(name: string = '') {
 <template>
   <div class="h-screen flex flex-col overflow-hidden bg-[#0d1a08]">
 
+    <!-- ── Ended state ───────────────────────────────────────────────────── -->
+    <div v-if="isEnded" class="flex-1 flex flex-col items-center justify-center px-6 text-center">
+      <div class="h-16 w-16 rounded-full bg-white/10 flex items-center justify-center mb-5">
+        <svg class="h-8 w-8 text-white/40" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+      </div>
+      <h2 class="text-white font-semibold text-xl mb-2">This sync has ended</h2>
+      <p class="text-white/50 text-sm max-w-sm leading-relaxed mb-6">The host has left or the sync expired due to inactivity. Start a new one to keep the conversation going.</p>
+      <RouterLink to="/" class="bg-[#4a7a28] hover:bg-[#5a8a34] text-white text-sm font-semibold px-6 py-3 rounded-xl transition-colors">
+        Back to home
+      </RouterLink>
+    </div>
+
     <!-- ── Main area ─────────────────────────────────────────────────────── -->
+    <template v-else>
     <div class="flex-1 flex overflow-hidden relative">
 
       <!-- Floating top bar -->
@@ -272,7 +302,7 @@ function creatorInitials(name: string = '') {
                   <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
                   </svg>
-                  {{ livekit.participantCount.value }} in this room
+                  {{ livekit.participantCount.value }} in this sync
                 </div>
               </div>
 
@@ -485,7 +515,7 @@ function creatorInitials(name: string = '') {
               </div>
               <div>
                 <p class="text-white font-semibold text-sm leading-snug">Add info before others can join</p>
-                <p class="text-white/50 text-xs mt-0.5">Give your room a title so people know what to expect.</p>
+                <p class="text-white/50 text-xs mt-0.5">Give your sync a title so people know what to expect.</p>
               </div>
             </div>
           </div>
@@ -496,13 +526,13 @@ function creatorInitials(name: string = '') {
               <input
                 v-model="title"
                 type="text"
-                placeholder="Room title *"
+                placeholder="Sync title *"
                 class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-sm text-white placeholder-white/40 focus:outline-none focus:border-[#7a9a50] focus:ring-1 focus:ring-[#7a9a50] transition-colors"
               />
             </div>
             <textarea
               v-model="description"
-              placeholder="What's this room about? (optional)"
+              placeholder="What's this sync about? (optional)"
               rows="2"
               class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-sm text-white placeholder-white/40 focus:outline-none focus:border-[#7a9a50] transition-colors resize-none"
             />
@@ -549,5 +579,6 @@ function creatorInitials(name: string = '') {
       @leave="leaveRoom"
     />
 
+    </template><!-- end v-else (not ended) -->
   </div>
 </template>

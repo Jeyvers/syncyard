@@ -29,7 +29,7 @@ const gridClass = computed(() => {
     <div v-if="isConnecting" class="flex-1 flex items-center justify-center">
       <div class="text-center">
         <div class="h-8 w-8 rounded-full border-2 border-white/20 border-t-green-400 animate-spin mx-auto mb-3" />
-        <p class="text-white/50 text-sm">{{ isCreator ? 'Starting your sync…' : 'Joining room…' }}</p>
+        <p class="text-white/50 text-sm">{{ isCreator ? 'Starting your sync…' : 'Joining sync…' }}</p>
       </div>
     </div>
 

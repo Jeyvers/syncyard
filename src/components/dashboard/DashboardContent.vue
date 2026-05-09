@@ -89,7 +89,7 @@ const liveRooms = [
   },
   {
     title: 'Learn in public — what are you...',
-    description: "Open room for makers to share what they're working on. No gatekeeping.",
+    description: "Open sync for makers to share what they're working on. No gatekeeping.",
     creator: 'Riya Pillai',
     flag: '🇧🇪',
     location: 'Croatia, Belgium',
@@ -97,7 +97,7 @@ const liveRooms = [
   },
   {
     title: 'Learn in public — what are you...',
-    description: "Open room for makers to share what they're working on. No gatekeeping.",
+    description: "Open sync for makers to share what they're working on. No gatekeeping.",
     creator: 'Riya Pillai',
     flag: '🇧🇪',
     location: 'Croatia, Belgium',
@@ -122,7 +122,7 @@ const liveRooms = [
   },
   {
     title: 'Learn in public — what are you...',
-    description: "Open room for makers to share what they're working on. No gatekeeping.",
+    description: "Open sync for makers to share what they're working on. No gatekeeping.",
     creator: 'Riya Pillai',
     flag: '🇧🇪',
     location: 'Croatia, Belgium',
@@ -130,7 +130,7 @@ const liveRooms = [
   },
   {
     title: 'Learn in public — what are you...',
-    description: "Open room for makers to share what they're working on. No gatekeeping.",
+    description: "Open sync for makers to share what they're working on. No gatekeeping.",
     creator: 'Riya Pillai',
     flag: '🇧🇪',
     location: 'Croatia, Belgium',
@@ -206,7 +206,7 @@ function roomInitials(name: string) {
               class="inline-flex items-center gap-2 bg-[#2d4a1e] hover:bg-forest text-white text-sm font-semibold px-6 py-3 rounded-full transition-colors shrink-0"
               @click="emit('start-room')"
             >
-              Start a room
+              Start a Sync
             </button>
             <div
               class="flex items-center gap-2 border border-[#e0e0d4] bg-white rounded-full px-4 py-3 w-64"
@@ -249,7 +249,7 @@ function roomInitials(name: string) {
             <div class="flex items-center justify-around mt-4 py-3 border-y border-[#c8d8b0]">
               <div class="text-center">
                 <p class="text-base font-bold text-[#2d2d1a]">7</p>
-                <p class="text-[9px] text-[#9a9a82] uppercase tracking-wider">Rooms</p>
+                <p class="text-[9px] text-[#9a9a82] uppercase tracking-wider">Syncs</p>
               </div>
               <div class="text-center">
                 <p class="text-base font-bold text-[#2d2d1a]">43</p>

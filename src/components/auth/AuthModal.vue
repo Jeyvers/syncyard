@@ -102,7 +102,7 @@ const guestError = ref('')
 
 const guestButtonLabel = computed(() => {
   const redirect = route.query.redirect as string | undefined
-  if (redirect?.includes('/workspace/')) return 'Join room'
+  if (redirect?.includes('/workspace/')) return 'Join Sync'
   return 'Continue as guest'
 })
 
@@ -351,14 +351,14 @@ const inputCls = 'w-full border border-gray-200 rounded-2xl px-5 py-3.5 text-sm 
             <!-- ── GUEST ── -->
             <template v-else>
               <h2 class="font-display text-3xl font-medium text-[#A5AC74] mb-2 text-center">Just browsing?</h2>
-              <p class="text-sm text-gray-500 mb-8 text-center">Pick a name and jump straight into any open room. No account needed.</p>
+              <p class="text-sm text-gray-500 mb-8 text-center">Pick a name and jump straight into any live sync. No account needed.</p>
 
               <input v-model="guestName" type="text" placeholder="What should we call you?"
                 :class="inputCls + ' mb-5'"
                 @keydown.enter="handleGuest" />
 
               <ul class="space-y-2 mb-5">
-                <li v-for="item in ['Browse and join any live room', 'Watch and listen in any open room', 'No email or password required']" :key="item"
+                <li v-for="item in ['Browse and join any live sync', 'Watch and listen in any open sync', 'No email or password required']" :key="item"
                   class="flex items-center gap-3 text-sm text-[#4a4a2a]">
                   <span class="h-5 w-5 rounded-full bg-[#dde8c8] flex items-center justify-center shrink-0">
                     <svg class="h-3 w-3 text-[#5a6e2a]" fill="none" viewBox="0 0 24 24" stroke="currentColor">

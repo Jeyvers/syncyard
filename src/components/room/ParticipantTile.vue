@@ -89,7 +89,7 @@ function initials(name: string) {
       autoplay
       playsinline
       :muted="isLocal"
-      class="absolute inset-0 w-full h-full object-cover"
+      :class="['absolute inset-0 w-full h-full object-cover', isLocal ? 'scale-x-[-1]' : '']"
     />
 
     <!-- Avatar fallback (camera off) -->

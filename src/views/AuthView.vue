@@ -361,7 +361,7 @@ const googleBtnLabel = computed(() => {
             Just browsing?
           </h1>
           <p class="text-sm text-muted mb-8">
-            Pick a name and jump straight into any open room.<br />No account needed.
+            Pick a name and jump straight into any live sync.<br />No account needed.
           </p>
 
           <input
@@ -373,7 +373,7 @@ const googleBtnLabel = computed(() => {
           />
 
           <ul class="space-y-2 mb-6">
-            <li v-for="item in ['Browse and join any live room for 10 minutes', 'Chat and participate in discussions', 'No email or password required']"
+            <li v-for="item in ['Browse and join any live sync', 'Watch and listen in any open sync', 'No email or password required']"
               :key="item"
               class="flex items-center gap-3 text-sm text-[#4a4a2a]"
             >

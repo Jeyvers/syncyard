@@ -35,7 +35,7 @@ const rooms = [
   },
   {
     title: 'Learn in public — what are you...',
-    description: "Open room for makers to share what they're working on. No gatekeeping.",
+    description: "Open sync for makers to share what they're working on. No gatekeeping.",
     creator: 'Riya Pillai',
     flag: '🇧🇪',
     location: 'Croatia, Belgium',
@@ -43,7 +43,7 @@ const rooms = [
   },
   {
     title: 'Learn in public — what are you...',
-    description: "Open room for makers to share what they're working on. No gatekeeping.",
+    description: "Open sync for makers to share what they're working on. No gatekeeping.",
     creator: 'Riya Pillai',
     flag: '🇧🇪',
     location: 'Croatia, Belgium',
@@ -75,7 +75,7 @@ const rooms = [
     joined: 6,
   },
   {
-    title: 'Writers room — open session',
+    title: 'Writers sync — open session',
     description: 'Writing in silence together. Drop in, mute, and get stuff done.',
     creator: 'Lena Park',
     flag: '🇰🇷',

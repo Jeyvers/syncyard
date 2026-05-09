@@ -15,15 +15,22 @@ const loading = ref(false)
 const error = ref('')
 
 const categories = [
-  'Tech & Founders',
-  'Creatives (Art, Music, Writing)',
+  'Open Floor',
+  'Builders',
+  'Creative Corner',
+  'Music & Vibes',
   'Late Night Chats',
+  'Career & Money',
+  'Hot Takes',
+  'Study With Me',
+  'Dating & Relationships',
   'Girlies',
-  'Design Critique',
-  'Writers Room',
-  'Everything',
+  'Gaming',
   'Story Time',
-  'Other',
+  'Rant & Vent',
+  'African Creatives',
+  'Spirituality & Wellness',
+  'Design Critique',
 ]
 
 async function handleCreate() {
@@ -63,25 +70,26 @@ async function handleCreate() {
 </script>
 
 <template>
-  <div
-    class="min-h-screen flex items-center justify-center bg-[#f5f5f2] px-4"
-  >
+  <div class="min-h-screen flex items-center justify-center bg-[#f5f5f2] px-4">
     <!-- Back -->
     <RouterLink
       to="/discover"
       class="fixed top-5 left-5 flex items-center gap-2 text-sm text-muted hover:text-[#2d2d1a] transition-colors"
     >
       <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M10 19l-7-7m0 0l7-7m-7 7h18"
+        />
       </svg>
       Back
     </RouterLink>
 
     <!-- Panel -->
     <div class="w-full max-w-sm bg-[#dde8c8]/60 border border-[#c8d8b0] rounded-2xl p-7">
-      <h2
-        class="font-display text-[#2d5a1a] font-semibold text-base leading-snug mb-6"
-      >
+      <h2 class="font-display text-[#2d5a1a] font-semibold text-base leading-snug mb-6">
         Add a bit more information<br />for your sync
       </h2>
 

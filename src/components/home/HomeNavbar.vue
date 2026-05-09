@@ -109,7 +109,7 @@ onUnmounted(() => {
           class="px-4 py-1.5 font-display text-sm text-[#41431B] hover:text-[#2d2d1a] transition-colors"
           @click="emit('start-room')"
         >
-          Host a room
+          Host a Sync
         </button>
       </nav>
 
@@ -280,7 +280,7 @@ onUnmounted(() => {
           class="block w-full text-left px-3 py-2.5 text-sm text-[#6b6b5a] hover:text-[#2d2d1a] rounded-lg transition-colors"
           @click="mobileHostRoom"
         >
-          Host a room
+          Host a Sync
         </button>
 
         <div class="pt-3 border-t border-[#e8e8e0] flex flex-col gap-2">

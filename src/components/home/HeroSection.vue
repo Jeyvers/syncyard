@@ -53,7 +53,7 @@ import { RouterLink } from 'vue-router'
     <div class="relative max-w-3xl mx-auto text-center">
       <!-- Pills row -->
       <div class="flex items-center justify-center gap-4 mb-10 flex-wrap">
-        <span class="font-display tracking-[0.15em] text-sage-400 uppercase"> Open Rooms </span>
+        <span class="font-display tracking-[0.15em] text-sage-400 uppercase"> Open Syncs </span>
         <span class="text-sage-400 font-bold">■</span>
         <span class="font-display tracking-[0.15em] text-sage-500 uppercase">
           Different People
@@ -69,7 +69,7 @@ import { RouterLink } from 'vue-router'
 
       <!-- Subtext -->
       <p class="text-olive-500 text-base sm:text-lg max-w-xl mx-auto mb-10 leading-relaxed">
-        Syncyard is where people from anywhere drop into live rooms, meet strangers, share ideas,
+        Syncyard is where people from anywhere drop into live syncs, meet strangers, share ideas,
         and just... talk.
       </p>
 
@@ -78,14 +78,14 @@ import { RouterLink } from 'vue-router'
         href="#live-rooms"
         class="font-body inline-flex items-center justify-center bg-olive-dark text-white font-medium px-12 py-5 rounded-blob shadow-lg hover:scale-105 transition-transform duration-200"
       >
-        See live rooms
+        See live syncs
       </a>
 
       <!-- Stats -->
       <div class="mt-16 flex items-center justify-center gap-8 sm:gap-12 flex-wrap font-sans">
         <div>
           <span class="text-2xl font-semibold text-olive">24</span>
-          <span class="ml-1.5 text-sm font-light text-muted">rooms open now</span>
+          <span class="ml-1.5 text-sm font-light text-muted">syncs live</span>
         </div>
         <div>
           <span class="text-2xl font-semibold text-olive">82</span>
