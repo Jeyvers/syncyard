@@ -1,6 +1,10 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import { useAuthStore } from '@/stores/auth'
 
+function hasGuestSession() {
+  return !!(localStorage.getItem('syncyard_guest_id') && localStorage.getItem('syncyard_guest_name'))
+}
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -56,6 +60,8 @@ router.beforeEach((to) => {
 
   // Unauthenticated users hitting protected routes → home with modal (preserve intended destination)
   if (to.meta.auth && !auth.isAuthenticated) {
+    // Guests with a valid session may join workspace rooms
+    if (to.path.startsWith('/workspace/') && hasGuestSession()) return
     return `/?auth=login&redirect=${encodeURIComponent(to.fullPath)}`
   }
 

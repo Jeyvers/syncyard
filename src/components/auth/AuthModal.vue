@@ -1,13 +1,15 @@
 <script setup lang="ts">
-import { ref, watch } from 'vue'
+import { ref, computed, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useAuthStore } from '@/stores/auth'
 import { useAuthModal, type AuthTab } from '@/composables/useAuthModal'
+import { useGuestSession } from '@/composables/useGuestSession'
 
 const route = useRoute()
 const router = useRouter()
 const auth = useAuthStore()
 const { isOpen, activeTab, closeModal } = useAuthModal()
+const guestSession = useGuestSession()
 
 // After auth, go to the redirect destination if one was saved
 function redirectAfterAuth() {
@@ -98,9 +100,15 @@ async function handleGoogle() {
 const guestName = ref('')
 const guestError = ref('')
 
+const guestButtonLabel = computed(() => {
+  const redirect = route.query.redirect as string | undefined
+  if (redirect?.includes('/workspace/')) return 'Join room'
+  return 'Continue as guest'
+})
+
 function handleGuest() {
   if (!guestName.value.trim()) { guestError.value = 'Please enter a name'; return }
-  localStorage.setItem('syncyard_guest_name', guestName.value.trim())
+  guestSession.setGuest(guestName.value.trim())
   redirectAfterAuth()
 }
 
@@ -350,7 +358,7 @@ const inputCls = 'w-full border border-gray-200 rounded-2xl px-5 py-3.5 text-sm 
                 @keydown.enter="handleGuest" />
 
               <ul class="space-y-2 mb-5">
-                <li v-for="item in ['Browse and join any live room', 'Chat and participate in discussions', 'No email or password required']" :key="item"
+                <li v-for="item in ['Browse and join any live room', 'Watch and listen in any open room', 'No email or password required']" :key="item"
                   class="flex items-center gap-3 text-sm text-[#4a4a2a]">
                   <span class="h-5 w-5 rounded-full bg-[#dde8c8] flex items-center justify-center shrink-0">
                     <svg class="h-3 w-3 text-[#5a6e2a]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -370,7 +378,7 @@ const inputCls = 'w-full border border-gray-200 rounded-2xl px-5 py-3.5 text-sm 
 
               <p v-if="guestError" class="text-xs text-red-500 mb-3">{{ guestError }}</p>
               <button class="w-full bg-[#7C824E] hover:bg-[#6a7040] text-white font-semibold py-4 rounded-2xl transition-colors text-base" @click="handleGuest">
-                Continue as guest
+                {{ guestButtonLabel }}
               </button>
             </template>
           </div>

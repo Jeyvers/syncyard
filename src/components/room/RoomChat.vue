@@ -1,11 +1,15 @@
 <script setup lang="ts">
 import { ref, watch, nextTick } from 'vue'
 import type { RoomMessage } from '@/types/index'
+import { useAuthModal } from '@/composables/useAuthModal'
 
 const props = defineProps<{
   messages: RoomMessage[]
   currentUserId: string
+  isGuest?: boolean
 }>()
+
+const { openModal } = useAuthModal()
 
 const emit = defineEmits<{
   send: [content: string]
@@ -118,8 +122,25 @@ function initials(name: string) {
       </div>
     </div>
 
+    <!-- Guest: no-chat prompt -->
+    <div v-if="isGuest" class="px-4 pb-4 pt-3 shrink-0 border-t border-white/10">
+      <div class="bg-white/5 rounded-xl px-4 py-3 text-center">
+        <p class="text-white/60 text-xs mb-2.5 leading-relaxed">You need an account to send messages.</p>
+        <div class="flex gap-2">
+          <button
+            class="flex-1 bg-[#4a7a28] hover:bg-[#5a8a34] text-white text-xs font-semibold py-2 rounded-lg transition-colors"
+            @click="openModal('signup')"
+          >Sign up free</button>
+          <button
+            class="flex-1 border border-white/20 text-white/60 hover:text-white text-xs font-medium py-2 rounded-lg transition-colors"
+            @click="openModal('login')"
+          >Log in</button>
+        </div>
+      </div>
+    </div>
+
     <!-- Input -->
-    <div class="px-3 pb-3 pt-2 shrink-0 border-t border-white/10">
+    <div v-else class="px-3 pb-3 pt-2 shrink-0 border-t border-white/10">
       <form class="flex items-center gap-2" @submit.prevent="submit">
         <input
           v-model="input"

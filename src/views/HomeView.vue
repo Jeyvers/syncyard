@@ -21,7 +21,15 @@ const { openModal } = useAuthModal()
 
 onMounted(() => {
   const tab = route.query.auth as string
-  if (tab === 'login' || tab === 'signup' || tab === 'guest') openModal(tab)
+  if (tab === 'login' || tab === 'signup' || tab === 'guest') {
+    // Only open the modal if the user is not already authenticated
+    if (!auth.isAuthenticated) {
+      openModal(tab)
+    } else {
+      // Authenticated — just clean the URL without navigating
+      router.replace({ query: {} })
+    }
+  }
 })
 
 async function startRoom() {
